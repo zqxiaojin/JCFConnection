@@ -1,0 +1,11 @@
+//
+//  UIWebViewPrivate_Debug.xcconfig
+//  PublicModule
+//
+//  Created by LiangJin on 13-8-6.
+//
+//
+#include "BasicDebugConfig.xcconfig"
+
+
+//SYMROOT = $(SYMROOT_UIWebViewPrivate)

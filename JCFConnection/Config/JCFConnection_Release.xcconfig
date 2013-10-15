@@ -1,0 +1,10 @@
+//
+//  UIWebViewPrivate_Release.xcconfig
+//  PublicModule
+//
+//  Created by LiangJin on 13-8-6.
+//
+//
+#include "BasicReleaseConfig.xcconfig"
+
+//SYMROOT = $(SYMROOT_UIWebViewPrivate)
