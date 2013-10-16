@@ -13,7 +13,7 @@
 		9472151A180B1E9500CE2C58 /* CFSocketFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94721518180B1E9500CE2C58 /* CFSocketFactory.mm */; };
 		9472151D180B23F600CE2C58 /* ResponseParser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9472151B180B23F600CE2C58 /* ResponseParser.mm */; };
 		94721520180B24F700CE2C58 /* RequestTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9472151E180B24F700CE2C58 /* RequestTool.mm */; };
-		94721523180BB64400CE2C58 /* DataArrayReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94721521180BB64400CE2C58 /* DataArrayReader.mm */; };
+		94721523180BB64400CE2C58 /* DataFinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94721521180BB64400CE2C58 /* DataFinder.mm */; };
 		948CB49F18098FEB006B7917 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948CB49E18098FEB006B7917 /* Foundation.framework */; };
 		948CB4A418098FEB006B7917 /* JCFConnection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 948CB4A318098FEB006B7917 /* JCFConnection.h */; };
 		948CB4A618098FEB006B7917 /* JCFConnection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 948CB4A518098FEB006B7917 /* JCFConnection.mm */; };
@@ -61,8 +61,8 @@
 		9472151C180B23F600CE2C58 /* ResponseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseParser.h; sourceTree = "<group>"; };
 		9472151E180B24F700CE2C58 /* RequestTool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RequestTool.mm; sourceTree = "<group>"; };
 		9472151F180B24F700CE2C58 /* RequestTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestTool.h; sourceTree = "<group>"; };
-		94721521180BB64400CE2C58 /* DataArrayReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DataArrayReader.mm; sourceTree = "<group>"; };
-		94721522180BB64400CE2C58 /* DataArrayReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataArrayReader.h; sourceTree = "<group>"; };
+		94721521180BB64400CE2C58 /* DataFinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DataFinder.mm; sourceTree = "<group>"; };
+		94721522180BB64400CE2C58 /* DataFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataFinder.h; sourceTree = "<group>"; };
 		948CB49B18098FEB006B7917 /* libJCFConnection.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJCFConnection.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		948CB49E18098FEB006B7917 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		948CB4A218098FEB006B7917 /* JCFConnection-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JCFConnection-Prefix.pch"; sourceTree = "<group>"; };
@@ -122,8 +122,8 @@
 				9472151E180B24F700CE2C58 /* RequestTool.mm */,
 				9472151C180B23F600CE2C58 /* ResponseParser.h */,
 				9472151B180B23F600CE2C58 /* ResponseParser.mm */,
-				94721522180BB64400CE2C58 /* DataArrayReader.h */,
-				94721521180BB64400CE2C58 /* DataArrayReader.mm */,
+				94721522180BB64400CE2C58 /* DataFinder.h */,
+				94721521180BB64400CE2C58 /* DataFinder.mm */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -283,7 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94721523180BB64400CE2C58 /* DataArrayReader.mm in Sources */,
+				94721523180BB64400CE2C58 /* DataFinder.mm in Sources */,
 				94721515180AB6BC00CE2C58 /* CFConnectionCore.mm in Sources */,
 				9472151A180B1E9500CE2C58 /* CFSocketFactory.mm in Sources */,
 				948CB4D118099A15006B7917 /* CFSocketHandler.mm in Sources */,

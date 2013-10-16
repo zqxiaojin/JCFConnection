@@ -11,6 +11,7 @@
 
 namespace J
 {
+    class DataFinder;
     class ResponseParser
     {
     public:
@@ -28,7 +29,7 @@ namespace J
         
         NSHTTPURLResponse*  m_response;
         
-        CFMutableArrayRef   m_bufferArray;
+        DataFinder*         m_dataFinder;
     };
 }
 
