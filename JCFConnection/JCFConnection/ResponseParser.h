@@ -22,7 +22,7 @@ namespace J
         
         NSHTTPURLResponse* response(){return m_response;}
         
-        enum State { WaitForData , Done};
+        enum State { WaitForData , Done , Error};
         State state()const{return m_state;}
     protected:
         State               m_state;

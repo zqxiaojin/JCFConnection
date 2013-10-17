@@ -30,6 +30,7 @@ namespace J
         if (result != kCFNotFound)
         {
             //TODO: parse Response HTTP Header
+            
             m_state = Done;
         }
         return result;

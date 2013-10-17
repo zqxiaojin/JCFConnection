@@ -21,14 +21,25 @@ namespace J
         
         void appendData(CFDataRef data);
         
+        /**
+         *	@brief	find the data by Target
+         *
+         *	@return	return firstMatchOffset if success , NSNotFound if fail;
+         */
         uint find();
+
         
-        Byte* getBytePtr();
+        CFDataRef* getDataBuffer() const{return (CFDataRef*)m_dataBuffer;}
+        
+        uint firstMatchOffset()const{return m_firstMatchOffset;}
+    protected:
+        
+
         
     protected:
-        CFMutableDataRef    m_responseDataBuffer;
+        CFMutableDataRef    m_dataBuffer;
         uint                m_currentIndex;
-        
+        uint                m_firstMatchOffset;
         CFDataRef           m_targetData;
     };
 }

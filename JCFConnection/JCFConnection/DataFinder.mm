@@ -13,42 +13,63 @@ namespace J
 {
     DataFinder::DataFinder()
     :m_currentIndex(0)
-    ,m_responseDataBuffer(CFDataCreateMutable(kCFAllocatorDefault, 0))
+    ,m_dataBuffer(CFDataCreateMutable(kCFAllocatorDefault, 0))
     ,m_targetData(NULL)
+    ,m_firstMatchOffset(NSNotFound)
     {
         
     }
     DataFinder::~DataFinder()
     {
         CFRelease(m_targetData);
-        CFRelease(m_responseDataBuffer);
+        CFRelease(m_dataBuffer);
     }
     void DataFinder::appendData(CFDataRef data)
     {
-        CFDataAppendBytes(m_responseDataBuffer, CFDataGetBytePtr(data), CFDataGetLength(data));
+        CFDataAppendBytes(m_dataBuffer, CFDataGetBytePtr(data), CFDataGetLength(data));
     }
     
     uint DataFinder::find()
     {
-        uint dataLength = CFDataGetLength(m_responseDataBuffer);
+        uint dataLength = CFDataGetLength(m_dataBuffer);
         uint targetLength = CFDataGetLength(m_targetData);
-        if (dataLength < targetLength)
+        if (dataLength < targetLength || targetLength == 0)
         {
             return kCFNotFound;
         }
-        CFRange result = CFDataFind(m_responseDataBuffer
-                   , m_targetData
-                   , CFRangeMake(m_currentIndex, dataLength - m_currentIndex)
-                   , kCFDataSearchBackwards);
-        
-        if (result.location == kCFNotFound)
+        Byte* target = (Byte*)CFDataGetBytePtr(m_targetData);
+        Byte* bufferStart = (Byte*)CFDataGetBytePtr(m_dataBuffer) + m_currentIndex;
+        Byte* buffer = bufferStart;
+        bool isMatch = false;
+        Byte* bufferEnd = buffer + dataLength - m_currentIndex - targetLength;
+        for (;
+             buffer < bufferEnd;
+             ++buffer)
         {
-            m_currentIndex += dataLength - targetLength + 1;
-            return kCFNotFound;
+            isMatch = true;
+            for (uint i = 0 , ic = targetLength; i < ic ; ++i)
+            {
+                if (buffer[i] != target[i])
+                {
+                    isMatch = false;
+                    break;
+                }
+            }
+            if (isMatch)
+            {
+                break;
+            }
+        }
+        
+        if (isMatch)
+        {
+            m_firstMatchOffset = buffer - bufferStart + targetLength;
+            return m_firstMatchOffset;
         }
         else
         {
-            return result.location + targetLength;
+            m_currentIndex += dataLength - targetLength + 1;
+            return kCFNotFound;
         }
         
     }
