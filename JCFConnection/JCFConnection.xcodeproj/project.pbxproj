@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C5AFC441812BD8D00ACC9A1 /* Util.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C5AFC421812BD8D00ACC9A1 /* Util.mm */; };
+		3CF70FD11811819E00123FBB /* HTTPResponse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3CF70FCF1811819E00123FBB /* HTTPResponse.mm */; };
 		947215101809CEA000CE2C58 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9472150F1809CEA000CE2C58 /* CFNetwork.framework */; };
 		947215111809CEB100CE2C58 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9472150F1809CEA000CE2C58 /* CFNetwork.framework */; };
 		94721515180AB6BC00CE2C58 /* CFConnectionCore.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94721513180AB6BC00CE2C58 /* CFConnectionCore.mm */; };
@@ -50,6 +52,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C5AFC401812B5FB00ACC9A1 /* HTTPDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDefine.h; sourceTree = "<group>"; };
+		3C5AFC421812BD8D00ACC9A1 /* Util.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Util.mm; sourceTree = "<group>"; };
+		3C5AFC431812BD8D00ACC9A1 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		3CF70FCF1811819E00123FBB /* HTTPResponse.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HTTPResponse.mm; sourceTree = "<group>"; };
+		3CF70FD01811819E00123FBB /* HTTPResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPResponse.h; sourceTree = "<group>"; };
 		9472148E1809A7D200CE2C58 /* JCFConnection_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCFConnection_Internal.h; sourceTree = "<group>"; };
 		9472150F1809CEA000CE2C58 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		94721513180AB6BC00CE2C58 /* CFConnectionCore.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CFConnectionCore.mm; sourceTree = "<group>"; };
@@ -122,8 +129,13 @@
 				9472151E180B24F700CE2C58 /* RequestTool.mm */,
 				9472151C180B23F600CE2C58 /* ResponseParser.h */,
 				9472151B180B23F600CE2C58 /* ResponseParser.mm */,
+				3C5AFC401812B5FB00ACC9A1 /* HTTPDefine.h */,
+				3CF70FD01811819E00123FBB /* HTTPResponse.h */,
+				3CF70FCF1811819E00123FBB /* HTTPResponse.mm */,
 				94721522180BB64400CE2C58 /* DataFinder.h */,
 				94721521180BB64400CE2C58 /* DataFinder.mm */,
+				3C5AFC421812BD8D00ACC9A1 /* Util.mm */,
+				3C5AFC431812BD8D00ACC9A1 /* Util.h */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -283,6 +295,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C5AFC441812BD8D00ACC9A1 /* Util.mm in Sources */,
+				3CF70FD11811819E00123FBB /* HTTPResponse.mm in Sources */,
 				94721523180BB64400CE2C58 /* DataFinder.mm in Sources */,
 				94721515180AB6BC00CE2C58 /* CFConnectionCore.mm in Sources */,
 				9472151A180B1E9500CE2C58 /* CFSocketFactory.mm in Sources */,
@@ -415,6 +429,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				INFOPLIST_FILE = "JCFConnectionTests/JCFConnectionTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
@@ -431,6 +449,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JCFConnection/JCFConnection-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				INFOPLIST_FILE = "JCFConnectionTests/JCFConnectionTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;

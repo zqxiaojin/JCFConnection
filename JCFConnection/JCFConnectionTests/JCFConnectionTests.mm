@@ -59,7 +59,8 @@
 //    NSURL* url = [NSURL URLWithString:@"http://www.uc.cn"];
     NSURL* url = [NSURL URLWithString:@"http://cn.bing.com/search?q=zq&go=&qs=n&form=QBLH&pq=zq&sc=8-0&sp=-1&sk="];
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
-    m_connection = [[JCFConnection connectionWithRequest:request delegate:self] retain];
+//    m_connection = (JCFConnection*)[[NSURLConnection connectionWithRequest:request delegate:self] retain];
+    m_connection = (JCFConnection*)[[JCFConnection connectionWithRequest:request delegate:self] retain];
     
     NSLog(@"start connect %@", url);
 }
@@ -77,7 +78,7 @@
 }
 
 - (void)connection:(JCFConnection *)connection
-didReceiveResponse:(NSURLResponse *)response;
+didReceiveResponse:(NSHTTPURLResponse *)response;
 {
     
 }

@@ -29,9 +29,11 @@ namespace J
         uint find();
 
         
-        CFDataRef* getDataBuffer() const{return (CFDataRef*)m_dataBuffer;}
+        CFDataRef getDataBuffer() const{return (CFDataRef)m_dataBuffer;}
         
         uint firstMatchOffset()const{return m_firstMatchOffset;}
+        
+        static uint findData(const Byte* dataToFind, uint dataToFindLength, const Byte* data, uint dataLength);
     protected:
         
 

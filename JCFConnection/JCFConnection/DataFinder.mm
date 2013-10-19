@@ -39,17 +39,35 @@ namespace J
         }
         Byte* target = (Byte*)CFDataGetBytePtr(m_targetData);
         Byte* bufferStart = (Byte*)CFDataGetBytePtr(m_dataBuffer) + m_currentIndex;
-        Byte* buffer = bufferStart;
+        uint bufferStartMatchOffset = DataFinder::findData(bufferStart, dataLength - m_currentIndex, target, targetLength);
+        
+        if (bufferStartMatchOffset != NSNotFound)
+        {
+            m_firstMatchOffset = m_currentIndex + bufferStartMatchOffset + targetLength;
+            return m_firstMatchOffset;
+        }
+        else
+        {
+            m_currentIndex += dataLength - targetLength + 1;
+            return kCFNotFound;
+        }
+        
+    }
+    
+    uint DataFinder::findData(const Byte* dataToFind, uint dataToFindLength, const Byte* data, uint dataLength)
+    {
+        assert(dataToFind && data);
+        const Byte* buffer = dataToFind;
         bool isMatch = false;
-        Byte* bufferEnd = buffer + dataLength - m_currentIndex - targetLength;
+        const Byte* bufferEnd = buffer + dataToFindLength - dataLength;
         for (;
              buffer < bufferEnd;
              ++buffer)
         {
             isMatch = true;
-            for (uint i = 0 , ic = targetLength; i < ic ; ++i)
+            for (uint i = 0 , ic = dataLength; i < ic ; ++i)
             {
-                if (buffer[i] != target[i])
+                if (buffer[i] != data[i])
                 {
                     isMatch = false;
                     break;
@@ -60,18 +78,11 @@ namespace J
                 break;
             }
         }
-        
         if (isMatch)
         {
-            m_firstMatchOffset = buffer - bufferStart + targetLength;
-            return m_firstMatchOffset;
+            return buffer - dataToFind;
         }
-        else
-        {
-            m_currentIndex += dataLength - targetLength + 1;
-            return kCFNotFound;
-        }
-        
+        return NSNotFound;
     }
     
     void DataFinder::setTargetData(CFDataRef targetData)

@@ -12,6 +12,7 @@
 namespace J
 {
     class DataFinder;
+    class HTTPResponse;
     class ResponseParser
     {
     public:
@@ -20,15 +21,17 @@ namespace J
         
         uint appendData(CFDataRef data);
         
-        NSHTTPURLResponse* response(){return m_response;}
-        
         enum State { WaitForData , Done , Error};
         State state()const{return m_state;}
+        
+        static HTTPResponse* parse(const Byte* data,uint dataLength);
+        static void handleHTTPFieldParse(CFMutableDictionaryRef outputDic, CFStringRef headerName , const Byte* valueData , uint valueDataLength);
+        
+        NSHTTPURLResponse* makeResponseWithURL(NSURL* url);
     protected:
+        
+        HTTPResponse*       m_HTTPResponse;
         State               m_state;
-        
-        NSHTTPURLResponse*  m_response;
-        
         DataFinder*         m_dataFinder;
     };
 }

@@ -56,7 +56,7 @@ namespace J
             if (ResponseParser::Done == m_responseParser->state())
             {
                 //FIXME: It may be distory after this,should protect itself
-                [m_connection connection:this didReceiveResponse:m_responseParser->response()];
+                [m_connection connection:this didReceiveResponse:m_responseParser->makeResponseWithURL([m_curRequest URL])];
                 
                 if (restOffSet > 0)
                 {

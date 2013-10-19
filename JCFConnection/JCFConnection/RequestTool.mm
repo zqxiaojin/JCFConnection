@@ -83,6 +83,30 @@ namespace J
         {
             
         }
+        //Accept
+        {
+            
+        }
+        //Accept-Language
+        {
+            
+        }
+        //Accept-Encoding
+        {
+            
+        }
+        //User-Agent
+        {
+            
+        }
+        //Referer
+        {
+            
+        }
+        //Connection
+        {
+            
+        }
         const char endOFBody[] = "\r\n\r\n";
         CFDataAppendBytes(mData, (const Byte*)endOFBody, sizeof(endOFBody)-1);
         
