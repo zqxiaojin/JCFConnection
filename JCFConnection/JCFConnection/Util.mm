@@ -85,6 +85,6 @@ namespace J
     
     BOOL Util::isEqualString(CFStringRef a, CFStringRef b)
     {
-        return CFStringCompare(a, b, kCFCompareCaseInsensitive) == kCFCompareEqualTo;
+        return CFStringCompare(a, b, NULL) == kCFCompareEqualTo;
     }
 }

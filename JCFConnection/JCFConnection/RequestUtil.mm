@@ -1,20 +1,21 @@
 //
-//  RequestTool.cpp
+//  RequestUtil.cpp
 //  JCFConnection
 //
 //  Created by Liang Jin on 10/14/13.
 //  Copyright (c) 2013 Jin. All rights reserved.
 //
 
-#include "RequestTool.h"
+#include "RequestUtil.h"
 #include "HTTPDefine.h"
+#include "Util.h"
 namespace J
 {
-    CFStringRef RequestTool::host(NSURLRequest* request)
+    CFStringRef RequestUtil::host(NSURLRequest* request)
     {
         return (CFStringRef)[[request URL] host];
     }
-    UInt32 RequestTool::port(NSURLRequest* request)
+    UInt32 RequestUtil::port(NSURLRequest* request)
     {
         UInt32 port = (UInt32)CFURLGetPortNumber((CFURLRef)[request URL]);
         if (port == -1)
@@ -23,8 +24,31 @@ namespace J
         }
         return port;
     }
-    
-    CFMutableDataRef RequestTool::serialization(NSURLRequest* request)
+    static void HTTPHeaderDictionaryApplierFunction(CFStringRef key, CFStringRef value, CFMutableDataRef mData)
+    {
+        assert([(id)key isKindOfClass:[NSString class]]);
+        assert([(id)value isKindOfClass:[NSString class]]);
+        assert(mData);
+        if (value == NULL)
+        {
+            assert(0);
+            return;
+        }
+        assert([(NSString*)key isEqualToString:(NSString*)Util::standardizeHeaderName(key)]);
+        CFStringRef headValue = CFStringCreateWithFormat(kCFAllocatorDefault,NULL,CFSTR("%@: %@\r\n"),key,value);
+        if (headValue)
+        {
+            const char* headValueUTF8 = CFStringGetCStringPtr(headValue, kCFStringEncodingUTF8);
+            assert(headValueUTF8);
+            if (headValueUTF8) {
+                CFDataAppendBytes(mData, (const Byte*)headValueUTF8, strlen(headValueUTF8));
+                CFRelease(headValue);
+            }
+            
+        }
+        
+    }
+    CFMutableDataRef RequestUtil::serialization(NSURLRequest* request)
     {
         CFMutableDataRef mData = CFDataCreateMutable(kCFAllocatorDefault, 0);
         CFURLRef url = (CFURLRef)[request URL];
@@ -64,7 +88,7 @@ namespace J
             {
                 CFStringRef tempHost = CFURLCopyHostName(url);
                 [(id)tempHost autorelease];
-                UInt32 port = RequestTool::port(request);
+                UInt32 port = RequestUtil::port(request);
                 if (port != 80)
                 {
                     tempHost = CFStringCreateWithFormat(kCFAllocatorDefault,NULL,CFSTR("%@:%d"),tempHost,(int)port);
@@ -104,7 +128,7 @@ namespace J
         }
         //Rest Header
         {
-            
+            CFDictionaryApplyFunction(header, (CFDictionaryApplierFunction)HTTPHeaderDictionaryApplierFunction, mData);
         }
         const char endOFBody[] = "\r\n";
         CFDataAppendBytes(mData, (const Byte*)endOFBody, sizeof(endOFBody)-1);

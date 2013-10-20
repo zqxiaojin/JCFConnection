@@ -59,8 +59,8 @@
 //    NSURL* url = [NSURL URLWithString:@"http://www.uc.cn"];
     NSURL* url = [NSURL URLWithString:@"http://cn.bing.com/search?q=zq&go=&qs=n&form=QBLH&pq=zq&sc=8-0&sp=-1&sk="];
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
-//    [request setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36" forHTTPHeaderField:@"User-Agent"];
-    
+    [request setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36" forHTTPHeaderField:@"User-Agent"];
+
 //    [request setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
 
 //    m_connection = (JCFConnection*)[[NSURLConnection connectionWithRequest:request delegate:self] retain];

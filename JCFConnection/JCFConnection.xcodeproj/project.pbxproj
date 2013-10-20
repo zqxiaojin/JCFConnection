@@ -15,7 +15,7 @@
 		94721515180AB6BC00CE2C58 /* CFConnectionCore.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94721513180AB6BC00CE2C58 /* CFConnectionCore.mm */; };
 		9472151A180B1E9500CE2C58 /* CFSocketFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94721518180B1E9500CE2C58 /* CFSocketFactory.mm */; };
 		9472151D180B23F600CE2C58 /* ResponseParser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9472151B180B23F600CE2C58 /* ResponseParser.mm */; };
-		94721520180B24F700CE2C58 /* RequestTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9472151E180B24F700CE2C58 /* RequestTool.mm */; };
+		94721520180B24F700CE2C58 /* RequestUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9472151E180B24F700CE2C58 /* RequestUtil.mm */; };
 		94721523180BB64400CE2C58 /* DataFinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94721521180BB64400CE2C58 /* DataFinder.mm */; };
 		948CB49F18098FEB006B7917 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948CB49E18098FEB006B7917 /* Foundation.framework */; };
 		948CB4A418098FEB006B7917 /* JCFConnection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 948CB4A318098FEB006B7917 /* JCFConnection.h */; };
@@ -68,8 +68,8 @@
 		94721519180B1E9500CE2C58 /* CFSocketFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFSocketFactory.h; sourceTree = "<group>"; };
 		9472151B180B23F600CE2C58 /* ResponseParser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ResponseParser.mm; sourceTree = "<group>"; };
 		9472151C180B23F600CE2C58 /* ResponseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseParser.h; sourceTree = "<group>"; };
-		9472151E180B24F700CE2C58 /* RequestTool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RequestTool.mm; sourceTree = "<group>"; };
-		9472151F180B24F700CE2C58 /* RequestTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestTool.h; sourceTree = "<group>"; };
+		9472151E180B24F700CE2C58 /* RequestUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RequestUtil.mm; sourceTree = "<group>"; };
+		9472151F180B24F700CE2C58 /* RequestUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestUtil.h; sourceTree = "<group>"; };
 		94721521180BB64400CE2C58 /* DataFinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DataFinder.mm; sourceTree = "<group>"; };
 		94721522180BB64400CE2C58 /* DataFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataFinder.h; sourceTree = "<group>"; };
 		948CB49B18098FEB006B7917 /* libJCFConnection.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJCFConnection.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,28 +117,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		94721516180B198000CE2C58 /* Core */ = {
+		3C9F48721814395A00695417 /* Socket */ = {
 			isa = PBXGroup;
 			children = (
-				94721514180AB6BC00CE2C58 /* CFConnectionCore.h */,
-				94721513180AB6BC00CE2C58 /* CFConnectionCore.mm */,
 				94721517180B1E1100CE2C58 /* CFSocketHandlerClient.h */,
 				948CB4D018099A15006B7917 /* CFSocketHandler.h */,
 				948CB4CF18099A15006B7917 /* CFSocketHandler.mm */,
 				94721519180B1E9500CE2C58 /* CFSocketFactory.h */,
 				94721518180B1E9500CE2C58 /* CFSocketFactory.mm */,
-				9472151F180B24F700CE2C58 /* RequestTool.h */,
-				9472151E180B24F700CE2C58 /* RequestTool.mm */,
+			);
+			name = Socket;
+			sourceTree = "<group>";
+		};
+		3C9F48731814396B00695417 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				94721522180BB64400CE2C58 /* DataFinder.h */,
+				94721521180BB64400CE2C58 /* DataFinder.mm */,
+				3C5AFC431812BD8D00ACC9A1 /* Util.h */,
+				3C5AFC421812BD8D00ACC9A1 /* Util.mm */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		94721516180B198000CE2C58 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				3C9F48731814396B00695417 /* Util */,
+				3C9F48721814395A00695417 /* Socket */,
+				94721514180AB6BC00CE2C58 /* CFConnectionCore.h */,
+				94721513180AB6BC00CE2C58 /* CFConnectionCore.mm */,
+				9472151F180B24F700CE2C58 /* RequestUtil.h */,
+				9472151E180B24F700CE2C58 /* RequestUtil.mm */,
 				9472151C180B23F600CE2C58 /* ResponseParser.h */,
 				9472151B180B23F600CE2C58 /* ResponseParser.mm */,
 				3C5AFC401812B5FB00ACC9A1 /* HTTPDefine.h */,
 				3C46ACCC1813BDCA00D108E7 /* HTTPDefine.mm */,
 				3CF70FD01811819E00123FBB /* HTTPResponse.h */,
 				3CF70FCF1811819E00123FBB /* HTTPResponse.mm */,
-				94721522180BB64400CE2C58 /* DataFinder.h */,
-				94721521180BB64400CE2C58 /* DataFinder.mm */,
-				3C5AFC431812BD8D00ACC9A1 /* Util.h */,
-				3C5AFC421812BD8D00ACC9A1 /* Util.mm */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -305,7 +321,7 @@
 				3C46ACCD1813BDCA00D108E7 /* HTTPDefine.mm in Sources */,
 				9472151A180B1E9500CE2C58 /* CFSocketFactory.mm in Sources */,
 				948CB4D118099A15006B7917 /* CFSocketHandler.mm in Sources */,
-				94721520180B24F700CE2C58 /* RequestTool.mm in Sources */,
+				94721520180B24F700CE2C58 /* RequestUtil.mm in Sources */,
 				948CB4A618098FEB006B7917 /* JCFConnection.mm in Sources */,
 				9472151D180B23F600CE2C58 /* ResponseParser.mm in Sources */,
 			);

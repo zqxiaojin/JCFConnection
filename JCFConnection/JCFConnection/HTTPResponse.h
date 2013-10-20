@@ -22,14 +22,13 @@ namespace J
         
         void setHTTPHeaderDict(CFMutableDictionaryRef newDict);
         CFMutableDictionaryRef HTTPHeaderDict(){return m_HTTPHeader;}
+        CFDictionaryRef HTTPHeaderDict()const {return m_HTTPHeader;}
         
         void setSatusCode(uint statusCode){m_statusCode = statusCode;}
         uint statusCode()const{return m_statusCode;}
         
         void setHTTPVersion(CFStringRef newHTTPVersion);
         CFStringRef HTTPVersion()const{return m_HTTPVersion;}
-        
-        
         
     protected:
         CFMutableDictionaryRef  m_HTTPHeader;

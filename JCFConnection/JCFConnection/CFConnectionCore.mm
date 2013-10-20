@@ -7,7 +7,7 @@
 //
 
 #include "CFConnectionCore.h"
-#include "RequestTool.h"
+#include "RequestUtil.h"
 #include "JCFConnection_Internal.h"
 #include "CFSocketHandler.h"
 #include "CFSocketFactory.h"
@@ -23,6 +23,7 @@ namespace J
     ,m_sendBufferOffset(0)
     ,m_handler(CFSocketFactory::global()->socketWithClient(this))
     ,m_responseParser(NULL)
+    ,m_state(EWaitingResponse)
     {
         
     }
@@ -46,13 +47,26 @@ namespace J
 
     void CFConnectionCore::didReceiveSocketStreamData(CFSocketHandler* handler, CFDataRef data)
     {
+        switch (m_state)
+        {
+            case EWaitingResponse:
+                handleResponseData(data);
+                break;
+            case EReceivingData:
+                handleResponseData(data);
+            default:
+                break;
+        }
+    }
+    void CFConnectionCore::handleResponseData(CFDataRef data)
+    {
         if (m_responseParser == NULL)
         {
             m_responseParser = new ResponseParser();
         }
         if (ResponseParser::WaitForData == m_responseParser->state())
         {
-            int restOffSet = m_responseParser->appendData(data);
+            int restOffSet = m_responseParser->appendDataAndParse(data);
             if (ResponseParser::Done == m_responseParser->state())
             {
                 ///FIXME: It may be distory after this,should protect itself
@@ -63,15 +77,23 @@ namespace J
                     int restLength = CFDataGetLength(data) - restOffSet;
                     const UInt8 * restDataPtr = CFDataGetBytePtr(data) + restOffSet;
                     CFDataRef restData = CFDataCreate(kCFAllocatorDefault, restDataPtr, restLength);
-                    [m_connection connection:this didReceiveData:(NSData*)restData];
+                    handleResponseData(restData);
                     CFRelease(restData);
                 }
             }
         }
-        else
+    }
+    void CFConnectionCore::handleBodyData(CFDataRef data)
+    {
+        if (m_responseParser->isChunked())
         {
-            [m_connection connection:this didReceiveData:(NSData*)data];
+            
         }
+        if (m_responseParser->isGZip())
+        {
+            
+        }
+        //[m_connection connection:this didReceiveData:(NSData*)data
     }
     void CFConnectionCore::didFailSocketStream(CFSocketHandler* handler, CFErrorRef error)
     {
@@ -82,7 +104,7 @@ namespace J
     {
         if (m_sendBuffer == NULL)
         {
-            m_sendBuffer = RequestTool::serialization(m_curRequest);
+            m_sendBuffer = RequestUtil::serialization(m_curRequest);
         }
         data = CFDataGetMutableBytePtr(m_sendBuffer) + m_sendBufferOffset;
         dataLength = CFDataGetLength(m_sendBuffer) - m_sendBufferOffset;
@@ -95,10 +117,10 @@ namespace J
     
     CFStringRef CFConnectionCore::host()
     {
-        return RequestTool::host(m_curRequest);
+        return RequestUtil::host(m_curRequest);
     }
     UInt32 CFConnectionCore::port()
     {
-        return RequestTool::port(m_curRequest);
+        return RequestUtil::port(m_curRequest);
     }
 };

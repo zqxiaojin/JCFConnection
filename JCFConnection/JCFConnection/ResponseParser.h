@@ -19,7 +19,7 @@ namespace J
         ResponseParser();
         ~ResponseParser();
         
-        uint appendData(CFDataRef data);
+        uint appendDataAndParse(CFDataRef data);
         
         enum State { WaitForData , Done , Error};
         State state()const{return m_state;}
@@ -29,9 +29,15 @@ namespace J
         
         NSHTTPURLResponse* makeResponseWithURL(NSURL* url);
         
+        bool isChunked()const{return m_isChunked;}
+        bool isGZip()const{return m_isGZip;}
         
     protected:
+        bool  isHeaderContainString(CFStringRef headerName, CFStringRef str);
         
+    protected:
+        bool                m_isChunked;
+        bool                m_isGZip;
         HTTPResponse*       m_HTTPResponse;
         State               m_state;
         DataFinder*         m_dataFinder;

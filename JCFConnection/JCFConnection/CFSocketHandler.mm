@@ -7,7 +7,7 @@
 //
 
 #include "CFSocketHandler.h"
-#include "RequestTool.h"
+#include "RequestUtil.h"
 #include "CFSocketHandlerClient.h"
 
 extern "C" const CFStringRef _kCFStreamSocketSetNoDelay;

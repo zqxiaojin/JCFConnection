@@ -1,18 +1,18 @@
 //
-//  RequestTool.h
+//  RequestUtil.h
 //  JCFConnection
 //
 //  Created by Liang Jin on 10/14/13.
 //  Copyright (c) 2013 Jin. All rights reserved.
 //
 
-#ifndef __JCFConnection__RequestTool__
-#define __JCFConnection__RequestTool__
+#ifndef __JCFConnection__RequestUtil__
+#define __JCFConnection__RequestUtil__
 
 
 namespace J
 {
-    class RequestTool
+    class RequestUtil
     {
     public:
         static CFStringRef host(NSURLRequest* request);
@@ -22,4 +22,4 @@ namespace J
 };
 
 
-#endif /* defined(__JCFConnection__RequestTool__) */
+#endif /* defined(__JCFConnection__RequestUtil__) */

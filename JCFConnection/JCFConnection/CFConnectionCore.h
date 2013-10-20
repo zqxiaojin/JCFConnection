@@ -41,6 +41,10 @@ namespace J
         
         virtual CFStringRef host();
         virtual UInt32 port();
+        
+    protected:
+        void handleResponseData(CFDataRef data);
+        void handleBodyData(CFDataRef data);
     protected:
         JCFConnection*          m_connection;
         
@@ -54,6 +58,9 @@ namespace J
         CFSocketHandler*        m_handler;
         
         ResponseParser*         m_responseParser;
+        
+        enum State {EWaitingResponse,EReceivingData};
+        State                   m_state;
     };
 };
 

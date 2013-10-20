@@ -17,14 +17,25 @@
 
 namespace J
 {
+    ///Method, uppercase
+    extern CFStringRef KHTTPMethod_GET;
+    extern CFStringRef KHTTPMethod_POST;
+    
+    ///Header
     extern CFStringRef KHTTPHeader_AcceptEncoding;
     extern CFStringRef KHTTPHeader_Cookie;
-    extern CFStringRef KHTTPHeader_ContentLength;
     extern CFStringRef KHTTPHeader_ContentDisposition;
+    extern CFStringRef KHTTPHeader_ContentEncoding;
+    extern CFStringRef KHTTPHeader_ContentLength;
     extern CFStringRef KHTTPHeader_Host;
     extern CFStringRef KHTTPHeader_Location;
     extern CFStringRef KHTTPHeader_SetCookie;
+    extern CFStringRef KHTTPHeader_TransferEncoding;
     extern CFStringRef KHTTPHeader_UserAgent;
+    
+    ///HeaderValue, lowercase
+    extern CFStringRef KHTTPHeaderValue_chunked;
+    extern CFStringRef KHTTPHeaderValue_gzip;
 }
 
 

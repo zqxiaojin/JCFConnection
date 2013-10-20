@@ -26,6 +26,8 @@ namespace J
     :m_state(WaitForData)
     ,m_dataFinder(new DataFinder())
     ,m_HTTPResponse(NULL)
+    ,m_isChunked(false)
+    ,m_isGZip(false)
     {
         CFDataRef bodyEOF = CFDataCreateWithBytesNoCopy(kCFAllocatorDefault, (const UInt8 *)KHTTPEndOfHeader, 4, kCFAllocatorNull);
         m_dataFinder->setTargetData(bodyEOF);
@@ -36,7 +38,7 @@ namespace J
         delete m_HTTPResponse;
         delete m_dataFinder;
     }
-    uint ResponseParser::appendData(CFDataRef data)
+    uint ResponseParser::appendDataAndParse(CFDataRef data)
     {
         m_dataFinder->appendData(data);
         uint result = m_dataFinder->find();
@@ -44,8 +46,31 @@ namespace J
         {
             m_HTTPResponse = parse(CFDataGetBytePtr(m_dataFinder->getDataBuffer()), result);
             m_state = Done;
+            
+            if (isHeaderContainString(KHTTPHeader_TransferEncoding, KHTTPHeaderValue_chunked)) {
+                m_isChunked = true;
+            }
+            if (isHeaderContainString(KHTTPHeader_ContentEncoding, KHTTPHeaderValue_gzip)) {
+                m_isGZip = true;
+            }
         }
         return result;
+    }
+    bool  ResponseParser::isHeaderContainString(CFStringRef headerName, CFStringRef str)
+    {
+        bool isContain = false;
+        do {
+            CFStringRef value = (CFStringRef)CFDictionaryGetValue(m_HTTPResponse->HTTPHeaderDict(), headerName);
+            if (value)
+            {
+                break;
+            }
+            CFRange range = CFStringFind(value, str, kCFCompareCaseInsensitive);
+            if (range.location != NSNotFound) {
+                isContain = true;
+            }
+        } while (false);
+        return isContain;
     }
     NSHTTPURLResponse* ResponseParser::makeResponseWithURL(NSURL* url)
     {

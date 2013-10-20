@@ -44,11 +44,11 @@
 
 - (NSURLRequest *)originalRequest
 {
-    return NULL;//m_core->originalRequest();
+    return m_core->originalRequest();
 }
 - (NSURLRequest *)currentRequest
 {
-    return NULL;//m_core->currentRequest();
+    return m_core->currentRequest();
 }
 
 - (void)start
