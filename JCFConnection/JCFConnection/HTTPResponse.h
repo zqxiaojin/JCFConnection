@@ -29,6 +29,8 @@ namespace J
         void setHTTPVersion(CFStringRef newHTTPVersion);
         CFStringRef HTTPVersion()const{return m_HTTPVersion;}
         
+        
+        
     protected:
         CFMutableDictionaryRef  m_HTTPHeader;
         uint                    m_statusCode;

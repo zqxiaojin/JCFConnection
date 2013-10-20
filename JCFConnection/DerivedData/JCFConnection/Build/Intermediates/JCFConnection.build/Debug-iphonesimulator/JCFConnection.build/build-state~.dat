@@ -1,326 +1,0 @@
-TJCFConnection
-v6
-r1
-cCheck dependencies
-cProcessPCH++ /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/PrecompiledHeaders/JCFConnection-Prefix-dicpyvjrghiwgpaegqkdeyrkzlxs/JCFConnection-Prefix.pch.pch JCFConnection/JCFConnection-Prefix.pch normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/DataFinder.o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/DataFinder.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFConnectionCore.o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFConnectionCore.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketFactory.o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketFactory.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketHandler.o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketHandler.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/RequestTool.o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/RequestTool.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/JCFConnection.o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/ResponseParser.o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/ResponseParser.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
-cLibtool /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/libJCFConnection.a normal i386
-cPBXCp JCFConnection/JCFConnection.h DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/include/JCFConnection/JCFConnection.h
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk
-c00000000521BCCE50000000000000176
-t1377553637
-s374
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk/SDKSettings.plist
-c00000000525D4DB200000000000003B5
-t1381846450
-s949
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk/System/Library/CoreServices/SystemVersion.plist
-c00000000525D4DB7000000000000019E
-t1381846455
-s414
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk/System/Library/Frameworks/CFNetwork.framework/CFNetwork
-c00000000525D4DB90000000000583810
-t1381846457
-s5781520
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk/System/Library/Frameworks/Foundation.framework/Foundation
-c00000000525D4DBB000000000088B570
-t1381846459
-s8959344
-
-N/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.0/include/module.map
-c00000000525D4E090000000000000AC9
-t1381846537
-s2761
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFConnectionCore.o
-t1382030219
-s26344
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketFactory.o
-t1382030219
-s7704
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketHandler.o
-t1382030219
-s21740
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/DataFinder.o
-t1382030219
-s7828
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/JCFConnection.LinkFileList
-c0000000052601B8B0000000000000589
-t1382030219
-s1417
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/JCFConnection.o
-t1382030219
-s22712
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/RequestTool.o
-t1382030219
-s9992
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/ResponseParser.o
-t1382030219
-s8116
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/PrecompiledHeaders/JCFConnection-Prefix-dicpyvjrghiwgpaegqkdeyrkzlxs/JCFConnection-Prefix.pch.pch
-t1382030219
-s3674540
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/include/JCFConnection/JCFConnection.h
-t2
-s0
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/libJCFConnection.a
-t2
-s0
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFConnectionCore.mm
-c00000000525EADD40000000000000C12
-t1381936596
-s3090
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketFactory.mm
-c00000000525EADD400000000000001F1
-t1381936596
-s497
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketHandler.mm
-c00000000525EADD400000000000028AD
-t1381936596
-s10413
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/DataFinder.mm
-c00000000526019900000000000000882
-t1382029712
-s2178
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection-Prefix.pch
-c00000000525EADD400000000000000B6
-t1381936596
-s182
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection.h
-c00000000525EADD4000000000000067A
-t1381936596
-s1658
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection.mm
-c00000000525EADD40000000000000A85
-t1381936596
-s2693
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/RequestTool.mm
-c00000000525EADD40000000000000CFC
-t1381936596
-s3324
-
-N/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/ResponseParser.mm
-c0000000052601A2F00000000000003A8
-t1382029871
-s936
-
-CBuild AST from /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFConnectionCore.mm
-r0
-
-CBuild AST from /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketFactory.mm
-r0
-
-CBuild AST from /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketHandler.mm
-r0
-
-CBuild AST from /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/DataFinder.mm
-r0
-
-CBuild AST from /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection.mm
-r0
-
-CBuild AST from /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/RequestTool.mm
-r0
-
-CBuild AST from /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/ResponseParser.mm
-r0
-
-CCheck dependencies
-r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies32e63e0b5310b841^5c3d470b5310b841^---0#1#1#--18"Check dependencies36"CDE85ED4-83DB-45CA-933E-B2ED798780BD-
-
-CCompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFConnectionCore.o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFConnectionCore.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
-s403723019.546497
-e403723019.584598
-r1
-xCompileC
-xDerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFConnectionCore.o
-x/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFConnectionCore.mm
-xnormal
-xi386
-xobjective-c++
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFConnectionCore.mm
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFConnectionCore.h
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketHandlerClient.h
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/RequestTool.h
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection_Internal.h
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection.h
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketHandler.h
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketFactory.h
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/ResponseParser.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection99"Compile /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFConnectionCore.mm259"CompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFConnectionCore.o JCFConnection/CFConnectionCore.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler8a038c0b5310b841^8ba8950b5310b841^---0#0#1#-19%DVTDocumentLocation2@107"file://localhost/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFConnectionCore.mm0000000000000000^4585"CompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFConnectionCore.o JCFConnection/CFConnectionCore.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++98 -stdlib=libstdc++ -fmodules -fmodules-cache-path=/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -DDEBUG=1 -D_DEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=4.3 -iquote /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-generated-files.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-own-target-headers.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-all-target-headers.hmap -iquote /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-project-headers.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/DerivedSources/i386 -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/DerivedSources -F/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator -include /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/PrecompiledHeaders/JCFConnection-Prefix-dicpyvjrghiwgpaegqkdeyrkzlxs/JCFConnection-Prefix.pch -MMD -MT dependencies -MF /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFConnectionCore.d --serialize-diagnostics /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFConnectionCore.dia -c /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFConnectionCore.mm -o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFConnectionCore.o36"FAA171F0-AC1A-460C-843C-07C9BAE3D10C-
-bCA5D35A2-9901-4D1D-B310-9E8C7D3B45E8
-
-CCompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketFactory.o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketFactory.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
-s403723019.546513
-e403723019.569562
-r1
-xCompileC
-xDerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketFactory.o
-x/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketFactory.mm
-xnormal
-xi386
-xobjective-c++
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketFactory.mm
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketFactory.h
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketHandler.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection98"Compile /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketFactory.mm257"CompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketFactory.o JCFConnection/CFSocketFactory.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compilerde038c0b5310b841^46cf910b5310b841^---0#0#1#-19%DVTDocumentLocation2@106"file://localhost/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketFactory.mm0000000000000000^4579"CompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketFactory.o JCFConnection/CFSocketFactory.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++98 -stdlib=libstdc++ -fmodules -fmodules-cache-path=/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -DDEBUG=1 -D_DEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=4.3 -iquote /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-generated-files.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-own-target-headers.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-all-target-headers.hmap -iquote /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-project-headers.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/DerivedSources/i386 -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/DerivedSources -F/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator -include /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/PrecompiledHeaders/JCFConnection-Prefix-dicpyvjrghiwgpaegqkdeyrkzlxs/JCFConnection-Prefix.pch -MMD -MT dependencies -MF /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketFactory.d --serialize-diagnostics /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketFactory.dia -c /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketFactory.mm -o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketFactory.o36"5813AFC2-C86A-403D-9447-6C9FC9880C29-
-bCA5D35A2-9901-4D1D-B310-9E8C7D3B45E8
-
-CCompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketHandler.o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketHandler.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
-s403723019.546744
-e403723019.586887
-r1
-xCompileC
-xDerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketHandler.o
-x/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketHandler.mm
-xnormal
-xi386
-xobjective-c++
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketHandler.mm
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketHandler.h
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/RequestTool.h
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketHandlerClient.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection98"Compile /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketHandler.mm257"CompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketHandler.o JCFConnection/CFSocketHandler.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler560f8c0b5310b841^f33e960b5310b841^---0#0#1#-19%DVTDocumentLocation2@106"file://localhost/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketHandler.mm0000000000000000^4579"CompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketHandler.o JCFConnection/CFSocketHandler.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++98 -stdlib=libstdc++ -fmodules -fmodules-cache-path=/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -DDEBUG=1 -D_DEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=4.3 -iquote /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-generated-files.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-own-target-headers.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-all-target-headers.hmap -iquote /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-project-headers.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/DerivedSources/i386 -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/DerivedSources -F/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator -include /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/PrecompiledHeaders/JCFConnection-Prefix-dicpyvjrghiwgpaegqkdeyrkzlxs/JCFConnection-Prefix.pch -MMD -MT dependencies -MF /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketHandler.d --serialize-diagnostics /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketHandler.dia -c /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketHandler.mm -o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/CFSocketHandler.o36"CED6BD45-F873-4C40-B9E7-192A3E560552-
-bCA5D35A2-9901-4D1D-B310-9E8C7D3B45E8
-
-CCompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/DataFinder.o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/DataFinder.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
-s403723019.546492
-e403723019.571036
-r1
-xCompileC
-xDerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/DataFinder.o
-x/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/DataFinder.mm
-xnormal
-xi386
-xobjective-c++
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/DataFinder.mm
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/DataFinder.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection93"Compile /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/DataFinder.mm247"CompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/DataFinder.o JCFConnection/DataFinder.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler19028c0b5310b841^9f3e920b5310b841^---0#0#1#-19%DVTDocumentLocation2@101"file://localhost/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/DataFinder.mm0000000000000000^4549"CompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/DataFinder.o JCFConnection/DataFinder.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++98 -stdlib=libstdc++ -fmodules -fmodules-cache-path=/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -DDEBUG=1 -D_DEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=4.3 -iquote /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-generated-files.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-own-target-headers.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-all-target-headers.hmap -iquote /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-project-headers.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/DerivedSources/i386 -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/DerivedSources -F/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator -include /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/PrecompiledHeaders/JCFConnection-Prefix-dicpyvjrghiwgpaegqkdeyrkzlxs/JCFConnection-Prefix.pch -MMD -MT dependencies -MF /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/DataFinder.d --serialize-diagnostics /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/DataFinder.dia -c /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/DataFinder.mm -o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/DataFinder.o36"CAD119B3-284A-435B-9D9C-4AA2C2AAAF5E-
-bCA5D35A2-9901-4D1D-B310-9E8C7D3B45E8
-
-CCompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/JCFConnection.o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
-s403723019.572291
-e403723019.601841
-r1
-xCompileC
-xDerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/JCFConnection.o
-x/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection.mm
-xnormal
-xi386
-xobjective-c++
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection.mm
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection.h
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFConnectionCore.h
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/CFSocketHandlerClient.h
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection_Internal.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection96"Compile /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection.mm253"CompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/JCFConnection.o JCFConnection/JCFConnection.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler3997920b5310b841^94129a0b5310b841^---0#0#1#-19%DVTDocumentLocation2@104"file://localhost/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection.mm0000000000000000^4567"CompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/JCFConnection.o JCFConnection/JCFConnection.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++98 -stdlib=libstdc++ -fmodules -fmodules-cache-path=/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -DDEBUG=1 -D_DEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=4.3 -iquote /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-generated-files.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-own-target-headers.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-all-target-headers.hmap -iquote /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-project-headers.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/DerivedSources/i386 -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/DerivedSources -F/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator -include /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/PrecompiledHeaders/JCFConnection-Prefix-dicpyvjrghiwgpaegqkdeyrkzlxs/JCFConnection-Prefix.pch -MMD -MT dependencies -MF /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/JCFConnection.d --serialize-diagnostics /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/JCFConnection.dia -c /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection.mm -o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/JCFConnection.o36"4FD2DD5F-8516-4FD4-A7D3-CAAA972A0B7C-
-bCA5D35A2-9901-4D1D-B310-9E8C7D3B45E8
-
-CCompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/RequestTool.o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/RequestTool.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
-s403723019.570931
-e403723019.596273
-r1
-xCompileC
-xDerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/RequestTool.o
-x/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/RequestTool.mm
-xnormal
-xi386
-xobjective-c++
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/RequestTool.mm
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/RequestTool.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection94"Compile /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/RequestTool.mm249"CompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/RequestTool.o JCFConnection/RequestTool.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler6248920b5310b841^bea5980b5310b841^---0#0#1#-19%DVTDocumentLocation2@102"file://localhost/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/RequestTool.mm0000000000000000^4555"CompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/RequestTool.o JCFConnection/RequestTool.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++98 -stdlib=libstdc++ -fmodules -fmodules-cache-path=/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -DDEBUG=1 -D_DEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=4.3 -iquote /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-generated-files.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-own-target-headers.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-all-target-headers.hmap -iquote /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-project-headers.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/DerivedSources/i386 -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/DerivedSources -F/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator -include /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/PrecompiledHeaders/JCFConnection-Prefix-dicpyvjrghiwgpaegqkdeyrkzlxs/JCFConnection-Prefix.pch -MMD -MT dependencies -MF /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/RequestTool.d --serialize-diagnostics /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/RequestTool.dia -c /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/RequestTool.mm -o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/RequestTool.o36"01AEEC51-02E1-4AA8-9DC0-4A4FDA605465-
-bCA5D35A2-9901-4D1D-B310-9E8C7D3B45E8
-
-CCompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/ResponseParser.o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/ResponseParser.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
-s403723019.586038
-e403723019.606865
-r1
-xCompileC
-xDerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/ResponseParser.o
-x/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/ResponseParser.mm
-xnormal
-xi386
-xobjective-c++
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/ResponseParser.mm
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/ResponseParser.h
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/DataFinder.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection97"Compile /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/ResponseParser.mm255"CompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/ResponseParser.o JCFConnection/ResponseParser.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler3a1f960b5310b841^295c9b0b5310b841^---0#0#1#-19%DVTDocumentLocation2@105"file://localhost/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/ResponseParser.mm0000000000000000^4573"CompileC DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/ResponseParser.o JCFConnection/ResponseParser.mm normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++98 -stdlib=libstdc++ -fmodules -fmodules-cache-path=/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -DDEBUG=1 -D_DEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=4.3 -iquote /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-generated-files.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-own-target-headers.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-all-target-headers.hmap -iquote /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-project-headers.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/DerivedSources/i386 -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/DerivedSources -F/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator -include /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/PrecompiledHeaders/JCFConnection-Prefix-dicpyvjrghiwgpaegqkdeyrkzlxs/JCFConnection-Prefix.pch -MMD -MT dependencies -MF /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/ResponseParser.d --serialize-diagnostics /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/ResponseParser.dia -c /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/ResponseParser.mm -o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/ResponseParser.o36"4F152039-A658-476E-AA31-443B1EAAFE1F-
-bCA5D35A2-9901-4D1D-B310-9E8C7D3B45E8
-
-CLibtool /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/libJCFConnection.a normal i386
-s403723019.615639
-e403723019.624410
-r1
-xLibtool
-x/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/libJCFConnection.a
-xnormal
-xi386
-o/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: -dynamic not specified the following flags are invalid: -ObjC 
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection101"Libtool DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/libJCFConnection.a normal i386101"Libtool DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/libJCFConnection.a normal i38682aa9d0b5310b841^d3db9f0b5310b841^-159"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: -dynamic not specified the following flags are invalid: -ObjC -0#0#1#--1193"Libtool DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/libJCFConnection.a normal i386    cd /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection    setenv IPHONEOS_DEPLOYMENT_TARGET 4.3    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -arch_only i386 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk -L/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator -filelist /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/Objects-normal/i386/JCFConnection.LinkFileList -ObjC -framework CFNetwork -framework Foundation -o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/libJCFConnection.a36"B3DB6DB8-46DD-4DC7-AEA3-9E33812420A0-
-bCA5D35A2-9901-4D1D-B310-9E8C7D3B45E8
-
-CPBXCp JCFConnection/JCFConnection.h DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/include/JCFConnection/JCFConnection.h
-s403723019.632169
-e403723019.634337
-r1
-xPBXCp
-xJCFConnection/JCFConnection.h
-xDerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/include/JCFConnection/JCFConnection.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection105"Copy DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/include/JCFConnection/JCFConnection.h136"PBXCp JCFConnection/JCFConnection.h DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/include/JCFConnection/JCFConnection.h9fe9a10b5310b841^5c39a30b5310b841^---0#0#1#-19%DVTDocumentLocation2@174"file://localhost/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/include/JCFConnection/JCFConnection.h003890aedeffdf42^740"PBXCp JCFConnection/JCFConnection.h DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/include/JCFConnection/JCFConnection.h    cd /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection.h /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/include/JCFConnection36"F8994B0D-E993-440F-A0C2-1CB32077F8D1-
-bCA5D35A2-9901-4D1D-B310-9E8C7D3B45E8
-
-CProcessPCH++ /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/PrecompiledHeaders/JCFConnection-Prefix-dicpyvjrghiwgpaegqkdeyrkzlxs/JCFConnection-Prefix.pch.pch JCFConnection/JCFConnection-Prefix.pch normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
-s403723019.281347
-e403723019.537799
-r1
-xProcessPCH++
-x/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/PrecompiledHeaders/JCFConnection-Prefix-dicpyvjrghiwgpaegqkdeyrkzlxs/JCFConnection-Prefix.pch.pch
-xJCFConnection/JCFConnection-Prefix.pch
-xnormal
-xi386
-xobjective-c++
-xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection-Prefix.pch
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection49"Precompile JCFConnection/JCFConnection-Prefix.pch265"ProcessPCH++ DerivedData/JCFConnection/Build/Intermediates/PrecompiledHeaders/JCFConnection-Prefix-dicpyvjrghiwgpaegqkdeyrkzlxs/JCFConnection-Prefix.pch.pch JCFConnection/JCFConnection-Prefix.pch normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler9b1e480b5310b841^f7ae890b5310b841^---0#0#1#-19%DVTDocumentLocation2@112"file://localhost/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection-Prefix.pch0000000000000000^4383"ProcessPCH++ DerivedData/JCFConnection/Build/Intermediates/PrecompiledHeaders/JCFConnection-Prefix-dicpyvjrghiwgpaegqkdeyrkzlxs/JCFConnection-Prefix.pch.pch JCFConnection/JCFConnection-Prefix.pch normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++-header -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++98 -stdlib=libstdc++ -fmodules -fmodules-cache-path=/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -DDEBUG=1 -D_DEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=4.3 -iquote /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-generated-files.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-own-target-headers.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-all-target-headers.hmap -iquote /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/JCFConnection-project-headers.hmap -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/DerivedSources/i386 -I/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/JCFConnection.build/Debug-iphonesimulator/JCFConnection.build/DerivedSources -F/Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Products/Debug-iphonesimulator --serialize-diagnostics /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/PrecompiledHeaders/JCFConnection-Prefix-dicpyvjrghiwgpaegqkdeyrkzlxs/JCFConnection-Prefix.pch.dia -MMD -MT dependencies -MF /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/PrecompiledHeaders/JCFConnection-Prefix-dicpyvjrghiwgpaegqkdeyrkzlxs/JCFConnection-Prefix.pch.d -c /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/JCFConnection/JCFConnection-Prefix.pch -o /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Build/Intermediates/PrecompiledHeaders/JCFConnection-Prefix-dicpyvjrghiwgpaegqkdeyrkzlxs/JCFConnection-Prefix.pch.pch36"ADF59BCC-B107-49E8-9945-CF08AAF471FB-
-bCA5D35A2-9901-4D1D-B310-9E8C7D3B45E8
-
-CProcessPCH++ /Users/jin/Desktop/OpenSource/JCFConnection/JCFConnection/DerivedData/JCFConnection/Index/PrecompiledHeaders/JCFConnection-Prefix-hemisgwhibjrvhghrbfqqogojbva_ast/JCFConnection-Prefix.pch.pch JCFConnection/JCFConnection-Prefix.pch normal i386 objective-c++ com.apple.compilers.llvm.clang.1_0.astbuilder
-r0
-

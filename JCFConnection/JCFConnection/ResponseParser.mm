@@ -44,13 +44,23 @@ namespace J
         {
             m_HTTPResponse = parse(CFDataGetBytePtr(m_dataFinder->getDataBuffer()), result);
             m_state = Done;
-//            result +=
         }
         return result;
     }
     NSHTTPURLResponse* ResponseParser::makeResponseWithURL(NSURL* url)
     {
-        return NULL;
+        NSHTTPURLResponse* nsResponse = NULL;
+        do {
+            if (url == NULL || m_HTTPResponse == NULL) {
+                break;
+            }
+            nsResponse = [[NSHTTPURLResponse alloc] initWithURL:url
+                                                     statusCode:m_HTTPResponse->statusCode()
+                                                    HTTPVersion:(NSString*)m_HTTPResponse->HTTPVersion()
+                                                   headerFields:(NSDictionary*)m_HTTPResponse->HTTPHeaderDict()];
+            [nsResponse autorelease];
+        } while (false);
+        return nsResponse;
     }
     
     HTTPResponse* ResponseParser::parse(const Byte* data,uint dataLength)

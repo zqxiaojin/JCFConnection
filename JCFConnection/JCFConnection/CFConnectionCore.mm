@@ -55,7 +55,7 @@ namespace J
             int restOffSet = m_responseParser->appendData(data);
             if (ResponseParser::Done == m_responseParser->state())
             {
-                //FIXME: It may be distory after this,should protect itself
+                ///FIXME: It may be distory after this,should protect itself
                 [m_connection connection:this didReceiveResponse:m_responseParser->makeResponseWithURL([m_curRequest URL])];
                 
                 if (restOffSet > 0)
@@ -64,6 +64,7 @@ namespace J
                     const UInt8 * restDataPtr = CFDataGetBytePtr(data) + restOffSet;
                     CFDataRef restData = CFDataCreate(kCFAllocatorDefault, restDataPtr, restLength);
                     [m_connection connection:this didReceiveData:(NSData*)restData];
+                    CFRelease(restData);
                 }
             }
         }

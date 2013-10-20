@@ -17,12 +17,13 @@
 
 namespace J
 {
-    extern CFStringRef KHTTPHeader_Location;
+    extern CFStringRef KHTTPHeader_AcceptEncoding;
     extern CFStringRef KHTTPHeader_Cookie;
     extern CFStringRef KHTTPHeader_ContentLength;
     extern CFStringRef KHTTPHeader_ContentDisposition;
+    extern CFStringRef KHTTPHeader_Host;
+    extern CFStringRef KHTTPHeader_Location;
     extern CFStringRef KHTTPHeader_SetCookie;
-    
     extern CFStringRef KHTTPHeader_UserAgent;
 }
 

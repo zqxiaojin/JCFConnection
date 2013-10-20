@@ -28,6 +28,8 @@ namespace J
         static void handleHTTPFieldParse(CFMutableDictionaryRef outputDic, CFStringRef headerName , const Byte* valueData , uint valueDataLength);
         
         NSHTTPURLResponse* makeResponseWithURL(NSURL* url);
+        
+        
     protected:
         
         HTTPResponse*       m_HTTPResponse;

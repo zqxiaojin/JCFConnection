@@ -7,7 +7,7 @@
 //
 
 #include "RequestTool.h"
-
+#include "HTTPDefine.h"
 namespace J
 {
     CFStringRef RequestTool::host(NSURLRequest* request)
@@ -59,7 +59,7 @@ namespace J
         CFDictionaryRef header = (CFDictionaryRef)[request allHTTPHeaderFields];
         //Host
         {
-            CFStringRef host = header ? (CFStringRef)CFDictionaryGetValue(header,CFSTR("Host")) : NULL;
+            CFStringRef host = header ? (CFStringRef)CFDictionaryGetValue(header,KHTTPHeader_Host) : NULL;
             if (host == NULL || CFStringGetLength(host) == 0)
             {
                 CFStringRef tempHost = CFURLCopyHostName(url);
@@ -71,29 +71,28 @@ namespace J
                     [(id)tempHost autorelease];
                 }
                 host = tempHost;
+                CFStringRef headValue = CFStringCreateWithFormat(kCFAllocatorDefault,NULL,CFSTR("%@: %@\r\n"),KHTTPHeader_Host,host);
+                const char* headValueUTF8 = CFStringGetCStringPtr(headValue, kCFStringEncodingUTF8);
+                CFDataAppendBytes(mData, (const Byte*)headValueUTF8, strlen(headValueUTF8));
+                CFRelease(headValue);
             }
-            CFStringRef headValue = CFStringCreateWithFormat(kCFAllocatorDefault,NULL,CFSTR("Host: %@\r\n"),host);
-            
-            const char* headValueUTF8 = CFStringGetCStringPtr(headValue, kCFStringEncodingUTF8);
-            CFDataAppendBytes(mData, (const Byte*)headValueUTF8, strlen(headValueUTF8));
-            CFRelease(headValue);
-            
         }
         //Cookie
         {
             
         }
-        //Accept
+        ///Accept-Encoding
+        ///Example : Accept-Encoding:gzip,deflate
         {
-            
-        }
-        //Accept-Language
-        {
-            
-        }
-        //Accept-Encoding
-        {
-            
+            CFStringRef acceptEncoding = header ? (CFStringRef)CFDictionaryGetValue(header,KHTTPHeader_AcceptEncoding) : NULL;
+            if (acceptEncoding == NULL || CFStringGetLength(acceptEncoding) == 0)
+            {
+                acceptEncoding = CFSTR("gzip,deflate");
+                CFStringRef headValue = CFStringCreateWithFormat(kCFAllocatorDefault,NULL,CFSTR("%@: %@\r\n"),KHTTPHeader_AcceptEncoding,acceptEncoding);
+                const char* headValueUTF8 = CFStringGetCStringPtr(headValue, kCFStringEncodingUTF8);
+                CFDataAppendBytes(mData, (const Byte*)headValueUTF8, strlen(headValueUTF8));
+                CFRelease(headValue);
+            }
         }
         //User-Agent
         {
@@ -103,7 +102,11 @@ namespace J
         {
             
         }
-        const char endOFBody[] = "\r\n\r\n";
+        //Rest Header
+        {
+            
+        }
+        const char endOFBody[] = "\r\n";
         CFDataAppendBytes(mData, (const Byte*)endOFBody, sizeof(endOFBody)-1);
         
         return mData;
