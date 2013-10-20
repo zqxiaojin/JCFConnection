@@ -15,6 +15,16 @@
 
 #define KHTTPHeaderColon    ":"
 
-#define SizeOfArray(arr)  (sizeof((arr))/sizeof((arr)[0]) - 1)
+namespace J
+{
+    extern CFStringRef KHTTPHeader_Location;
+    extern CFStringRef KHTTPHeader_Cookie;
+    extern CFStringRef KHTTPHeader_ContentLength;
+    extern CFStringRef KHTTPHeader_ContentDisposition;
+    extern CFStringRef KHTTPHeader_SetCookie;
+    
+    extern CFStringRef KHTTPHeader_UserAgent;
+}
+
 
 #endif /* defined(__JCFConnection__HTTPDefine__) */

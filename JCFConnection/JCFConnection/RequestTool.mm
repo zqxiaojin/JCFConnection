@@ -79,7 +79,7 @@ namespace J
             CFRelease(headValue);
             
         }
-        //Cookies
+        //Cookie
         {
             
         }
@@ -96,10 +96,6 @@ namespace J
             
         }
         //User-Agent
-        {
-            
-        }
-        //Referer
         {
             
         }

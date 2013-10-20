@@ -142,8 +142,9 @@ namespace J
             if (resultResponse == NULL) {
                 break;
             }
-            resultResponse->m_stateCode = statusCode;
-            resultResponse->m_httpVersion = (CFStringRef)CFRetain(httpVersion);
+            resultResponse->setHTTPHeaderDict(headerDictionary);
+            resultResponse->setSatusCode(statusCode);
+            resultResponse->setHTTPVersion(httpVersion);
            
         } while (false);
         
@@ -152,6 +153,33 @@ namespace J
     
     void ResponseParser::handleHTTPFieldParse(CFMutableDictionaryRef outputDic, CFStringRef headerName , const Byte* valueData , uint valueDataLength)
     {
+        CFStringRef standHeader = Util::standardizeHeaderName(headerName);
+        assert(standHeader);
+        if (standHeader == NULL) {
+            return;
+        }
+        CFMutableStringRef oldValue = (CFMutableStringRef)CFDictionaryGetValue(outputDic, standHeader);
+        if (oldValue == NULL)
+        {
+            CFStringRef valueStr = CFStringCreateWithBytes(kCFAllocatorDefault, valueData, valueDataLength, kCFStringEncodingUTF8, false);
+            CFMutableStringRef mutableValueStr = CFStringCreateMutable(kCFAllocatorDefault, 0);
+            CFStringAppend(mutableValueStr, valueStr);
+            CFDictionarySetValue(outputDic, standHeader, mutableValueStr);
+            CFRelease(valueStr);
+            CFRelease(mutableValueStr);
+        }
+        else
+        {
+            ///TODO: some header may not combine by "," , such as "Location" , "Content-Disposition"
+            
+            ///TODO: some header may contain illegal bytes , such as "Content-Disposition"  with gbk2312 encoding filename
+            
+            CFStringRef valueStr = CFStringCreateWithBytes(kCFAllocatorDefault, valueData, valueDataLength, kCFStringEncodingUTF8, false);
+            CFStringAppend(oldValue, CFSTR(", "));
+            CFStringAppend(oldValue, valueStr);
+            CFDictionarySetValue(outputDic, standHeader, oldValue);
+            CFRelease(valueStr);
+        }
         
     }
 }

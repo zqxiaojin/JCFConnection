@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C46ACCD1813BDCA00D108E7 /* HTTPDefine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C46ACCC1813BDCA00D108E7 /* HTTPDefine.mm */; };
 		3C5AFC441812BD8D00ACC9A1 /* Util.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C5AFC421812BD8D00ACC9A1 /* Util.mm */; };
 		3CF70FD11811819E00123FBB /* HTTPResponse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3CF70FCF1811819E00123FBB /* HTTPResponse.mm */; };
 		947215101809CEA000CE2C58 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9472150F1809CEA000CE2C58 /* CFNetwork.framework */; };
@@ -52,6 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C46ACCC1813BDCA00D108E7 /* HTTPDefine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HTTPDefine.mm; sourceTree = "<group>"; };
 		3C5AFC401812B5FB00ACC9A1 /* HTTPDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDefine.h; sourceTree = "<group>"; };
 		3C5AFC421812BD8D00ACC9A1 /* Util.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Util.mm; sourceTree = "<group>"; };
 		3C5AFC431812BD8D00ACC9A1 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
@@ -130,12 +132,13 @@
 				9472151C180B23F600CE2C58 /* ResponseParser.h */,
 				9472151B180B23F600CE2C58 /* ResponseParser.mm */,
 				3C5AFC401812B5FB00ACC9A1 /* HTTPDefine.h */,
+				3C46ACCC1813BDCA00D108E7 /* HTTPDefine.mm */,
 				3CF70FD01811819E00123FBB /* HTTPResponse.h */,
 				3CF70FCF1811819E00123FBB /* HTTPResponse.mm */,
 				94721522180BB64400CE2C58 /* DataFinder.h */,
 				94721521180BB64400CE2C58 /* DataFinder.mm */,
-				3C5AFC421812BD8D00ACC9A1 /* Util.mm */,
 				3C5AFC431812BD8D00ACC9A1 /* Util.h */,
+				3C5AFC421812BD8D00ACC9A1 /* Util.mm */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				3CF70FD11811819E00123FBB /* HTTPResponse.mm in Sources */,
 				94721523180BB64400CE2C58 /* DataFinder.mm in Sources */,
 				94721515180AB6BC00CE2C58 /* CFConnectionCore.mm in Sources */,
+				3C46ACCD1813BDCA00D108E7 /* HTTPDefine.mm in Sources */,
 				9472151A180B1E9500CE2C58 /* CFSocketFactory.mm in Sources */,
 				948CB4D118099A15006B7917 /* CFSocketHandler.mm in Sources */,
 				94721520180B24F700CE2C58 /* RequestTool.mm in Sources */,
