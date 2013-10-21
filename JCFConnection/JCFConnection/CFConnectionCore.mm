@@ -106,7 +106,7 @@ namespace J
                 return;
             }
         }
-        if (m_responseParser->isGZip())
+        if (m_responseParser->isGzip())
         {
             ///FIXME: support gzip
         }

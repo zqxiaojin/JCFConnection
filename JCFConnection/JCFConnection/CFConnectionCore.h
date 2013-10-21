@@ -16,6 +16,7 @@ namespace J
 {
     class ResponseParser;
     class ChunkedStreamDecoder;
+    class GzipStreamDecoder;
     class CFConnectionCore : protected CFSocketHandlerClient
     {
     public:

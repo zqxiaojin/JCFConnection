@@ -30,17 +30,19 @@ namespace J
         NSHTTPURLResponse* makeResponseWithURL(NSURL* url);
         
         bool isChunked()const{return m_isChunked;}
-        bool isGZip()const{return m_isGZip;}
+        bool isGzip()const{return m_isGzip;}
+        bool contentLength(){return m_contentLength;}
         
     protected:
         bool  isHeaderContainString(CFStringRef headerName, CFStringRef str);
         
     protected:
         bool                m_isChunked;
-        bool                m_isGZip;
+        bool                m_isGzip;
         HTTPResponse*       m_HTTPResponse;
         State               m_state;
         DataFinder*         m_dataFinder;
+        uint                m_contentLength;
     };
 }
 

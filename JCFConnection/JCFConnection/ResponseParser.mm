@@ -27,7 +27,8 @@ namespace J
     ,m_dataFinder(new DataFinder())
     ,m_HTTPResponse(NULL)
     ,m_isChunked(false)
-    ,m_isGZip(false)
+    ,m_isGzip(false)
+    ,m_contentLength(0)
     {
         CFDataRef bodyEOF = CFDataCreateWithBytesNoCopy(kCFAllocatorDefault, (const UInt8 *)KHTTPEndOfHeader, 4, kCFAllocatorNull);
         m_dataFinder->setTargetData(bodyEOF);
@@ -51,7 +52,7 @@ namespace J
                 m_isChunked = true;
             }
             if (isHeaderContainString(KHTTPHeader_ContentEncoding, KHTTPHeaderValue_gzip)) {
-                m_isGZip = true;
+                m_isGzip = true;
             }
         }
         return result;
