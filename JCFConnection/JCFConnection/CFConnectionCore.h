@@ -15,6 +15,7 @@
 namespace J
 {
     class ResponseParser;
+    class ChunkedStreamDecoder;
     class CFConnectionCore : protected CFSocketHandlerClient
     {
     public:
@@ -61,6 +62,8 @@ namespace J
         
         enum State {EWaitingResponse,EReceivingData};
         State                   m_state;
+        
+        ChunkedStreamDecoder*   m_chunkedStreamDecoder;
     };
 };
 

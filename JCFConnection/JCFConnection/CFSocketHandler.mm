@@ -157,7 +157,7 @@ namespace J
 
                 UInt8* localBuffer = (UInt8*)malloc(2048);
                 int length = CFReadStreamRead(m_readStream, localBuffer, 2048);
-                CFDataRef data = CFDataCreateWithBytesNoCopy(kCFAllocatorDefault, (const UInt8 *)localBuffer, length, kCFAllocatorDefault);
+                CFDataRef data = CFDataCreateWithBytesNoCopy(kCFAllocatorDefault, (const UInt8 *)localBuffer, length, kCFAllocatorMalloc);
                 m_client->didReceiveSocketStreamData(this, data);
                 CFRelease(data);
                 return;

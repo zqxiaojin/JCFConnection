@@ -61,7 +61,7 @@ namespace J
         bool isContain = false;
         do {
             CFStringRef value = (CFStringRef)CFDictionaryGetValue(m_HTTPResponse->HTTPHeaderDict(), headerName);
-            if (value)
+            if (value == NULL)
             {
                 break;
             }
@@ -205,9 +205,9 @@ namespace J
         }
         else
         {
-            ///TODO: some header may not combine by "," , such as "Location" , "Content-Disposition"
+            ///FIXME: some header may not combine by "," , such as "Location" , "Content-Disposition"
             
-            ///TODO: some header may contain illegal bytes , such as "Content-Disposition"  with gbk2312 encoding filename
+            ///FIXME: some header may contain illegal bytes , such as "Content-Disposition"  with gbk2312 encoding filename
             
             CFStringRef valueStr = CFStringCreateWithBytes(kCFAllocatorDefault, valueData, valueDataLength, kCFStringEncodingUTF8, false);
             CFStringAppend(oldValue, CFSTR(", "));

@@ -107,6 +107,7 @@ namespace J
         }
         ///Accept-Encoding
         ///Example : Accept-Encoding:gzip,deflate
+        if (0)
         {
             CFStringRef acceptEncoding = header ? (CFStringRef)CFDictionaryGetValue(header,KHTTPHeader_AcceptEncoding) : NULL;
             if (acceptEncoding == NULL || CFStringGetLength(acceptEncoding) == 0)

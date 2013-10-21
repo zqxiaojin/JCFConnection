@@ -34,4 +34,7 @@ if ((newValue))CFRetain((newValue));\
 (oldValue) = (newValue);\
 }\
 
+#define COMPILE_ASSERT(expr) typedef char assert_type[(expr) ? 1 : -1]
+
+
 #endif /* defined(__JCFConnection__Util__) */

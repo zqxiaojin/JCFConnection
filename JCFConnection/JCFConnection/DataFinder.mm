@@ -61,7 +61,7 @@ namespace J
         bool isMatch = false;
         const Byte* bufferEnd = buffer + dataToFindLength - dataLength;
         for (;
-             buffer < bufferEnd;
+             buffer <= bufferEnd;
              ++buffer)
         {
             isMatch = true;

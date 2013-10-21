@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3C46ACCD1813BDCA00D108E7 /* HTTPDefine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C46ACCC1813BDCA00D108E7 /* HTTPDefine.mm */; };
 		3C5AFC441812BD8D00ACC9A1 /* Util.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C5AFC421812BD8D00ACC9A1 /* Util.mm */; };
+		3CB038221814AED100ED3765 /* ChunkedStreamDecoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3CB038201814AED100ED3765 /* ChunkedStreamDecoder.mm */; };
 		3CF70FD11811819E00123FBB /* HTTPResponse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3CF70FCF1811819E00123FBB /* HTTPResponse.mm */; };
 		947215101809CEA000CE2C58 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9472150F1809CEA000CE2C58 /* CFNetwork.framework */; };
 		947215111809CEB100CE2C58 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9472150F1809CEA000CE2C58 /* CFNetwork.framework */; };
@@ -57,6 +58,8 @@
 		3C5AFC401812B5FB00ACC9A1 /* HTTPDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDefine.h; sourceTree = "<group>"; };
 		3C5AFC421812BD8D00ACC9A1 /* Util.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Util.mm; sourceTree = "<group>"; };
 		3C5AFC431812BD8D00ACC9A1 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		3CB038201814AED100ED3765 /* ChunkedStreamDecoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ChunkedStreamDecoder.mm; sourceTree = "<group>"; };
+		3CB038211814AED100ED3765 /* ChunkedStreamDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkedStreamDecoder.h; sourceTree = "<group>"; };
 		3CF70FCF1811819E00123FBB /* HTTPResponse.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HTTPResponse.mm; sourceTree = "<group>"; };
 		3CF70FD01811819E00123FBB /* HTTPResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPResponse.h; sourceTree = "<group>"; };
 		9472148E1809A7D200CE2C58 /* JCFConnection_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCFConnection_Internal.h; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 				94721521180BB64400CE2C58 /* DataFinder.mm */,
 				3C5AFC431812BD8D00ACC9A1 /* Util.h */,
 				3C5AFC421812BD8D00ACC9A1 /* Util.mm */,
+				3CB038211814AED100ED3765 /* ChunkedStreamDecoder.h */,
+				3CB038201814AED100ED3765 /* ChunkedStreamDecoder.mm */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -315,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C5AFC441812BD8D00ACC9A1 /* Util.mm in Sources */,
+				3CB038221814AED100ED3765 /* ChunkedStreamDecoder.mm in Sources */,
 				3CF70FD11811819E00123FBB /* HTTPResponse.mm in Sources */,
 				94721523180BB64400CE2C58 /* DataFinder.mm in Sources */,
 				94721515180AB6BC00CE2C58 /* CFConnectionCore.mm in Sources */,
