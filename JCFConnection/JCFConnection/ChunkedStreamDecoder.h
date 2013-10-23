@@ -11,6 +11,7 @@
 
 namespace J
 {
+
     class ChunkedStreamDecoder
     {
     public:
@@ -24,12 +25,21 @@ namespace J
         
     protected:
         
-        void handleWaitingChunkCount(const Byte*& chunkedData,uint& chunkedDataLength);
         
-        void handleReadingData(CFMutableDataRef bufferToAppend,const Byte*& chunkedData,uint& chunkedDataLength);
+        void handleChunk_Size(const Byte*& chunkedData,uint& chunkedDataLength);
+
         
-        void handleSkipDataBreak(const Byte*& chunkedData,uint& chunkedDataLength);
+        
+        
+//        void handleWaitingChunkCount(const Byte*& chunkedData,uint& chunkedDataLength);
+//        
+//        void handleReadingData(CFMutableDataRef bufferToAppend,const Byte*& chunkedData,uint& chunkedDataLength);
+//        
+//        void handleSkipDataBreak(const Byte*& chunkedData,uint& chunkedDataLength);
+//        
+//        void handleLastChunk(const Byte*& chunkedData,uint& chunkedDataLength);
     protected:
+        
         uint chunkDataToCount(const Byte* data,uint dataLength);
     protected:
         
@@ -40,12 +50,19 @@ namespace J
         
         enum State
         {
-            EWaitingChunkCount
-            ,ESkipCountBreak
-            ,EReadingData
-            ,ESkipDataBreak
-            ,EFinish
+             EChunk_Size
+            ,EChunk_Ext
+            ,EChunk_ExtCRLF
+            ,EChunk_Data
+            ,EChunk_ChunkCRLF
+            ,ELastChunk_Zero
+            ,ELastChunk_Ext
+            ,ELastChunk_ExtCRLF
+            ,ETrailer
+            ,EEND_CRLF
             
+            
+            ,EFinish
             ,EError
         };
         State               m_state;
