@@ -15,6 +15,9 @@
 
 #define KHTTPHeaderColon    ":"
 
+
+#define isHexChar(c)   (('a'<=(c)&&(c)<='f')||('A'<=(c)&&(c)<='F')||('0'<=(c)&&(c)<='9'))
+
 namespace J
 {
     ///Method, uppercase

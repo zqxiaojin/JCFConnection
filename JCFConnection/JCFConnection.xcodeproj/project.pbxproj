@@ -10,6 +10,7 @@
 		3C46ACCD1813BDCA00D108E7 /* HTTPDefine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C46ACCC1813BDCA00D108E7 /* HTTPDefine.mm */; };
 		3C5AFC441812BD8D00ACC9A1 /* Util.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C5AFC421812BD8D00ACC9A1 /* Util.mm */; };
 		3CB038221814AED100ED3765 /* ChunkedStreamDecoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3CB038201814AED100ED3765 /* ChunkedStreamDecoder.mm */; };
+		3CC1F46B181C2C3B002EC08C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1F46A181C2C3B002EC08C /* libz.dylib */; };
 		3CF70FD11811819E00123FBB /* HTTPResponse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3CF70FCF1811819E00123FBB /* HTTPResponse.mm */; };
 		947215101809CEA000CE2C58 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9472150F1809CEA000CE2C58 /* CFNetwork.framework */; };
 		947215111809CEB100CE2C58 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9472150F1809CEA000CE2C58 /* CFNetwork.framework */; };
@@ -60,6 +61,7 @@
 		3C5AFC431812BD8D00ACC9A1 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		3CB038201814AED100ED3765 /* ChunkedStreamDecoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ChunkedStreamDecoder.mm; sourceTree = "<group>"; };
 		3CB038211814AED100ED3765 /* ChunkedStreamDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkedStreamDecoder.h; sourceTree = "<group>"; };
+		3CC1F46A181C2C3B002EC08C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3CF70FCF1811819E00123FBB /* HTTPResponse.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HTTPResponse.mm; sourceTree = "<group>"; };
 		3CF70FD01811819E00123FBB /* HTTPResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPResponse.h; sourceTree = "<group>"; };
 		9472148E1809A7D200CE2C58 /* JCFConnection_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCFConnection_Internal.h; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CC1F46B181C2C3B002EC08C /* libz.dylib in Frameworks */,
 				947215101809CEA000CE2C58 /* CFNetwork.framework in Frameworks */,
 				948CB49F18098FEB006B7917 /* Foundation.framework in Frameworks */,
 			);
@@ -187,6 +190,7 @@
 		948CB49D18098FEB006B7917 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3CC1F46A181C2C3B002EC08C /* libz.dylib */,
 				9472150F1809CEA000CE2C58 /* CFNetwork.framework */,
 				948CB49E18098FEB006B7917 /* Foundation.framework */,
 				948CB4AC18098FEB006B7917 /* XCTest.framework */,
@@ -416,7 +420,6 @@
 		948CB4BF18098FEB006B7917 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/JCFConnection.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -430,7 +433,6 @@
 		948CB4C018098FEB006B7917 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/JCFConnection.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

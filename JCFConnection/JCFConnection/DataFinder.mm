@@ -7,7 +7,7 @@
 //
 
 #include "DataFinder.h"
-
+#include "HTTPDefine.h"
 
 namespace J
 {
@@ -52,6 +52,27 @@ namespace J
             return kCFNotFound;
         }
         
+    }
+    uint DataFinder::findNotHexData(const Byte* dataToFind, uint dataToFindLength)
+    {
+        assert(dataToFind );
+        const Byte* buffer = dataToFind;
+        bool isMatch = false;
+        const Byte* bufferEnd = buffer + dataToFindLength ;
+        while (buffer <= bufferEnd)
+        {
+            if (!isHexChar(*buffer))
+            {
+                isMatch = true;
+                break;
+            }
+            ++buffer;
+        }
+        if (isMatch)
+        {
+            return buffer - dataToFind;
+        }
+        return NSNotFound;
     }
     
     uint DataFinder::findData(const Byte* dataToFind, uint dataToFindLength, const Byte* data, uint dataLength)

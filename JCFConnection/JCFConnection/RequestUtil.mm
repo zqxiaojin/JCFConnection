@@ -67,16 +67,22 @@ namespace J
             
             CFStringRef path = CFURLCopyPath(url);
             const char* pathUTF8 = CFStringGetCStringPtr(path, kCFStringEncodingUTF8);
-            CFStringRef resourceSpecifier = CFURLCopyResourceSpecifier(url);
-            const char* resourceSpecifierUTF8 = CFStringGetCStringPtr(resourceSpecifier, kCFStringEncodingUTF8);
+  
             CFDataAppendBytes(mData, (const Byte*)methodC, strlen(methodC));
             CFDataAppendBytes(mData, (const Byte*)pathUTF8, strlen(pathUTF8));
-            CFDataAppendBytes(mData, (const Byte*)resourceSpecifierUTF8, strlen(resourceSpecifierUTF8));
             
+            CFStringRef resourceSpecifier = CFURLCopyResourceSpecifier(url);
+            if (resourceSpecifier)
+            {
+                const char* resourceSpecifierUTF8 = CFStringGetCStringPtr(resourceSpecifier, kCFStringEncodingUTF8);
+                CFDataAppendBytes(mData, (const Byte*)resourceSpecifierUTF8, strlen(resourceSpecifierUTF8));
+                CFRelease(resourceSpecifier);
+            }
+
             const char HTTPVersion[] = " HTTP/1.1\r\n";
             CFDataAppendBytes(mData, (const Byte*)HTTPVersion, sizeof(HTTPVersion)-1);
             
-            CFRelease(resourceSpecifier);
+            
             CFRelease(path);
         }
         //Header

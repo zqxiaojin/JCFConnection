@@ -27,19 +27,25 @@ namespace J
         
         
         void handleChunk_Size(const Byte*& chunkedData,uint& chunkedDataLength);
+        void handleChunk_Ext(const Byte*& chunkedData,uint& chunkedDataLength);
+        void handleChunk_ExtCRLF(const Byte*& chunkedData,uint& chunkedDataLength);
+        void handleChunk_Data(const Byte*& chunkedData,uint& chunkedDataLength);
+        void handleChunk_DataCRLF(const Byte*& chunkedData,uint& chunkedDataLength);
+        
+        void handleLastChunk_Ext(const Byte*& chunkedData,uint& chunkedDataLength);
+        void handleLastChunk_ExtCRLF(const Byte*& chunkedData,uint& chunkedDataLength);
+        
+        void handleTrailer(const Byte*& chunkedData,uint& chunkedDataLength);
 
         
         
+    protected://declare function
+        typedef void (ChunkedStreamDecoder::*StateHandleFunction)(const Byte*& chunkedData,uint& chunkedDataLength);
         
-//        void handleWaitingChunkCount(const Byte*& chunkedData,uint& chunkedDataLength);
-//        
-//        void handleReadingData(CFMutableDataRef bufferToAppend,const Byte*& chunkedData,uint& chunkedDataLength);
-//        
-//        void handleSkipDataBreak(const Byte*& chunkedData,uint& chunkedDataLength);
-//        
-//        void handleLastChunk(const Byte*& chunkedData,uint& chunkedDataLength);
+        static StateHandleFunction KStateHandleFunction[];
+    
     protected:
-        
+        bool skipChunkExtension(const Byte*& chunkedData,uint& chunkedDataLength);
         uint chunkDataToCount(const Byte* data,uint dataLength);
     protected:
         
@@ -48,24 +54,49 @@ namespace J
         uint                m_restSize;
         uint                m_skipSize;
         
+       /*
+        copy from http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html
+        
+        Chunked-Body   = *chunk
+                         last-chunk
+                         trailer
+                         CRLF
+        
+        chunk          = chunk-size [ chunk-extension ] CRLF
+                         chunk-data CRLF
+        chunk-size     = 1*HEX
+        last-chunk     = 1*("0") [ chunk-extension ] CRLF
+        chunk-extension= *( ";" chunk-ext-name [ "=" chunk-ext-val ] )
+        chunk-ext-name = token
+        chunk-ext-val  = token | quoted-string
+        chunk-data     = chunk-size(OCTET)
+        trailer        = *(entity-header CRLF)
+        */
         enum State
         {
-             EChunk_Size
+             EChunk_Size = 0
             ,EChunk_Ext
             ,EChunk_ExtCRLF
             ,EChunk_Data
-            ,EChunk_ChunkCRLF
-            ,ELastChunk_Zero
+            ,EChunk_DataCRLF
             ,ELastChunk_Ext
             ,ELastChunk_ExtCRLF
             ,ETrailer
-            ,EEND_CRLF
             
             
             ,EFinish
             ,EError
         };
         State               m_state;
+        
+        
+        enum CRLFState{EEmpty,ECR,ECRLF};
+        CRLFState           m_CRLFState;
+        
+        CFMutableDataRef    m_tempDataBuffer;
+        
+        enum EntityHeaderState {EUnknow,EEntity,EEntityCR};
+        EntityHeaderState   m_entityHeaderState;
     };
 }
 

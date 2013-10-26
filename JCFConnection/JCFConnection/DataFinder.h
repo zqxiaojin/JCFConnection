@@ -34,6 +34,8 @@ namespace J
         uint firstMatchOffset()const{return m_firstMatchOffset;}
         
         static uint findData(const Byte* dataToFind, uint dataToFindLength, const Byte* data, uint dataLength);
+        
+        static uint findNotHexData(const Byte* dataToFind, uint dataToFindLength);
     protected:
         
 

@@ -22,82 +22,63 @@ namespace J
 {
     const Byte  KChunkLengthBreak[] = "\r\n";
     
+    ChunkedStreamDecoder::StateHandleFunction ChunkedStreamDecoder::KStateHandleFunction[] =
+    {
+         &ChunkedStreamDecoder::handleChunk_Size
+        ,&ChunkedStreamDecoder::handleChunk_Ext
+        ,&ChunkedStreamDecoder::handleChunk_ExtCRLF
+        ,&ChunkedStreamDecoder::handleChunk_Data
+        ,&ChunkedStreamDecoder::handleChunk_DataCRLF
+        ,&ChunkedStreamDecoder::handleLastChunk_Ext
+        ,&ChunkedStreamDecoder::handleLastChunk_ExtCRLF
+        ,&ChunkedStreamDecoder::handleTrailer
+    };
+    
     ChunkedStreamDecoder::ChunkedStreamDecoder()
     :m_orgDataBuffer(CFDataCreateMutable(kCFAllocatorDefault, 0))
     ,m_chunkSize(0)
     ,m_restSize(0)
     ,m_state(EChunk_Size)
     ,m_skipSize(0)
+    ,m_CRLFState(EEmpty)
+    ,m_tempDataBuffer(NULL)
+    ,m_entityHeaderState(EUnknow)
     {
-        
+        assert(m_orgDataBuffer);
     }
     ChunkedStreamDecoder::~ChunkedStreamDecoder()
     {
         if (m_orgDataBuffer) {
             CFRelease(m_orgDataBuffer);
         }
+        assert(m_tempDataBuffer == NULL);
+        if (m_tempDataBuffer) {
+            CFRelease(m_tempDataBuffer);
+        }
     }
     
     CFDataRef ChunkedStreamDecoder::decode(CFDataRef chunkedData)
     {
-        CFMutableDataRef result = NULL;
         COMPILE_ASSERT(sizeof(short) == 2);
         const Byte* chunkedDataStartPtr = CFDataGetBytePtr(chunkedData);
         const Byte* chunkedDataPtr = chunkedDataStartPtr;
         uint chunkedDataLength = CFDataGetLength(chunkedData);
         uint chunkedDataRestLength = chunkedDataLength;
         
-        /*
-         Chunked-Body   = *chunk
-                          last-chunk
-                          trailer
-                          CRLF
-         chunk          = chunk-size [ chunk-extension ] CRLF
-                          chunk-data CRLF
-         chunk-size     = 1*HEX
-         last-chunk     = 1*("0") [ chunk-extension ] CRLF
-         chunk-extension= *( ";" chunk-ext-name [ "=" chunk-ext-val ] )
-         chunk-ext-name = token
-         chunk-ext-val  = token | quoted-string
-         chunk-data     = chunk-size(OCTET)
-         trailer        = *(entity-header CRLF)
-         */
-        while (chunkedDataRestLength != 0)
+        while (chunkedDataRestLength != 0 && m_state != EError)
         {
-            switch (m_state)
-            {
-                case EChunk_Size:
-                {
-                    handleChunk_Size(chunkedDataStartPtr, chunkedDataRestLength);
-                }
-                    break;
-//                case EReadingData:
-//                {
-//                    if (result == NULL) {
-//                        result = CFDataCreateMutable(kCFAllocatorDefault, 0);
-//                        Util::CFAutoRelease(result);
-//                    }
-//                    handleReadingData(result, chunkedDataPtr, chunkedDataRestLength);
-//                }
-//                    break;
-//                case ESkipDataBreak:
-//                {
-//                    handleSkipDataBreak(chunkedDataPtr, chunkedDataRestLength);
-//                }
-//                    break;
-//                case ELastChunk:
-//                {
-//                    handleLastChunk(chunkedDataPtr, chunkedDataRestLength);
-//                }
-//                    break;
-                case EError:
-                {
-                    chunkedDataLength = 0;
-                }
-                    break;
-                default:
-                    break;
-            }
+            ((*this).*((KStateHandleFunction[m_state])))(chunkedDataPtr,chunkedDataRestLength);
+        }
+        if (m_state == EError)
+        {
+            ///FIXME:give some errorcode
+        }
+        CFDataRef result = NULL;
+        if (m_tempDataBuffer)
+        {
+            result = m_tempDataBuffer;
+            Util::CFAutoRelease(m_tempDataBuffer);
+            m_tempDataBuffer = NULL;
         }
         return result;
     }
@@ -121,204 +102,258 @@ namespace J
             
             orgDataLength += value << (i*4);
         }
-        LOG_DEC(@"%@ -> %x == %u" , [[[NSString alloc] initWithBytes:data length:dataLength encoding:NSUTF8StringEncoding] autorelease] , orgDataLength, orgDataLength);
+//        LOG_DEC(@"%@ -> %x == %u" , [[[NSString alloc] initWithBytes:data length:dataLength encoding:NSUTF8StringEncoding] autorelease] , orgDataLength, orgDataLength);
         return orgDataLength;
     }
     
-#define isHex(c)   (('a'<=(c)&&(c)<='f')||('A'<=(c)&&(c)<='F')||('0'<=(c)&&(c)<='9'))
+    bool ChunkedStreamDecoder::skipChunkExtension(const Byte*& chunkedData,uint& chunkedDataLength)
+    {
+        bool isSkipFinish = false;
+        assert(chunkedDataLength > 0);
+        if (m_CRLFState == ECR)
+        {
+            if (*chunkedData == '\n')//check "\n"
+            {
+                m_CRLFState = ECRLF;
+                ++chunkedData;
+                --chunkedDataLength;
+                m_state = EChunk_ExtCRLF;
+            }
+            else
+            {
+                m_CRLFState = EEmpty;
+                ++chunkedData;
+                --chunkedDataLength;
+            }
+        }
+        else
+        {
+            uint linkeBreakOffset = DataFinder::findData(chunkedData, chunkedDataLength, KChunkLengthBreak, SizeOfArray(KChunkLengthBreak));
+            if (linkeBreakOffset == NSNotFound)
+            {
+                if (chunkedData[chunkedDataLength - 1] == '\r')
+                {
+                    m_CRLFState = ECR;
+                }
+                chunkedData += chunkedDataLength;
+                chunkedDataLength = 0;
+            }
+            else//get the "\r\n" , so we can get the size
+            {
+                chunkedData += linkeBreakOffset + SizeOfArray(KChunkLengthBreak);
+                chunkedDataLength -= linkeBreakOffset + SizeOfArray(KChunkLengthBreak);
+                m_CRLFState = ECRLF;
+                isSkipFinish = true;
+            }
+        }
+        
+        return isSkipFinish;
+    }
+    
+
     
     void ChunkedStreamDecoder::handleChunk_Size(const Byte*& chunkedData,uint& chunkedDataLength)
     {
+        uint notHexOffset = DataFinder::findNotHexData(chunkedData, chunkedDataLength);
+        if (notHexOffset == NSNotFound)
+        {
+            ///FIXME: if too larget ,must handle error
+            CFDataAppendBytes(m_orgDataBuffer, chunkedData, chunkedDataLength);
+            if (CFDataGetLength(m_orgDataBuffer) > 8)
+            {
+                m_state = EError;
+            }
+            return;
+        }
         
+        const Byte* hexPointer = NULL;
+        uint  hexLength = 0;
+        uint  bufferLength = CFDataGetLength(m_orgDataBuffer);
+        if (bufferLength > 0)
+        {
+            bufferLength += notHexOffset;
+            CFDataAppendBytes(m_orgDataBuffer, chunkedData, notHexOffset);
+            chunkedDataLength -= notHexOffset;
+            chunkedData += notHexOffset;
+            hexPointer = CFDataGetBytePtr(m_orgDataBuffer);
+            hexLength = bufferLength;
+        }
+        else
+        {
+            hexPointer = chunkedData;
+            hexLength = notHexOffset;
+            chunkedDataLength -= notHexOffset;
+            chunkedData += notHexOffset;
+        }
+        
+        uint chunkSize = chunkDataToCount(hexPointer,hexLength);
+        if (chunkSize == 0)
+        {
+            m_state = ELastChunk_Ext;
+        }
+        else
+        {
+            LOG_DEC(@"chunkSize:%u", chunkSize);
+            m_chunkSize = chunkSize;
+            m_restSize = m_chunkSize;
+            m_state = EChunk_Ext;
+        }
     }
     
-//    void ChunkedStreamDecoder::handleWaitingChunkCount(const Byte*& chunkedData,uint& chunkedDataLength)
-//    {
-//        assert(chunkedDataLength > 0);
-//        uint unuseBufferLength = CFDataGetLength(m_orgDataBuffer);
-//        if (unuseBufferLength > 0)
-//        {
-//            const Byte* orgDataPtr = CFDataGetBytePtr(m_orgDataBuffer);
-//            const Byte* lastChar = orgDataPtr + unuseBufferLength - 1;
-//            if (*lastChar == '\r')///last we get "\r"
-//            {
-//                if (*chunkedData == '\n')//check "\n"
-//                {
-//                    if (unuseBufferLength == 1)///<just a "\r\n" ,so finish
-//                    {
-//                        CFDataSetLength(m_orgDataBuffer, 0);
-//                        m_state = EFinish;
-//                    }
-//                    else
-//                    {
-//                        uint orgDataLength = chunkDataToCount(orgDataPtr , unuseBufferLength -1);
-//                        m_chunkSize = orgDataLength;
-//                        m_restSize = m_chunkSize;
-//                        chunkedData += 1;
-//                        chunkedDataLength -= 1;
-//                        
-//                        if (orgDataLength == 0)///<chunk size can be zero
-//                        {
-//                            m_state = EChunk_Size;
-//                        }
-//                        else
-//                        {
-//                            CFDataSetLength(m_orgDataBuffer, 0);
-//                            m_state = EReadingData;
-//                        }
-//                    }
-//                }
-//                else
-//                {
-//                    m_state = EError;
-//                }
-//            }
-//            else///<has some byte of chunksize
-//            {
-//                uint linkeBreakOffset = DataFinder::findData(chunkedData, chunkedDataLength, KChunkLengthBreak, SizeOfArray(KChunkLengthBreak));
-//                if (linkeBreakOffset == NSNotFound) {
-//                    CFDataAppendBytes(m_orgDataBuffer, chunkedData, chunkedDataLength);
-//                    chunkedData += chunkedDataLength;
-//                    chunkedDataLength = 0;
-//                }
-//                else//get the "\r\n" , so we can get the size
-//                {
-//                    CFDataAppendBytes(m_orgDataBuffer, chunkedData, linkeBreakOffset);
-//                    
-//                    uint orgDataLength = chunkDataToCount(CFDataGetBytePtr(m_orgDataBuffer)
-//                                                          , CFDataGetLength(m_orgDataBuffer));
-//                    
-//                    m_chunkSize = orgDataLength;
-//                    m_restSize = m_chunkSize;
-//                    chunkedData += linkeBreakOffset + SizeOfArray(KChunkLengthBreak);
-//                    chunkedDataLength -= linkeBreakOffset+ SizeOfArray(KChunkLengthBreak);
-//                    if (orgDataLength == 0)///<chunk size can be zero
-//                    {
-//                        m_state = EChunk_Size;
-//                    }
-//                    else
-//                    {
-//                        CFDataSetLength(m_orgDataBuffer, 0);
-//                        m_state = EReadingData;
-//                    }
-//                }
-//            }
-//        }
-//        else
-//        {
-//            uint linkeBreakOffset = DataFinder::findData(chunkedData, chunkedDataLength, KChunkLengthBreak, SizeOfArray(KChunkLengthBreak));
-//            if (linkeBreakOffset == NSNotFound) {
-//                CFDataAppendBytes(m_orgDataBuffer, chunkedData, chunkedDataLength);
-//                chunkedData += chunkedDataLength;
-//                chunkedDataLength = 0;
-//            }
-//            else//get the "\r\n" , so we can get the size
-//            {
-//                if (linkeBreakOffset == 0)
-//                {
-//                    chunkedData += 2;
-//                    chunkedDataLength -= 2;
-//                    m_state = EFinish;
-//                }
-//                else
-//                {
-//                    CFDataAppendBytes(m_orgDataBuffer, chunkedData, linkeBreakOffset);
-//                    
-//                    uint orgDataLength = chunkDataToCount(CFDataGetBytePtr(m_orgDataBuffer)
-//                                                          , CFDataGetLength(m_orgDataBuffer));
-//                    
-//                    if (orgDataLength == 0)///<chunk size can be zero
-//                    {
-//                        m_state = ELastChunk;
-//                    }
-//                    else
-//                    {
-//                        m_state = EReadingData;
-//                    }
-//                    
-//                    m_chunkSize = orgDataLength;
-//                    m_restSize = m_chunkSize;
-//                    chunkedData += linkeBreakOffset + SizeOfArray(KChunkLengthBreak);
-//                    chunkedDataLength -= linkeBreakOffset + SizeOfArray(KChunkLengthBreak);
-//                    CFDataSetLength(m_orgDataBuffer, 0);
-//                }
-//            }
-//        }
-//    }
-//    
-//    void ChunkedStreamDecoder::handleReadingData(CFMutableDataRef bufferToAppend
-//                                                 ,const Byte*& chunkedData,uint& chunkedDataLength)
-//    {
-//        assert(m_restSize > 0);
-//        if (m_restSize > chunkedDataLength)
-//        {
-//            LOG_DEC(@"read %u", chunkedDataLength);
-//            CFDataAppendBytes(bufferToAppend, chunkedData, chunkedDataLength);
-//            m_restSize -= chunkedDataLength;
-//            chunkedData += chunkedDataLength;
-//            chunkedDataLength = 0;
-//            
-//        }
-//        else
-//        {
-//            LOG_DEC(@"read %u", m_restSize);
-//            CFDataAppendBytes(bufferToAppend, chunkedData, m_restSize);
-//            chunkedData += m_restSize;
-//            chunkedDataLength -= m_restSize;
-//            m_restSize = 0;
-//            m_state = ESkipDataBreak;
-//            m_skipSize = 2;
-//        }
-//    }
-//    
-//    void ChunkedStreamDecoder::handleSkipDataBreak(const Byte*& chunkedData,uint& chunkedDataLength)
-//    {
-//        if (m_skipSize > chunkedDataLength)
-//        {
-//            m_skipSize -= chunkedDataLength;
-//            chunkedData += chunkedDataLength;
-//            chunkedDataLength = 0;
-//        }
-//        else
-//        {
-//            chunkedData += m_skipSize;
-//            chunkedDataLength -= m_skipSize;
-//            m_skipSize = 0;
-//            m_state = EChunk_Size;
-//        }
-//    }
-//    void ChunkedStreamDecoder::handleLastChunk(const Byte*& chunkedData,uint& chunkedDataLength)
-//    {
-//        uint unuseBufferLength = CFDataGetLength(m_orgDataBuffer);
-//        if (unuseBufferLength > 0)
-//        {
-//            const Byte* orgDataPtr = CFDataGetBytePtr(m_orgDataBuffer);
-//            const Byte* lastChar = orgDataPtr + unuseBufferLength - 1;
-//            if (*lastChar == '\r')///last we get "\r"
-//            {
-//                if (*chunkedData == '\n')//check "\n"
-//                {
-//                    if (unuseBufferLength == 1)///<just a "\r\n" ,so finish
-//                    {
-//                        CFDataSetLength(m_orgDataBuffer, 0);
-//                        m_state = EFinish;
-//                    }
-//                    else
-//                    {
-//                        m_state = EError;
-//                    }
-//                }
-//                else
-//                {
-//                    CFDataSetLength(m_orgDataBuffer, 0);
-//                }
-//                chunkedData += 1;
-//                chunkedDataLength -= 1;
-//            }
-//        }
-//        else
-//        {
-//            
-//        }
-//    }
+    void ChunkedStreamDecoder::handleChunk_Ext(const Byte*& chunkedData,uint& chunkedDataLength)
+    {
+        bool isFinishSkip = skipChunkExtension(chunkedData, chunkedDataLength);
+        if (isFinishSkip)
+        {
+            m_state = EChunk_ExtCRLF;
+        }
+    }
+    
+    void ChunkedStreamDecoder::handleChunk_ExtCRLF(const Byte*& chunkedData,uint& chunkedDataLength)
+    {
+        assert(m_CRLFState == ECRLF);
+        m_state = EChunk_Data;
+        m_CRLFState = EEmpty;
+    }
+    
+    void ChunkedStreamDecoder::handleChunk_Data(const Byte*& chunkedData,uint& chunkedDataLength)
+    {
+        assert(m_restSize > 0);
+        if (m_tempDataBuffer == NULL)
+        {
+            m_tempDataBuffer = CFDataCreateMutable(kCFAllocatorDefault, 0);
+        }
+        if (m_restSize > chunkedDataLength)
+        {
+            LOG_DEC(@"read %u", chunkedDataLength);
+            CFDataAppendBytes(m_tempDataBuffer, chunkedData, chunkedDataLength);
+            m_restSize -= chunkedDataLength;
+            chunkedData += chunkedDataLength;
+            chunkedDataLength = 0;
+
+        }
+        else
+        {
+            LOG_DEC(@"read %u", m_restSize);
+            CFDataAppendBytes(m_tempDataBuffer, chunkedData, m_restSize);
+            chunkedData += m_restSize;
+            chunkedDataLength -= m_restSize;
+            m_restSize = 0;
+            m_chunkSize = 0;
+            m_state = EChunk_DataCRLF;
+            m_skipSize = 2;
+        }
+    }
+    
+    void ChunkedStreamDecoder::handleChunk_DataCRLF(const Byte*& chunkedData,uint& chunkedDataLength)
+    {
+        if (m_skipSize > chunkedDataLength)
+        {
+            m_skipSize -= chunkedDataLength;
+            chunkedData += chunkedDataLength;
+            chunkedDataLength = 0;
+        }
+        else
+        {
+            chunkedData += m_skipSize;
+            chunkedDataLength -= m_skipSize;
+            m_skipSize = 0;
+            m_state = EChunk_Size;
+        }
+    }
+    
+    void ChunkedStreamDecoder::handleLastChunk_Ext(const Byte*& chunkedData,uint& chunkedDataLength)
+    {
+        bool isFinishSkip = skipChunkExtension(chunkedData, chunkedDataLength);
+        if (isFinishSkip)
+        {
+            m_state = ELastChunk_ExtCRLF;
+        }
+    }
+    
+    void ChunkedStreamDecoder::handleLastChunk_ExtCRLF(const Byte*& chunkedData,uint& chunkedDataLength)
+    {
+        assert(m_CRLFState == ECRLF);
+        m_state = ETrailer;
+        m_CRLFState = EEmpty;
+    }
+    
+    void ChunkedStreamDecoder::handleTrailer(const Byte*& chunkedData,uint& chunkedDataLength)
+    {
+        switch (m_entityHeaderState)
+        {
+            case EUnknow:
+            {
+                uint linkeBreakOffset = DataFinder::findData(chunkedData, chunkedDataLength, KChunkLengthBreak, SizeOfArray(KChunkLengthBreak));
+                if (linkeBreakOffset == NSNotFound)
+                {
+                    if (chunkedData[chunkedDataLength - 1] == '\r')
+                    {
+                        m_entityHeaderState = EEntityCR;
+                    }
+                    else
+                    {
+                        m_entityHeaderState = EEntity;
+                    }
+                    chunkedData += chunkedDataLength;
+                    chunkedDataLength = 0;
+                }
+                else
+                {
+                    if(linkeBreakOffset == 0)
+                    {
+                        m_state = EFinish;
+                    }
+                    else
+                    {
+                        m_entityHeaderState = EUnknow;
+                    }
+                    chunkedData += linkeBreakOffset + SizeOfArray(KChunkLengthBreak);
+                    chunkedDataLength -= linkeBreakOffset + SizeOfArray(KChunkLengthBreak);
+                }
+                
+            }
+                break;
+            case EEntity:
+            {
+                uint linkeBreakOffset = DataFinder::findData(chunkedData, chunkedDataLength, KChunkLengthBreak, SizeOfArray(KChunkLengthBreak));
+                if (linkeBreakOffset == NSNotFound)
+                {
+                    if (chunkedData[chunkedDataLength - 1] == '\r')
+                    {
+                        m_entityHeaderState = EEntityCR;
+                    }
+                    chunkedData += chunkedDataLength;
+                    chunkedDataLength = 0;
+                }
+                else
+                {
+                    m_entityHeaderState = EUnknow;
+                    chunkedData += linkeBreakOffset + SizeOfArray(KChunkLengthBreak);
+                    chunkedDataLength -= linkeBreakOffset + SizeOfArray(KChunkLengthBreak);
+                }
+            }
+                break;
+            case EEntityCR:
+            {
+                if (*chunkedData == '\n')//check "\n"
+                {
+                    m_entityHeaderState = EUnknow;
+                    ++chunkedData;
+                    --chunkedDataLength;
+                }
+                else
+                {
+                    m_entityHeaderState = EEntity;
+                    ++chunkedData;
+                    --chunkedDataLength;
+                }
+            }
+                break;
+            default:
+                assert(0);
+                break;
+        }
+    }
+    
 }
