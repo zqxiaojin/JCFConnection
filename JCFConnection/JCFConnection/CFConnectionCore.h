@@ -61,10 +61,11 @@ namespace J
         
         ResponseParser*         m_responseParser;
         
-        enum State {EWaitingResponse,EReceivingData};
+        enum State {EWaitingResponse,EReceivingData,EError};
         State                   m_state;
         
         ChunkedStreamDecoder*   m_chunkedStreamDecoder;
+        GzipStreamDecoder*      m_gzipStreamDecoder;
     };
 };
 

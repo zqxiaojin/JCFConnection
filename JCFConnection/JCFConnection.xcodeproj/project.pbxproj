@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		3C46ACCD1813BDCA00D108E7 /* HTTPDefine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C46ACCC1813BDCA00D108E7 /* HTTPDefine.mm */; };
+		3C4B0115181D1F7900F249FB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1F46A181C2C3B002EC08C /* libz.dylib */; };
+		3C4B0117181D437100F249FB /* JCFConnectionRandomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B0116181D437100F249FB /* JCFConnectionRandomTests.m */; };
 		3C5AFC441812BD8D00ACC9A1 /* Util.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C5AFC421812BD8D00ACC9A1 /* Util.mm */; };
 		3CB038221814AED100ED3765 /* ChunkedStreamDecoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3CB038201814AED100ED3765 /* ChunkedStreamDecoder.mm */; };
 		3CC1F46B181C2C3B002EC08C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1F46A181C2C3B002EC08C /* libz.dylib */; };
+		3CEF7562181C312B003242FE /* GzipStreamDecoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF7560181C312B003242FE /* GzipStreamDecoder.mm */; };
 		3CF70FD11811819E00123FBB /* HTTPResponse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3CF70FCF1811819E00123FBB /* HTTPResponse.mm */; };
 		947215101809CEA000CE2C58 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9472150F1809CEA000CE2C58 /* CFNetwork.framework */; };
 		947215111809CEB100CE2C58 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9472150F1809CEA000CE2C58 /* CFNetwork.framework */; };
@@ -56,12 +59,15 @@
 
 /* Begin PBXFileReference section */
 		3C46ACCC1813BDCA00D108E7 /* HTTPDefine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HTTPDefine.mm; sourceTree = "<group>"; };
+		3C4B0116181D437100F249FB /* JCFConnectionRandomTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCFConnectionRandomTests.m; sourceTree = "<group>"; };
 		3C5AFC401812B5FB00ACC9A1 /* HTTPDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDefine.h; sourceTree = "<group>"; };
 		3C5AFC421812BD8D00ACC9A1 /* Util.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Util.mm; sourceTree = "<group>"; };
 		3C5AFC431812BD8D00ACC9A1 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		3CB038201814AED100ED3765 /* ChunkedStreamDecoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ChunkedStreamDecoder.mm; sourceTree = "<group>"; };
 		3CB038211814AED100ED3765 /* ChunkedStreamDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkedStreamDecoder.h; sourceTree = "<group>"; };
 		3CC1F46A181C2C3B002EC08C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3CEF7560181C312B003242FE /* GzipStreamDecoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GzipStreamDecoder.mm; sourceTree = "<group>"; };
+		3CEF7561181C312B003242FE /* GzipStreamDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GzipStreamDecoder.h; sourceTree = "<group>"; };
 		3CF70FCF1811819E00123FBB /* HTTPResponse.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HTTPResponse.mm; sourceTree = "<group>"; };
 		3CF70FD01811819E00123FBB /* HTTPResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPResponse.h; sourceTree = "<group>"; };
 		9472148E1809A7D200CE2C58 /* JCFConnection_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCFConnection_Internal.h; sourceTree = "<group>"; };
@@ -112,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C4B0115181D1F7900F249FB /* libz.dylib in Frameworks */,
 				948CB4B318098FEB006B7917 /* libJCFConnection.a in Frameworks */,
 				947215111809CEB100CE2C58 /* CFNetwork.framework in Frameworks */,
 				948CB4AD18098FEB006B7917 /* XCTest.framework in Frameworks */,
@@ -144,6 +151,8 @@
 				3C5AFC421812BD8D00ACC9A1 /* Util.mm */,
 				3CB038211814AED100ED3765 /* ChunkedStreamDecoder.h */,
 				3CB038201814AED100ED3765 /* ChunkedStreamDecoder.mm */,
+				3CEF7561181C312B003242FE /* GzipStreamDecoder.h */,
+				3CEF7560181C312B003242FE /* GzipStreamDecoder.mm */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -228,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				948CB4BA18098FEB006B7917 /* JCFConnectionTests.mm */,
+				3C4B0116181D437100F249FB /* JCFConnectionRandomTests.m */,
 				948CB4B518098FEB006B7917 /* Supporting Files */,
 			);
 			path = JCFConnectionTests;
@@ -329,6 +339,7 @@
 				94721523180BB64400CE2C58 /* DataFinder.mm in Sources */,
 				94721515180AB6BC00CE2C58 /* CFConnectionCore.mm in Sources */,
 				3C46ACCD1813BDCA00D108E7 /* HTTPDefine.mm in Sources */,
+				3CEF7562181C312B003242FE /* GzipStreamDecoder.mm in Sources */,
 				9472151A180B1E9500CE2C58 /* CFSocketFactory.mm in Sources */,
 				948CB4D118099A15006B7917 /* CFSocketHandler.mm in Sources */,
 				94721520180B24F700CE2C58 /* RequestUtil.mm in Sources */,
@@ -341,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C4B0117181D437100F249FB /* JCFConnectionRandomTests.m in Sources */,
 				948CB4BB18098FEB006B7917 /* JCFConnectionTests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

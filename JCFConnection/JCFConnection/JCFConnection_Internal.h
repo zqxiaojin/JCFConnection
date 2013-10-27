@@ -11,8 +11,10 @@
 using namespace J;
 @interface JCFConnection ()<JCFConnectionDelegate>
 {
-    CFConnectionCore*          m_core;
+    CFConnectionCore*           m_core;
     id<JCFConnectionDelegate>   m_delegate;
+    
+    bool                        m_isTerminal;
 }
 
 #pragma mark - only use for CFSocketHandler callback

@@ -89,8 +89,11 @@ namespace J
         CFDictionaryRef header = (CFDictionaryRef)[request allHTTPHeaderFields];
         //Host
         {
-            CFStringRef host = header ? (CFStringRef)CFDictionaryGetValue(header,KHTTPHeader_Host) : NULL;
-            if (host == NULL || CFStringGetLength(host) == 0)
+            CFStringRef host = NULL;
+            bool isPresent = header ? CFDictionaryGetValueIfPresent(header
+                                                           , (const void *)KHTTPHeader_Host
+                                                                    , (const void **)&host):false;
+            if (!isPresent)
             {
                 CFStringRef tempHost = CFURLCopyHostName(url);
                 [(id)tempHost autorelease];
@@ -101,29 +104,47 @@ namespace J
                     [(id)tempHost autorelease];
                 }
                 host = tempHost;
-                CFStringRef headValue = CFStringCreateWithFormat(kCFAllocatorDefault,NULL,CFSTR("%@: %@\r\n"),KHTTPHeader_Host,host);
-                const char* headValueUTF8 = CFStringGetCStringPtr(headValue, kCFStringEncodingUTF8);
-                CFDataAppendBytes(mData, (const Byte*)headValueUTF8, strlen(headValueUTF8));
-                CFRelease(headValue);
+                
+                if (host && CFStringGetLength(host) > 0)
+                {
+                    appendDataWithHeaderAndValue(mData, KHTTPHeader_Host, host);
+                }
             }
+            
         }
         //Cookie
         {
+            CFStringRef cookies = NULL;
+            bool isPresent = CFDictionaryGetValueIfPresent(header
+                                                           , (const void *)KHTTPHeader_Cookie
+                                                           , (const void **)&host);
+            if (!isPresent)
+            {
+                NSHTTPCookieStorage* share = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+                NSArray* cookiesArray = [share cookiesForURL:(NSURL*)url];
+                NSDictionary* headerDict = [NSHTTPCookie requestHeaderFieldsWithCookies:cookiesArray];
+                assert([headerDict count] < 2);
+                cookies = (CFStringRef)CFDictionaryGetValue((CFDictionaryRef)headerDict, (const void*)KHTTPHeader_Cookie);
+                if (cookies && CFStringGetLength(cookies) > 0)
+                {
+                    appendDataWithHeaderAndValue(mData, KHTTPHeader_Cookie, cookies);
+                }
+            }
             
         }
         ///Accept-Encoding
         ///Example : Accept-Encoding:gzip,deflate
-        if (0)
         {
-            CFStringRef acceptEncoding = header ? (CFStringRef)CFDictionaryGetValue(header,KHTTPHeader_AcceptEncoding) : NULL;
-            if (acceptEncoding == NULL || CFStringGetLength(acceptEncoding) == 0)
+            CFStringRef acceptEncoding = NULL;
+            bool isPresent = header ? CFDictionaryGetValueIfPresent(header
+                                                                    , (const void *)KHTTPHeader_AcceptEncoding
+                                                                    , (const void **)&acceptEncoding):false;
+            if (!isPresent)
             {
                 acceptEncoding = CFSTR("gzip,deflate");
-                CFStringRef headValue = CFStringCreateWithFormat(kCFAllocatorDefault,NULL,CFSTR("%@: %@\r\n"),KHTTPHeader_AcceptEncoding,acceptEncoding);
-                const char* headValueUTF8 = CFStringGetCStringPtr(headValue, kCFStringEncodingUTF8);
-                CFDataAppendBytes(mData, (const Byte*)headValueUTF8, strlen(headValueUTF8));
-                CFRelease(headValue);
+                appendDataWithHeaderAndValue(mData, KHTTPHeader_AcceptEncoding, acceptEncoding);
             }
+            
         }
         //User-Agent
         {
@@ -141,5 +162,15 @@ namespace J
         CFDataAppendBytes(mData, (const Byte*)endOFBody, sizeof(endOFBody)-1);
         
         return mData;
+    }
+    
+    bool RequestUtil::appendDataWithHeaderAndValue(CFMutableDataRef data, CFStringRef header, CFStringRef value)
+    {
+        //FIXME: handle error
+        CFStringRef headValue = CFStringCreateWithFormat(kCFAllocatorDefault,NULL,CFSTR("%@: %@\r\n"),header,value);
+        const char* headValueUTF8 = CFStringGetCStringPtr(headValue, kCFStringEncodingUTF8);
+        CFDataAppendBytes(data, (const Byte*)headValueUTF8, strlen(headValueUTF8));
+        CFRelease(headValue);
+        return  true;
     }
 }

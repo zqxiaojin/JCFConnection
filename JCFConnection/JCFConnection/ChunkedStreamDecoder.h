@@ -18,6 +18,8 @@ namespace J
         ChunkedStreamDecoder();
         ~ChunkedStreamDecoder();
         
+        bool init();
+        
         CFDataRef decode(CFDataRef chunkedData);
         
         bool isFinish()const {return m_state == EFinish;}

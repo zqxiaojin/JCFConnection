@@ -15,6 +15,8 @@ enum Progress
     ,ENSURLConnection
 };
 
+NSString *const KDefaultUserAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36";
+
 @interface JCFConnectionTests : XCTestCase<JCFConnectionDelegate>
 {
     bool m_isCancelled;
@@ -53,41 +55,101 @@ enum Progress
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    
+    m_result = [NSMutableData dataWithCapacity:4];
+    m_request = [[NSMutableURLRequest alloc] init];
+    m_progress = EJConnection;
 }
 
 - (void)tearDown
 {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+    
+    [m_request release];
+    [m_result release];
+    [m_connection release];
+    
+    NSString* string = [NSString stringWithUTF8String:(const char *)[m_resultNSURLConnection bytes]];
+    if (string == NULL)
+    {
+        string = [[NSString alloc] initWithBytes:[m_resultNSURLConnection bytes]
+                                                 length:[m_resultNSURLConnection length]
+                                                 encoding:NSISOLatin1StringEncoding];
+        [string autorelease];
+    }
+    NSLog(@"result :\r\n%@", string);
 }
 
 - (void)testChunk
 {
-    m_result = [NSMutableData dataWithCapacity:4];
-    
-    
-    //    NSURL* url = [NSURL URLWithString:@"http://www.uc.cn"];
     NSURL* url = [NSURL URLWithString:@"http://jigsaw.w3.org/HTTP/ChunkedScript"];
-    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
-    [request setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36" forHTTPHeaderField:@"User-Agent"];
-    NSLog(@"start connect %@", url);
-    m_request = request;
-    //    [request setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+    [m_request setURL:url];
     
+    [m_request setValue:KDefaultUserAgent forHTTPHeaderField:@"User-Agent"];
+    [m_request setValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
+    
+    NSLog(@"start connect %@", url);
 
-    [self performSelector:@selector(startConnection) onThread:[NSThread currentThread] withObject:Nil waitUntilDone:NO];
+    [self performSelector:@selector(startConnection)
+                 onThread:[NSThread currentThread]
+               withObject:Nil
+            waitUntilDone:NO];
     
     [self setupRunLoop];
     
     XCTAssertEqualObjects(m_resultJCFConnection,m_resultNSURLConnection, @"data result not the same");
-    
-    
-    NSString* string = [NSString stringWithUTF8String:(const char *)[m_resultJCFConnection bytes]];
-    NSLog(@"result :\r\n%@", string);
-    
+
 }
 
+- (void)testGzip
+{
+    
+    NSURL* url = [NSURL URLWithString:@"http://zlib.net/zpipe.c"];
+    [m_request setURL:url];
+    
+    [m_request setValue:KDefaultUserAgent forHTTPHeaderField:@"User-Agent"];
+    
+    [m_request setValue:@"gzip,deflate" forHTTPHeaderField:@"Accept-Encoding"];
+    
+    NSLog(@"start connect %@", url);
+    
+    [self performSelector:@selector(startConnection)
+                 onThread:[NSThread currentThread]
+               withObject:Nil
+            waitUntilDone:NO];
+    
+    [self setupRunLoop];
+    
+    XCTAssertEqualObjects(m_resultJCFConnection,m_resultNSURLConnection, @"data result not the same");
+}
+
+- (void)testGzipAndChunk
+{
+    //test case from http://www.cnts.ua.ac.be/conll2000/chunking/
+    NSURL* url = [NSURL URLWithString:@"http://www.cnts.ua.ac.be/conll2000/chunking/test.txt.gz"];
+    [m_request setURL:url];
+    
+    [m_request setValue:KDefaultUserAgent forHTTPHeaderField:@"User-Agent"];
+    
+    [m_request setValue:@"gzip,deflate" forHTTPHeaderField:@"Accept-Encoding"];
+    [m_request setValue:@"*/*" forHTTPHeaderField:@"Accept"];
+    [m_request setValue:@"en-us" forHTTPHeaderField:@"Accept-Language"];
+    [m_request setValue:@"Close" forHTTPHeaderField:@"Connection"];
+    [m_request setValue:nil forHTTPHeaderField:@"Cookie"];
+    NSLog(@"start connect %@", url);
+    
+    [self performSelector:@selector(startConnection)
+                 onThread:[NSThread currentThread]
+               withObject:Nil
+            waitUntilDone:NO];
+    
+    [self setupRunLoop];
+    
+    
+    XCTAssert([m_resultJCFConnection isEqualToData:m_resultNSURLConnection], @"data result not the same");
+}
 
 - (void)startConnection
 {
@@ -110,10 +172,35 @@ enum Progress
     
 }
 
+- (void)nextConnection
+{
+    switch (m_progress)
+    {
+        case EJConnection:
+        {
+            m_resultJCFConnection = m_result;
+            m_result = [[NSMutableData alloc] initWithCapacity:0];
+            m_progress = ENSURLConnection;
+            [self performSelector:@selector(startConnection) withObject:Nil afterDelay:0.0f];
+        }
+            break;
+        case ENSURLConnection:
+        {
+            m_resultNSURLConnection = m_result;
+            m_result = [[NSMutableData alloc] initWithCapacity:0];
+            m_isCancelled = true;
+        }
+        default:
+            break;
+    }
+}
+
 - (void)connection:(JCFConnection *)connection
   didFailWithError:(NSError *)error;
 {
+    assert(0);
     NSLog(@"error : %@", error);
+    [self nextConnection];
 }
 - (NSURLRequest *)connection:(JCFConnection *)connection
              willSendRequest:(NSURLRequest *)request
@@ -142,25 +229,7 @@ didReceiveResponse:(NSHTTPURLResponse *)response;
 
 - (void)connectionDidFinishLoading:(JCFConnection *)connection;
 {
-    switch (m_progress)
-    {
-        case EJConnection:
-        {
-            m_resultJCFConnection = m_result;
-            m_result = [[NSMutableData alloc] initWithCapacity:0];
-            m_progress = ENSURLConnection;
-            [self performSelector:@selector(startConnection) withObject:Nil afterDelay:0.0f];
-        }
-            break;
-        case ENSURLConnection:
-        {
-            m_resultNSURLConnection = m_result;
-            m_result = [[NSMutableData alloc] initWithCapacity:0];
-            m_isCancelled = true;
-        }
-        default:
-            break;
-    }
+     [self nextConnection];
 }
 
 @end

@@ -18,6 +18,8 @@ namespace J
         static CFStringRef host(NSURLRequest* request);
         static UInt32 port(NSURLRequest* request);
         static CFMutableDataRef serialization(NSURLRequest* request);
+        
+        static bool appendDataWithHeaderAndValue(CFMutableDataRef data, CFStringRef header, CFStringRef value);
     };
 };
 

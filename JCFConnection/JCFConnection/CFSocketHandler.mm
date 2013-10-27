@@ -157,9 +157,17 @@ namespace J
 
                 UInt8* localBuffer = (UInt8*)malloc(2048);
                 int length = CFReadStreamRead(m_readStream, localBuffer, 2048);
-                CFDataRef data = CFDataCreateWithBytesNoCopy(kCFAllocatorDefault, (const UInt8 *)localBuffer, length, kCFAllocatorMalloc);
-                m_client->didReceiveSocketStreamData(this, data);
-                CFRelease(data);
+                if (length > 0)
+                {
+                    CFDataRef data = CFDataCreateWithBytesNoCopy(kCFAllocatorDefault, (const UInt8 *)localBuffer, length, kCFAllocatorMalloc);
+                    m_client->didReceiveSocketStreamData(this, data);
+                    CFRelease(data);
+                }
+                else
+                {
+                    free(localBuffer);
+                }
+                
                 return;
             }
             case kCFStreamEventCanAcceptBytes:
@@ -175,6 +183,9 @@ namespace J
             case kCFStreamEventEndEncountered:
                 close();
                 return;
+            default:
+                assert(0);
+                break;
         }
 
     }

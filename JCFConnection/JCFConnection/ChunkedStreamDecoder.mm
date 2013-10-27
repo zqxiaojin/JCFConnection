@@ -35,7 +35,7 @@ namespace J
     };
     
     ChunkedStreamDecoder::ChunkedStreamDecoder()
-    :m_orgDataBuffer(CFDataCreateMutable(kCFAllocatorDefault, 0))
+    :m_orgDataBuffer(NULL)
     ,m_chunkSize(0)
     ,m_restSize(0)
     ,m_state(EChunk_Size)
@@ -44,7 +44,22 @@ namespace J
     ,m_tempDataBuffer(NULL)
     ,m_entityHeaderState(EUnknow)
     {
+        
+    }
+    
+    bool ChunkedStreamDecoder::init()
+    {
+        bool isSuccess = false;
+        
+        do {
+            ;
+            if (NULL == (m_orgDataBuffer = CFDataCreateMutable(kCFAllocatorDefault, 0))) {
+                break;
+            }
+            isSuccess = true;
+        } while (false);
         assert(m_orgDataBuffer);
+        return isSuccess;
     }
     ChunkedStreamDecoder::~ChunkedStreamDecoder()
     {

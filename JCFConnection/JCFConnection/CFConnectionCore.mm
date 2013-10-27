@@ -13,6 +13,7 @@
 #include "CFSocketFactory.h"
 #include "ResponseParser.h"
 #include "ChunkedStreamDecoder.h"
+#include "GzipStreamDecoder.h"
 namespace J
 {
     CFConnectionCore::CFConnectionCore(NSURLRequest* aRequest
@@ -26,6 +27,7 @@ namespace J
     ,m_responseParser(NULL)
     ,m_state(EWaitingResponse)
     ,m_chunkedStreamDecoder(NULL)
+    ,m_gzipStreamDecoder(NULL)
     {
         
     }
@@ -33,6 +35,9 @@ namespace J
     {
         if (m_chunkedStreamDecoder) {
             delete m_chunkedStreamDecoder;
+        }
+        if (m_gzipStreamDecoder) {
+            delete m_gzipStreamDecoder;
         }
         m_handler->release();
         m_handler = NULL;
@@ -63,6 +68,7 @@ namespace J
                 break;
         }
     }
+    
     void CFConnectionCore::handleResponseData(CFDataRef data)
     {
         if (m_responseParser == NULL)
@@ -76,43 +82,87 @@ namespace J
             if (ResponseParser::Done == m_responseParser->state())
             {
                 ///FIXME: It may be distory after this,should protect itself
-                [m_connection connection:this didReceiveResponse:m_responseParser->makeResponseWithURL([m_curRequest URL])];
-                
-                m_state = EReceivingData;
-                if (restOffSet > 0)
+                NSURLResponse* response = m_responseParser->makeResponseWithURL([m_curRequest URL]);
+                if (response)
                 {
-                    int restLength = CFDataGetLength(data) - restOffSet;
-                    const UInt8 * restDataPtr = CFDataGetBytePtr(data) + restOffSet;
-                    CFDataRef restData = CFDataCreate(kCFAllocatorDefault, restDataPtr, restLength);
-                    handleBodyData(restData);
-                    CFRelease(restData);
+                    [m_connection connection:this
+                          didReceiveResponse:response];
+                    
+                    m_state = EReceivingData;
+                    
+                    if (restOffSet > 0)
+                    {
+                        int restLength = CFDataGetLength(data) - restOffSet;
+                        const UInt8 * restDataPtr = CFDataGetBytePtr(data) + restOffSet;
+                        CFDataRef restData = CFDataCreate(kCFAllocatorDefault, restDataPtr, restLength);
+                        handleBodyData(restData);
+                        CFRelease(restData);
+                    }
+                }
+                else
+                {
+                    m_state = EError;
                 }
             }
         }
     }
+    
     void CFConnectionCore::handleBodyData(CFDataRef data)
     {
         CFDataRef resultData = data;
-        if (m_responseParser->isChunked())
+        bool isError = true;
+        do
         {
-            if (m_chunkedStreamDecoder == NULL) {
-                m_chunkedStreamDecoder = new ChunkedStreamDecoder();
-            }
-            resultData = m_chunkedStreamDecoder->decode(data);
-            if (m_chunkedStreamDecoder->isError())
+            if (m_responseParser->isChunked())
             {
-                ///FIXME: chunked error
-                [m_connection connection:this didFailWithError:(NSError*)NULL];
-                return;
+                if (m_chunkedStreamDecoder == NULL)
+                {
+                    m_chunkedStreamDecoder = new ChunkedStreamDecoder();
+                    if (!m_chunkedStreamDecoder->init())
+                    {
+                        break;
+                    }
+                }
+                
+                resultData = m_chunkedStreamDecoder->decode(resultData);
+                
+                if (m_chunkedStreamDecoder->isError()) {
+                    break;
+                }
             }
-        }
-        if (m_responseParser->isGzip())
+            if (m_responseParser->isGzip())
+            {
+                if (m_gzipStreamDecoder == NULL)
+                {
+                    m_gzipStreamDecoder = new GzipStreamDecoder();
+                    if (!m_gzipStreamDecoder->init())
+                    {
+                        break;
+                    }
+                }
+            
+                resultData = m_gzipStreamDecoder->decode(resultData);
+                
+                if (m_gzipStreamDecoder->isError())
+                {
+                    break;
+                }
+            }
+            isError = false;
+            
+        } while (false);
+
+        if (isError)
         {
-            ///FIXME: support gzip
+            [m_connection connection:this didFailWithError:(NSError*)NULL];
+            return;
         }
         [m_connection connection:this didReceiveData:(NSData*)resultData];
-        
         if (m_chunkedStreamDecoder && m_chunkedStreamDecoder->isFinish())
+        {
+            [m_connection connectionDidFinishLoading:this];
+        }
+        else if (m_gzipStreamDecoder && m_gzipStreamDecoder->isFinish())
         {
             [m_connection connectionDidFinishLoading:this];
         }
@@ -132,6 +182,7 @@ namespace J
         dataLength = CFDataGetLength(m_sendBuffer) - m_sendBufferOffset;
         return true;
     }
+    
     void CFConnectionCore::dataDidSend(uint datalength)
     {
         m_sendBufferOffset += datalength;
@@ -141,6 +192,7 @@ namespace J
     {
         return RequestUtil::host(m_curRequest);
     }
+    
     UInt32 CFConnectionCore::port()
     {
         return RequestUtil::port(m_curRequest);

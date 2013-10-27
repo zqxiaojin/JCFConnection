@@ -9,6 +9,9 @@
 #import "JCFConnection.h"
 #import "CFConnectionCore.h"
 #import "JCFConnection_Internal.h"
+#include "Util.h"
+
+#define PROTECTSELF()   {Util:CFAutorelease(CFRetain(self));}
 
 @implementation JCFConnection
 
@@ -17,11 +20,15 @@
                        delegate:(id<JCFConnectionDelegate>)delegate
                startImmediately:(BOOL)startImmediately
 {
-    m_delegate = delegate;
-    m_core = new CFConnectionCore(request,self);
-    if (startImmediately)
+    self = [super init];
+    if (self)
     {
-        m_core->start();
+        m_delegate = [delegate retain];
+        m_core = new CFConnectionCore(request,self);
+        if (startImmediately)
+        {
+            m_core->start();
+        }
     }
     return self;
 }
@@ -57,7 +64,13 @@
 }
 - (void)cancel
 {
-    m_core->cancel();
+    if (!m_isTerminal)
+    {
+        m_core->cancel();
+        m_isTerminal = true;
+        [m_delegate autorelease];
+        m_delegate = NULL;
+    }
 }
 
 //- (void)scheduleInRunLoop:(NSRunLoop *)aRunLoop forMode:(NSString *)mode;
@@ -66,14 +79,21 @@
 - (void)connection:(CFConnectionCore *)connection
   didFailWithError:(NSError *)error
 {
-    [m_delegate connection:self
-          didFailWithError:error];
+    PROTECTSELF();
+    if (!m_isTerminal)
+    {
+        [m_delegate connection:self
+              didFailWithError:error];
+        [self cancel];
+    }
+
 }
 
 - (NSURLRequest *)connection:(CFConnectionCore *)connection
              willSendRequest:(NSURLRequest *)request
             redirectResponse:(NSURLResponse *)response
 {
+    PROTECTSELF();
     return [m_delegate connection:self
            willSendRequest:request
           redirectResponse:response];
@@ -82,6 +102,7 @@
 - (void)connection:(CFConnectionCore *)connection
 didReceiveResponse:(NSURLResponse *)response
 {
+    PROTECTSELF();
     [m_delegate connection:self
         didReceiveResponse:response];
 }
@@ -89,6 +110,7 @@ didReceiveResponse:(NSURLResponse *)response
 - (void)connection:(CFConnectionCore *)connection
     didReceiveData:(NSData *)data
 {
+    PROTECTSELF();
     [m_delegate connection:self
             didReceiveData:data];
 }
@@ -96,12 +118,19 @@ didReceiveResponse:(NSURLResponse *)response
 - (NSCachedURLResponse *)connection:(CFConnectionCore *)connection
                   willCacheResponse:(NSCachedURLResponse *)cachedResponse
 {
+    PROTECTSELF();
     return [m_delegate connection:self
          willCacheResponse:cachedResponse];
 }
 
 - (void)connectionDidFinishLoading:(CFConnectionCore *)connection;
 {
-    [m_delegate connectionDidFinishLoading:self];
+    PROTECTSELF();
+    if (!m_isTerminal)
+    {
+        [m_delegate connectionDidFinishLoading:self];
+         [self cancel];
+    }
+    
 }
 @end
