@@ -45,8 +45,8 @@ namespace J
         virtual UInt32 port();
         
     protected:
-        void handleResponseData(CFDataRef data);
-        void handleBodyData(CFDataRef data);
+        virtual void handleResponseData(CFDataRef data);
+        virtual void handleBodyData(CFDataRef data);
     protected:
         JCFConnection*          m_connection;
         
@@ -61,7 +61,7 @@ namespace J
         
         ResponseParser*         m_responseParser;
         
-        enum State {EWaitingResponse,EReceivingData,EError};
+        enum State {EWaitingResponse,EReceivingData,EFinish,EError};
         State                   m_state;
         
         ChunkedStreamDecoder*   m_chunkedStreamDecoder;

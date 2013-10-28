@@ -64,7 +64,9 @@ namespace J
                 break;
             case EReceivingData:
                 handleBodyData(data);
+                break;
             default:
+                assert(0);
                 break;
         }
     }
@@ -160,10 +162,12 @@ namespace J
         [m_connection connection:this didReceiveData:(NSData*)resultData];
         if (m_chunkedStreamDecoder && m_chunkedStreamDecoder->isFinish())
         {
+            m_state = EFinish;
             [m_connection connectionDidFinishLoading:this];
         }
         else if (m_gzipStreamDecoder && m_gzipStreamDecoder->isFinish())
         {
+            m_state = EFinish;
             [m_connection connectionDidFinishLoading:this];
         }
     }

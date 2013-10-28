@@ -19,7 +19,7 @@ NSString *const KDefaultUserAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_
 
 @interface JCFConnectionTests : XCTestCase<JCFConnectionDelegate>
 {
-    bool m_isCancelled;
+    bool           m_isCancelled;
     JCFConnection* m_connection;
     NSMutableData* m_result;
     
@@ -55,7 +55,6 @@ NSString *const KDefaultUserAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_
 - (void)setUp
 {
     [super setUp];
-    
     
     m_result = [NSMutableData dataWithCapacity:4];
     m_request = [[NSMutableURLRequest alloc] init];
@@ -194,6 +193,9 @@ NSString *const KDefaultUserAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_
             break;
     }
 }
+
+
+#pragma mark - NSURLConnectionDelegate
 
 - (void)connection:(JCFConnection *)connection
   didFailWithError:(NSError *)error;
