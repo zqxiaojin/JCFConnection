@@ -1,5 +1,5 @@
 //
-//  GzipTestCase.h
+//  GzipValidityTestCase.h
 //  JCFConnection
 //
 //  Created by Jin on 10/28/13.
@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseValidityTestCase.h"
 
-@interface GzipTestCase : NSObject
+@interface GzipValidityTestCase : BaseValidityTestCase
 
-- (void)start;
+
 
 @end

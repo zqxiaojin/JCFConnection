@@ -12,7 +12,7 @@
 #include "HTTPDefine.h"
 #include "Util.h"
 
-#define DEBUG_ENABLE_LOG_RESPONSE
+//#define DEBUG_ENABLE_LOG_RESPONSE
 
 #ifdef DEBUG_ENABLE_LOG_RESPONSE
 #define LOG_RES     NSLog

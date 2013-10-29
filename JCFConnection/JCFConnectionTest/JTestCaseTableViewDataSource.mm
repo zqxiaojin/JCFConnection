@@ -7,7 +7,7 @@
 //
 
 #import "JTestCaseTableViewDataSource.h"
-
+#import "JTestCaseDataItem.h"
 @interface JTestCaseTableViewDataSource ()
 @property (nonatomic,retain)NSArray*    dataArray;
 
@@ -41,9 +41,32 @@
     if (cell == NULL)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:KReuseKey];
+        
+        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        spinner.frame = CGRectMake(0, 0, 24, 24);
+        cell.accessoryView = spinner;
     }
-    cell.textLabel.text = [self.dataArray objectAtIndex:[indexPath indexAtPosition:0]];
-    
+    JTestCaseDataItem* item = [self.dataArray objectAtIndex:[indexPath row]];
+    cell.textLabel.text = item.title;
+    UIActivityIndicatorView *spinner = (UIActivityIndicatorView*)cell.accessoryView;
+    if (item.state == ETestCaseDataItemState_Running)
+    {
+        [spinner startAnimating];
+    }
+    else
+    {
+        [spinner stopAnimating];
+    }
+    switch (item.state)
+    {
+        case ETestCaseDataItemState_Pass:
+            [cell setBackgroundColor:[UIColor greenColor]];
+            break;
+        case ETestCaseDataItemState_Fail:
+            [cell setBackgroundColor:[UIColor redColor]];
+        default:
+            break;
+    }
     return cell;
 }
 

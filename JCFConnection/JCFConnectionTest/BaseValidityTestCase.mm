@@ -1,13 +1,14 @@
 //
-//  GzipTestCase.m
+//  BaseValidityTestCase.m
 //  JCFConnection
 //
-//  Created by Jin on 10/28/13.
+//  Created by Jin on 10/29/13.
 //  Copyright (c) 2013 Jin. All rights reserved.
 //
 
-#import "GzipTestCase.h"
+#import "BaseValidityTestCase.h"
 #import "JCFConnection.h"
+#import "BaseTestCase_Internal.h"
 
 
 enum Progress
@@ -18,14 +19,12 @@ enum Progress
 
 NSString *const KDefaultUserAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36";
 
-
-@interface GzipTestCase ()<JCFConnectionDelegate>
+@interface BaseValidityTestCase ()<JCFConnectionDelegate,TestCaseCallDelegate>
 {
-    bool            m_isCancelled;
     Progress        m_progress;
 }
 
-@property (nonatomic,retain)NSThread* thread;
+
 @property (nonatomic,retain)JCFConnection* connection;
 @property (nonatomic,retain)NSMutableURLRequest* request;
 @property (nonatomic,retain)NSMutableData* result;
@@ -34,87 +33,48 @@ NSString *const KDefaultUserAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_
 
 @end
 
+@implementation BaseValidityTestCase
 
-@implementation GzipTestCase
-
-
-- (void)start
+- (id)init
 {
-    if (self.thread == NULL)
-    {
-        [self setUp];
-        self.thread = [[NSThread alloc] initWithTarget:self selector:@selector(thread_run) object:nil];
-        [self.thread start];
+    self = [super init];
+    if (self) {
+        self.callDelegate = self;
     }
+    return self;
 }
-
-
-- (void)setupRunLoop
+- (void)onWillSendRequest:(NSMutableURLRequest*)request
 {
-    // 添加一个port，让runloop有事做，否则在runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]时会立刻返回，不会阻塞，从而消耗CPU。
-    NSPort *port = [[NSMachPort alloc] init];
-    [[NSRunLoop currentRunLoop] addPort:port forMode:NSDefaultRunLoopMode];
-    
-    m_isCancelled = false;
-	while (!m_isCancelled)
-	{
-		// 这里会阻塞，直到这个线程/runloop有事件触发
-		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
-	}
     
 }
-
-
-
-- (void)thread_run
-{
-    NSURL* url = [NSURL URLWithString:@"http://zlib.net/zpipe.c"];
-    [self.request setURL:url];
-    
-    [self.request setValue:KDefaultUserAgent forHTTPHeaderField:@"User-Agent"];
-    
-    [self.request setValue:@"gzip,deflate" forHTTPHeaderField:@"Accept-Encoding"];
-    
-    NSLog(@"start connect %@", url);
-    
-    [self performSelector:@selector(startConnection)
-                 onThread:[NSThread currentThread]
-               withObject:Nil
-            waitUntilDone:NO];
-    
-    [self setupRunLoop];
-    
-    assert([self.resultJCFConnection isEqualToData:self.resultNSURLConnection]);
-    
-    [self tearDown];
-}
-
-
 - (void)setUp
 {
-    
     self.result = [NSMutableData dataWithCapacity:4];
     self.request = [[NSMutableURLRequest alloc] init];
     m_progress = EJConnection;
+    
+
+    [self.request setValue:KDefaultUserAgent forHTTPHeaderField:@"User-Agent"];
+
+    [self onWillSendRequest:self.request];
+    
 }
 
 - (void)tearDown
 {
+    self.isPass = [self.resultJCFConnection isEqualToData:self.resultNSURLConnection];
+    assert(self.isPass);
     
     self.request = nil;
     self.result = nil;
     self.connection = nil;
-    
-    NSString* string = [NSString stringWithUTF8String:(const char *)[self.resultJCFConnection bytes]];
-    if (string == NULL)
-    {
-        string = [[NSString alloc] initWithBytes:[self.resultJCFConnection bytes]
-                                          length:[self.resultJCFConnection length]
-                                        encoding:NSISOLatin1StringEncoding];
-    }
-    NSLog(@"result :\r\n%@", string);
 }
 
+
+- (void)thread_firstCall
+{
+    [self startConnection];
+}
 
 - (void)startConnection
 {
@@ -151,7 +111,7 @@ NSString *const KDefaultUserAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_
         {
             self.resultNSURLConnection = self.result;
             self.result = [[NSMutableData alloc] initWithCapacity:0];
-            m_isCancelled = true;
+            self.isCanceled = true;
         }
         default:
             break;
@@ -197,4 +157,6 @@ didReceiveResponse:(NSHTTPURLResponse *)response;
 {
     [self nextConnection];
 }
+
+
 @end

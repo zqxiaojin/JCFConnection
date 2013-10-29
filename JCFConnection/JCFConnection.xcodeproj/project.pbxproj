@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C232CC718201D6300523BD3 /* ChunkValidityTestCase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C232CC618201D6300523BD3 /* ChunkValidityTestCase.mm */; };
+		3C25546A18200EBB00FE5C7D /* BaseValidityTestCase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C25546918200EBB00FE5C7D /* BaseValidityTestCase.mm */; };
 		3C46ACCD1813BDCA00D108E7 /* HTTPDefine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C46ACCC1813BDCA00D108E7 /* HTTPDefine.mm */; };
 		3C4B0115181D1F7900F249FB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1F46A181C2C3B002EC08C /* libz.dylib */; };
 		3C4B0117181D437100F249FB /* JCFConnectionRandomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B0116181D437100F249FB /* JCFConnectionRandomTests.m */; };
 		3C5AFC441812BD8D00ACC9A1 /* Util.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C5AFC421812BD8D00ACC9A1 /* Util.mm */; };
-		3C65780C181EC0A300E26094 /* GzipTestCase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C65780B181EC0A300E26094 /* GzipTestCase.mm */; };
+		3C65780C181EC0A300E26094 /* GzipValidityTestCase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C65780B181EC0A300E26094 /* GzipValidityTestCase.mm */; };
 		3C65780D181EC2F600E26094 /* libJCFConnection.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 948CB49B18098FEB006B7917 /* libJCFConnection.a */; };
 		3C65780E181EC30000E26094 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1F46A181C2C3B002EC08C /* libz.dylib */; };
+		3C6EFE95181FF9C200A2F39C /* BaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C6EFE94181FF9C200A2F39C /* BaseTestCase.m */; };
+		3C6EFE991820001C00A2F39C /* JTestCaseDataItem.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C6EFE981820001C00A2F39C /* JTestCaseDataItem.mm */; };
 		3CB038221814AED100ED3765 /* ChunkedStreamDecoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3CB038201814AED100ED3765 /* ChunkedStreamDecoder.mm */; };
 		3CB368BA181EB6820045507E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948CB49E18098FEB006B7917 /* Foundation.framework */; };
 		3CB368BC181EB6820045507E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CB368BB181EB6820045507E /* CoreGraphics.framework */; };
@@ -23,7 +27,7 @@
 		3CB368C9181EB6820045507E /* JAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB368C8181EB6820045507E /* JAppDelegate.m */; };
 		3CB368CB181EB6820045507E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CB368CA181EB6820045507E /* Images.xcassets */; };
 		3CB368E6181EB6F30045507E /* JMainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3CB368E5181EB6F30045507E /* JMainViewController.mm */; };
-		3CB368E9181EB7A20045507E /* JTestCaseTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB368E8181EB7A20045507E /* JTestCaseTableViewDataSource.m */; };
+		3CB368E9181EB7A20045507E /* JTestCaseTableViewDataSource.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3CB368E8181EB7A20045507E /* JTestCaseTableViewDataSource.mm */; };
 		3CC1F46B181C2C3B002EC08C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1F46A181C2C3B002EC08C /* libz.dylib */; };
 		3CEF7562181C312B003242FE /* GzipStreamDecoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF7560181C312B003242FE /* GzipStreamDecoder.mm */; };
 		3CF70FD11811819E00123FBB /* HTTPResponse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3CF70FCF1811819E00123FBB /* HTTPResponse.mm */; };
@@ -70,13 +74,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C232CC518201D6300523BD3 /* ChunkValidityTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkValidityTestCase.h; sourceTree = "<group>"; };
+		3C232CC618201D6300523BD3 /* ChunkValidityTestCase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ChunkValidityTestCase.mm; sourceTree = "<group>"; };
+		3C25546818200EBB00FE5C7D /* BaseValidityTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseValidityTestCase.h; sourceTree = "<group>"; };
+		3C25546918200EBB00FE5C7D /* BaseValidityTestCase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BaseValidityTestCase.mm; sourceTree = "<group>"; };
 		3C46ACCC1813BDCA00D108E7 /* HTTPDefine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HTTPDefine.mm; sourceTree = "<group>"; };
 		3C4B0116181D437100F249FB /* JCFConnectionRandomTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCFConnectionRandomTests.m; sourceTree = "<group>"; };
 		3C5AFC401812B5FB00ACC9A1 /* HTTPDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDefine.h; sourceTree = "<group>"; };
 		3C5AFC421812BD8D00ACC9A1 /* Util.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Util.mm; sourceTree = "<group>"; };
 		3C5AFC431812BD8D00ACC9A1 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
-		3C65780A181EC0A300E26094 /* GzipTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GzipTestCase.h; sourceTree = "<group>"; };
-		3C65780B181EC0A300E26094 /* GzipTestCase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GzipTestCase.mm; sourceTree = "<group>"; };
+		3C65780A181EC0A300E26094 /* GzipValidityTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GzipValidityTestCase.h; sourceTree = "<group>"; };
+		3C65780B181EC0A300E26094 /* GzipValidityTestCase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GzipValidityTestCase.mm; sourceTree = "<group>"; };
+		3C6EFE93181FF9C200A2F39C /* BaseTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTestCase.h; sourceTree = "<group>"; };
+		3C6EFE94181FF9C200A2F39C /* BaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestCase.m; sourceTree = "<group>"; };
+		3C6EFE96181FFB5300A2F39C /* BaseTestCase_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTestCase_Internal.h; sourceTree = "<group>"; };
+		3C6EFE971820001C00A2F39C /* JTestCaseDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTestCaseDataItem.h; sourceTree = "<group>"; };
+		3C6EFE981820001C00A2F39C /* JTestCaseDataItem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JTestCaseDataItem.mm; sourceTree = "<group>"; };
 		3CB038201814AED100ED3765 /* ChunkedStreamDecoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ChunkedStreamDecoder.mm; sourceTree = "<group>"; };
 		3CB038211814AED100ED3765 /* ChunkedStreamDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkedStreamDecoder.h; sourceTree = "<group>"; };
 		3CB368B9181EB6820045507E /* JCFConnectionTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JCFConnectionTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,7 +104,7 @@
 		3CB368E4181EB6F30045507E /* JMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMainViewController.h; sourceTree = "<group>"; };
 		3CB368E5181EB6F30045507E /* JMainViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMainViewController.mm; sourceTree = "<group>"; };
 		3CB368E7181EB7A20045507E /* JTestCaseTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTestCaseTableViewDataSource.h; sourceTree = "<group>"; };
-		3CB368E8181EB7A20045507E /* JTestCaseTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTestCaseTableViewDataSource.m; sourceTree = "<group>"; };
+		3CB368E8181EB7A20045507E /* JTestCaseTableViewDataSource.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JTestCaseTableViewDataSource.mm; sourceTree = "<group>"; };
 		3CC1F46A181C2C3B002EC08C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3CEF7560181C312B003242FE /* GzipStreamDecoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GzipStreamDecoder.mm; sourceTree = "<group>"; };
 		3CEF7561181C312B003242FE /* GzipStreamDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GzipStreamDecoder.h; sourceTree = "<group>"; };
@@ -169,11 +182,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C232CC418201A7D00523BD3 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				3C6EFE93181FF9C200A2F39C /* BaseTestCase.h */,
+				3C6EFE96181FFB5300A2F39C /* BaseTestCase_Internal.h */,
+				3C6EFE94181FF9C200A2F39C /* BaseTestCase.m */,
+				3C25546818200EBB00FE5C7D /* BaseValidityTestCase.h */,
+				3C25546918200EBB00FE5C7D /* BaseValidityTestCase.mm */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
 		3C657808181EC03D00E26094 /* TestCase */ = {
 			isa = PBXGroup;
 			children = (
-				3C65780A181EC0A300E26094 /* GzipTestCase.h */,
-				3C65780B181EC0A300E26094 /* GzipTestCase.mm */,
+				3C232CC418201A7D00523BD3 /* Base */,
+				3C65780A181EC0A300E26094 /* GzipValidityTestCase.h */,
+				3C65780B181EC0A300E26094 /* GzipValidityTestCase.mm */,
+				3C232CC518201D6300523BD3 /* ChunkValidityTestCase.h */,
+				3C232CC618201D6300523BD3 /* ChunkValidityTestCase.mm */,
 			);
 			name = TestCase;
 			sourceTree = "<group>";
@@ -212,8 +240,10 @@
 				3CB368C8181EB6820045507E /* JAppDelegate.m */,
 				3CB368E4181EB6F30045507E /* JMainViewController.h */,
 				3CB368E5181EB6F30045507E /* JMainViewController.mm */,
+				3C6EFE971820001C00A2F39C /* JTestCaseDataItem.h */,
+				3C6EFE981820001C00A2F39C /* JTestCaseDataItem.mm */,
 				3CB368E7181EB7A20045507E /* JTestCaseTableViewDataSource.h */,
-				3CB368E8181EB7A20045507E /* JTestCaseTableViewDataSource.m */,
+				3CB368E8181EB7A20045507E /* JTestCaseTableViewDataSource.mm */,
 				3C657808181EC03D00E26094 /* TestCase */,
 				3CB368CA181EB6820045507E /* Images.xcassets */,
 				3CB368BF181EB6820045507E /* Supporting Files */,
@@ -444,9 +474,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CB368C5181EB6820045507E /* main.m in Sources */,
-				3C65780C181EC0A300E26094 /* GzipTestCase.mm in Sources */,
-				3CB368E9181EB7A20045507E /* JTestCaseTableViewDataSource.m in Sources */,
+				3C65780C181EC0A300E26094 /* GzipValidityTestCase.mm in Sources */,
+				3C6EFE95181FF9C200A2F39C /* BaseTestCase.m in Sources */,
+				3CB368E9181EB7A20045507E /* JTestCaseTableViewDataSource.mm in Sources */,
 				3CB368E6181EB6F30045507E /* JMainViewController.mm in Sources */,
+				3C6EFE991820001C00A2F39C /* JTestCaseDataItem.mm in Sources */,
+				3C232CC718201D6300523BD3 /* ChunkValidityTestCase.mm in Sources */,
+				3C25546A18200EBB00FE5C7D /* BaseValidityTestCase.mm in Sources */,
 				3CB368C9181EB6820045507E /* JAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,26 +8,29 @@
 
 #import "JMainViewController.h"
 #import "JTestCaseTableViewDataSource.h"
-#import "GzipTestCase.h"
+#import "JTestCaseDataItem.h"
+#import "BaseTestCase.h"
 
 struct TestCaseStruct
 {
     NSString* title;
-    SEL       selector;
+    NSString* className;
 };
 
 static TestCaseStruct KTestCase[]=
 {
-    @"gzip" ,@selector(startGzipAndChunk),
+    {@"Gzip Validity" ,@"GzipValidityTestCase"}
+    ,{@"Chunk Validity" ,@"ChunkValidityTestCase"}
 };
 
 
-@interface JMainViewController () <UITableViewDelegate>
+@interface JMainViewController () <UITableViewDelegate,TestCaseDelegate>
 
 @property (nonatomic,retain)UITableView*   testCaseTableView;
 @property (nonatomic,retain)JTestCaseTableViewDataSource* tableViewDatasource;
 
 @property (nonatomic,retain)id currentTestCase;
+@property (nonatomic,retain)NSMutableArray* dataArray;//JTestCaseDataItem
 
 @end
 
@@ -60,13 +63,19 @@ static TestCaseStruct KTestCase[]=
     self.testCaseTableView.autoresizesSubviews = YES;
     self.testCaseTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth ;
     
-    NSMutableArray* dataArray = [[NSMutableArray alloc] initWithCapacity:0];
+    self.dataArray = [[NSMutableArray alloc] initWithCapacity:0];
     for (int i = 0 , ic = sizeof(KTestCase)/sizeof(KTestCase[0]); i < ic; ++i)
     {
-        [dataArray addObject:KTestCase[i].title];
+        JTestCaseDataItem* item = [[JTestCaseDataItem alloc] init];
+        TestCaseStruct& aTestCase = KTestCase[i];
+        item.index = i;
+        item.title = aTestCase.title;
+        item.testClass = NSClassFromString(aTestCase.className);
+        assert(item.testClass);
+        [self.dataArray addObject:item];
     }
     
-    self.tableViewDatasource = [[JTestCaseTableViewDataSource alloc] initWithDataArray:dataArray];
+    self.tableViewDatasource = [[JTestCaseTableViewDataSource alloc] initWithDataArray:self.dataArray];
     self.testCaseTableView.dataSource = self.tableViewDatasource;
     
     [self.view addSubview:self.testCaseTableView];
@@ -80,22 +89,71 @@ static TestCaseStruct KTestCase[]=
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SEL selector = KTestCase[[indexPath indexAtPosition:0]].selector;
-    NSInvocation* invoke = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:selector]];
-    invoke.selector = selector;
-    invoke.target = self;
-    [invoke invoke];
+    JTestCaseDataItem* item = [self.dataArray objectAtIndex:[indexPath row]];
     
-    [[tableView cellForRowAtIndexPath:indexPath] setSelected:NO];
+    [self startCase:item];
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell setSelected:NO];
+    
+
+}
+
+- (JTestCaseDataItem*)itemOfTestCase:(BaseTestCase*)testCase
+{
+    JTestCaseDataItem* item = NULL;
+    for (JTestCaseDataItem* aItem in self.dataArray)
+    {
+        if (aItem.testCase == testCase)
+        {
+            item = aItem;
+            break;
+        }
+    }
+    return item;
+}
+- (void)reloadRowAtIndex:(int)index
+{
+    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    [self.testCaseTableView beginUpdates];
+    [self.testCaseTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self.testCaseTableView endUpdates];
 }
 
 #pragma mark - testCase
 
-- (void)startGzipAndChunk
+- (void)startCase:(JTestCaseDataItem*)item
 {
-    GzipTestCase* testCase = [[GzipTestCase alloc] init];
+    if (item.testCase)
+    {
+        return;
+    }
+    BaseTestCase* testCase = [[item.testClass alloc] init];
     [testCase start];
-    self.currentTestCase = testCase;
+    testCase.delegate = self;
+    item.testCase = testCase;
+}
+
+#pragma mark - TestCaseDelegate
+- (void)testCaseDidStart:(BaseTestCase*)testCase
+{
+    JTestCaseDataItem* item = [self itemOfTestCase:testCase];
+    item.state = ETestCaseDataItemState_Running;
+    [self reloadRowAtIndex:item.index];
+}
+
+- (void)testCaseDidFinish:(BaseTestCase*)testCase
+{
+    JTestCaseDataItem* item = [self itemOfTestCase:testCase];
+    if (testCase.isPass)
+    {
+        item.state = ETestCaseDataItemState_Pass;
+    }
+    else
+    {
+        item.state = ETestCaseDataItemState_Fail;
+    }
+    [self reloadRowAtIndex:item.index];
 }
 
 
