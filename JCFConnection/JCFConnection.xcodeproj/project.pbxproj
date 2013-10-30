@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C020E3E1821605600E1DEA0 /* ChunkAndGzipValidityTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C020E3D1821605600E1DEA0 /* ChunkAndGzipValidityTestCase.m */; };
+		3C020E421821645600E1DEA0 /* ValidityViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C020E411821645600E1DEA0 /* ValidityViewController.mm */; };
+		3C020E4618216C8B00E1DEA0 /* JMainNaviViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C020E4518216C8B00E1DEA0 /* JMainNaviViewController.mm */; };
+		3C020E491821738900E1DEA0 /* JTestGroupItem.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C020E481821738900E1DEA0 /* JTestGroupItem.mm */; };
+		3C020E4C1821773C00E1DEA0 /* NoZipValidityTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C020E4B1821773C00E1DEA0 /* NoZipValidityTestCase.m */; };
 		3C232CC718201D6300523BD3 /* ChunkValidityTestCase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C232CC618201D6300523BD3 /* ChunkValidityTestCase.mm */; };
 		3C25546A18200EBB00FE5C7D /* BaseValidityTestCase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C25546918200EBB00FE5C7D /* BaseValidityTestCase.mm */; };
 		3C46ACCD1813BDCA00D108E7 /* HTTPDefine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C46ACCC1813BDCA00D108E7 /* HTTPDefine.mm */; };
 		3C4B0115181D1F7900F249FB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1F46A181C2C3B002EC08C /* libz.dylib */; };
-		3C4B0117181D437100F249FB /* JCFConnectionRandomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B0116181D437100F249FB /* JCFConnectionRandomTests.m */; };
 		3C5AFC441812BD8D00ACC9A1 /* Util.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C5AFC421812BD8D00ACC9A1 /* Util.mm */; };
 		3C65780C181EC0A300E26094 /* GzipValidityTestCase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C65780B181EC0A300E26094 /* GzipValidityTestCase.mm */; };
 		3C65780D181EC2F600E26094 /* libJCFConnection.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 948CB49B18098FEB006B7917 /* libJCFConnection.a */; };
@@ -74,12 +78,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C020E3C1821605600E1DEA0 /* ChunkAndGzipValidityTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkAndGzipValidityTestCase.h; sourceTree = "<group>"; };
+		3C020E3D1821605600E1DEA0 /* ChunkAndGzipValidityTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChunkAndGzipValidityTestCase.m; sourceTree = "<group>"; };
+		3C020E401821645600E1DEA0 /* ValidityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidityViewController.h; sourceTree = "<group>"; };
+		3C020E411821645600E1DEA0 /* ValidityViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ValidityViewController.mm; sourceTree = "<group>"; };
+		3C020E4418216C8B00E1DEA0 /* JMainNaviViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMainNaviViewController.h; sourceTree = "<group>"; };
+		3C020E4518216C8B00E1DEA0 /* JMainNaviViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JMainNaviViewController.mm; sourceTree = "<group>"; };
+		3C020E471821738900E1DEA0 /* JTestGroupItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTestGroupItem.h; sourceTree = "<group>"; };
+		3C020E481821738900E1DEA0 /* JTestGroupItem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JTestGroupItem.mm; sourceTree = "<group>"; };
+		3C020E4A1821773C00E1DEA0 /* NoZipValidityTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoZipValidityTestCase.h; sourceTree = "<group>"; };
+		3C020E4B1821773C00E1DEA0 /* NoZipValidityTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoZipValidityTestCase.m; sourceTree = "<group>"; };
 		3C232CC518201D6300523BD3 /* ChunkValidityTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkValidityTestCase.h; sourceTree = "<group>"; };
 		3C232CC618201D6300523BD3 /* ChunkValidityTestCase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ChunkValidityTestCase.mm; sourceTree = "<group>"; };
 		3C25546818200EBB00FE5C7D /* BaseValidityTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseValidityTestCase.h; sourceTree = "<group>"; };
 		3C25546918200EBB00FE5C7D /* BaseValidityTestCase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BaseValidityTestCase.mm; sourceTree = "<group>"; };
 		3C46ACCC1813BDCA00D108E7 /* HTTPDefine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HTTPDefine.mm; sourceTree = "<group>"; };
-		3C4B0116181D437100F249FB /* JCFConnectionRandomTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCFConnectionRandomTests.m; sourceTree = "<group>"; };
 		3C5AFC401812B5FB00ACC9A1 /* HTTPDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDefine.h; sourceTree = "<group>"; };
 		3C5AFC421812BD8D00ACC9A1 /* Util.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Util.mm; sourceTree = "<group>"; };
 		3C5AFC431812BD8D00ACC9A1 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
@@ -182,14 +195,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C020E3F1821638500E1DEA0 /* ValidityTestCase */ = {
+			isa = PBXGroup;
+			children = (
+				3C25546818200EBB00FE5C7D /* BaseValidityTestCase.h */,
+				3C25546918200EBB00FE5C7D /* BaseValidityTestCase.mm */,
+				3C65780A181EC0A300E26094 /* GzipValidityTestCase.h */,
+				3C65780B181EC0A300E26094 /* GzipValidityTestCase.mm */,
+				3C232CC518201D6300523BD3 /* ChunkValidityTestCase.h */,
+				3C232CC618201D6300523BD3 /* ChunkValidityTestCase.mm */,
+				3C020E3C1821605600E1DEA0 /* ChunkAndGzipValidityTestCase.h */,
+				3C020E3D1821605600E1DEA0 /* ChunkAndGzipValidityTestCase.m */,
+				3C020E4A1821773C00E1DEA0 /* NoZipValidityTestCase.h */,
+				3C020E4B1821773C00E1DEA0 /* NoZipValidityTestCase.m */,
+			);
+			name = ValidityTestCase;
+			sourceTree = "<group>";
+		};
+		3C020E431821687000E1DEA0 /* ValidityView */ = {
+			isa = PBXGroup;
+			children = (
+				3C020E401821645600E1DEA0 /* ValidityViewController.h */,
+				3C020E411821645600E1DEA0 /* ValidityViewController.mm */,
+			);
+			name = ValidityView;
+			sourceTree = "<group>";
+		};
 		3C232CC418201A7D00523BD3 /* Base */ = {
 			isa = PBXGroup;
 			children = (
 				3C6EFE93181FF9C200A2F39C /* BaseTestCase.h */,
 				3C6EFE96181FFB5300A2F39C /* BaseTestCase_Internal.h */,
 				3C6EFE94181FF9C200A2F39C /* BaseTestCase.m */,
-				3C25546818200EBB00FE5C7D /* BaseValidityTestCase.h */,
-				3C25546918200EBB00FE5C7D /* BaseValidityTestCase.mm */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -198,10 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				3C232CC418201A7D00523BD3 /* Base */,
-				3C65780A181EC0A300E26094 /* GzipValidityTestCase.h */,
-				3C65780B181EC0A300E26094 /* GzipValidityTestCase.mm */,
-				3C232CC518201D6300523BD3 /* ChunkValidityTestCase.h */,
-				3C232CC618201D6300523BD3 /* ChunkValidityTestCase.mm */,
+				3C020E3F1821638500E1DEA0 /* ValidityTestCase */,
 			);
 			name = TestCase;
 			sourceTree = "<group>";
@@ -236,10 +270,15 @@
 		3CB368BE181EB6820045507E /* JCFConnectionTest */ = {
 			isa = PBXGroup;
 			children = (
+				3C020E431821687000E1DEA0 /* ValidityView */,
 				3CB368C7181EB6820045507E /* JAppDelegate.h */,
 				3CB368C8181EB6820045507E /* JAppDelegate.m */,
+				3C020E4418216C8B00E1DEA0 /* JMainNaviViewController.h */,
+				3C020E4518216C8B00E1DEA0 /* JMainNaviViewController.mm */,
 				3CB368E4181EB6F30045507E /* JMainViewController.h */,
 				3CB368E5181EB6F30045507E /* JMainViewController.mm */,
+				3C020E471821738900E1DEA0 /* JTestGroupItem.h */,
+				3C020E481821738900E1DEA0 /* JTestGroupItem.mm */,
 				3C6EFE971820001C00A2F39C /* JTestCaseDataItem.h */,
 				3C6EFE981820001C00A2F39C /* JTestCaseDataItem.mm */,
 				3CB368E7181EB7A20045507E /* JTestCaseTableViewDataSource.h */,
@@ -345,7 +384,6 @@
 			isa = PBXGroup;
 			children = (
 				948CB4BA18098FEB006B7917 /* JCFConnectionTests.mm */,
-				3C4B0116181D437100F249FB /* JCFConnectionRandomTests.m */,
 				948CB4B518098FEB006B7917 /* Supporting Files */,
 			);
 			path = JCFConnectionTests;
@@ -475,11 +513,16 @@
 			files = (
 				3CB368C5181EB6820045507E /* main.m in Sources */,
 				3C65780C181EC0A300E26094 /* GzipValidityTestCase.mm in Sources */,
+				3C020E4C1821773C00E1DEA0 /* NoZipValidityTestCase.m in Sources */,
 				3C6EFE95181FF9C200A2F39C /* BaseTestCase.m in Sources */,
+				3C020E491821738900E1DEA0 /* JTestGroupItem.mm in Sources */,
+				3C020E421821645600E1DEA0 /* ValidityViewController.mm in Sources */,
+				3C020E4618216C8B00E1DEA0 /* JMainNaviViewController.mm in Sources */,
 				3CB368E9181EB7A20045507E /* JTestCaseTableViewDataSource.mm in Sources */,
 				3CB368E6181EB6F30045507E /* JMainViewController.mm in Sources */,
 				3C6EFE991820001C00A2F39C /* JTestCaseDataItem.mm in Sources */,
 				3C232CC718201D6300523BD3 /* ChunkValidityTestCase.mm in Sources */,
+				3C020E3E1821605600E1DEA0 /* ChunkAndGzipValidityTestCase.m in Sources */,
 				3C25546A18200EBB00FE5C7D /* BaseValidityTestCase.mm in Sources */,
 				3CB368C9181EB6820045507E /* JAppDelegate.m in Sources */,
 			);
@@ -508,7 +551,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C4B0117181D437100F249FB /* JCFConnectionRandomTests.m in Sources */,
 				948CB4BB18098FEB006B7917 /* JCFConnectionTests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

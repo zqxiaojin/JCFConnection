@@ -10,7 +10,7 @@
 #include "Util.h"
 #include "DataFinder.h"
 
-#define DEBUG_ENABLE_LOG_DECODER
+//#define DEBUG_ENABLE_LOG_DECODER
 
 #ifdef DEBUG_ENABLE_LOG_DECODER
 #define LOG_DEC     NSLog

@@ -33,8 +33,13 @@ namespace J
         bool isGzip()const{return m_isGzip;}
         bool contentLength(){return m_contentLength;}
         
+        bool hasContentLength()const {return m_hasContentLength;}
+        uint contentLength()const { return m_rawContentLength;}
+        
     protected:
         bool  isHeaderContainString(CFStringRef headerName, CFStringRef str);
+        
+        void parseContentLength();
         
     protected:
         bool                m_isChunked;
@@ -43,6 +48,9 @@ namespace J
         State               m_state;
         DataFinder*         m_dataFinder;
         uint                m_contentLength;
+        bool                m_hasContentLength;
+        uint                m_rawContentLength;///<data datalength without compress
+        uint                m_gzipContentLength;///<data after gzip compress datalength
     };
 }
 

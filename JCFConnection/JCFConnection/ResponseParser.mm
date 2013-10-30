@@ -29,6 +29,9 @@ namespace J
     ,m_isChunked(false)
     ,m_isGzip(false)
     ,m_contentLength(0)
+    ,m_hasContentLength(false)
+    ,m_rawContentLength(0)
+    ,m_gzipContentLength(0)
     {
         CFDataRef bodyEOF = CFDataCreateWithBytesNoCopy(kCFAllocatorDefault, (const UInt8 *)KHTTPEndOfHeader, 4, kCFAllocatorNull);
         m_dataFinder->setTargetData(bodyEOF);
@@ -54,6 +57,7 @@ namespace J
             if (isHeaderContainString(KHTTPHeader_ContentEncoding, KHTTPHeaderValue_gzip)) {
                 m_isGzip = true;
             }
+            parseContentLength();
         }
         return result;
     }
@@ -72,6 +76,13 @@ namespace J
             }
         } while (false);
         return isContain;
+    }
+    void ResponseParser::parseContentLength()
+    {
+        if (m_isGzip)
+        {
+            
+        }
     }
     NSHTTPURLResponse* ResponseParser::makeResponseWithURL(NSURL* url)
     {
@@ -187,7 +198,10 @@ namespace J
         return resultResponse;
     }
     
-    void ResponseParser::handleHTTPFieldParse(CFMutableDictionaryRef outputDic, CFStringRef headerName , const Byte* valueData , uint valueDataLength)
+    void ResponseParser::handleHTTPFieldParse(CFMutableDictionaryRef outputDic
+                                              , CFStringRef headerName
+                                              , const Byte* valueData
+                                              , uint valueDataLength)
     {
         CFStringRef standHeader = Util::standardizeHeaderName(headerName);
         assert(standHeader);
@@ -208,7 +222,7 @@ namespace J
         {
             ///FIXME: some header may not combine by "," , such as "Location" , "Content-Disposition"
             
-            ///FIXME: some header may contain illegal bytes , such as "Content-Disposition"  with gbk2312 encoding filename
+            ///FIXME: some header may contain illegal chars , such as "Content-Disposition"  with gbk2312 encoding filename
             
             CFStringRef valueStr = CFStringCreateWithBytes(kCFAllocatorDefault, valueData, valueDataLength, kCFStringEncodingUTF8, false);
             CFStringAppend(oldValue, CFSTR(", "));

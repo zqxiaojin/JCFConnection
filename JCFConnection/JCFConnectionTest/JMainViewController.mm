@@ -7,10 +7,8 @@
 //
 
 #import "JMainViewController.h"
-#import "JTestCaseTableViewDataSource.h"
-#import "JTestCaseDataItem.h"
-#import "BaseTestCase.h"
-
+#import "JTestGroupItem.h"
+#import "JMainNaviViewController.h"
 struct TestCaseStruct
 {
     NSString* title;
@@ -19,25 +17,20 @@ struct TestCaseStruct
 
 static TestCaseStruct KTestCase[]=
 {
-    {@"Gzip Validity" ,@"GzipValidityTestCase"}
-    ,{@"Chunk Validity" ,@"ChunkValidityTestCase"}
+    {@"Validity"          ,@"ValidityViewController"}
 };
 
 
-@interface JMainViewController () <UITableViewDelegate,TestCaseDelegate>
 
-@property (nonatomic,retain)UITableView*   testCaseTableView;
-@property (nonatomic,retain)JTestCaseTableViewDataSource* tableViewDatasource;
+@interface JMainViewController ()<UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic,retain)id currentTestCase;
+@property (nonatomic,strong)UITableView*            tableView;
 @property (nonatomic,retain)NSMutableArray* dataArray;//JTestCaseDataItem
-
 @end
 
 @implementation JMainViewController
 
-@synthesize testCaseTableView = m_testCaseTableView;
-@synthesize tableViewDatasource = m_tableViewDatasource;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,112 +43,69 @@ static TestCaseStruct KTestCase[]=
 
 - (void)dealloc
 {
-    self.testCaseTableView.dataSource = nil;
-    self.testCaseTableView.delegate = nil;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.testCaseTableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
-    self.testCaseTableView.delegate = self;
-    self.testCaseTableView.autoresizesSubviews = YES;
-    self.testCaseTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth ;
+    self.title = @"JCFConnection Test";
     
-    self.dataArray = [[NSMutableArray alloc] initWithCapacity:0];
+    self.dataArray = [[NSMutableArray alloc] initWithCapacity:4];
     for (int i = 0 , ic = sizeof(KTestCase)/sizeof(KTestCase[0]); i < ic; ++i)
     {
-        JTestCaseDataItem* item = [[JTestCaseDataItem alloc] init];
+        JTestGroupItem* item = [[JTestGroupItem alloc] init];
         TestCaseStruct& aTestCase = KTestCase[i];
         item.index = i;
         item.title = aTestCase.title;
-        item.testClass = NSClassFromString(aTestCase.className);
-        assert(item.testClass);
+        item.itemClass = NSClassFromString(aTestCase.className);
+        assert(item.itemClass);
         [self.dataArray addObject:item];
     }
     
-    self.tableViewDatasource = [[JTestCaseTableViewDataSource alloc] initWithDataArray:self.dataArray];
-    self.testCaseTableView.dataSource = self.tableViewDatasource;
     
-    [self.view addSubview:self.testCaseTableView];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.autoresizesSubviews = YES;
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth ;
+    
+    
+    [self.view addSubview:self.tableView];
 }
 
-- (void)didReceiveMemoryWarning
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return 1;
+}
+
+// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
+// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString * const KReuseKey = @"JTestCaseTable";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:KReuseKey];
+    if (cell == NULL)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:KReuseKey];
+    }
+    int index = [indexPath row];
+    cell.textLabel.text = KTestCase[index].title;
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    JTestCaseDataItem* item = [self.dataArray objectAtIndex:[indexPath row]];
-    
-    [self startCase:item];
-    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell setSelected:NO];
     
-
+    int index = [indexPath row];
+    JTestGroupItem* item = [self.dataArray objectAtIndex:index];
+    UIViewController* vc = [[item.itemClass alloc] init];
+    [[JMainNaviViewController shareController] pushViewController:vc animated:YES];
 }
-
-- (JTestCaseDataItem*)itemOfTestCase:(BaseTestCase*)testCase
-{
-    JTestCaseDataItem* item = NULL;
-    for (JTestCaseDataItem* aItem in self.dataArray)
-    {
-        if (aItem.testCase == testCase)
-        {
-            item = aItem;
-            break;
-        }
-    }
-    return item;
-}
-- (void)reloadRowAtIndex:(int)index
-{
-    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    [self.testCaseTableView beginUpdates];
-    [self.testCaseTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    [self.testCaseTableView endUpdates];
-}
-
-#pragma mark - testCase
-
-- (void)startCase:(JTestCaseDataItem*)item
-{
-    if (item.testCase)
-    {
-        return;
-    }
-    BaseTestCase* testCase = [[item.testClass alloc] init];
-    [testCase start];
-    testCase.delegate = self;
-    item.testCase = testCase;
-}
-
-#pragma mark - TestCaseDelegate
-- (void)testCaseDidStart:(BaseTestCase*)testCase
-{
-    JTestCaseDataItem* item = [self itemOfTestCase:testCase];
-    item.state = ETestCaseDataItemState_Running;
-    [self reloadRowAtIndex:item.index];
-}
-
-- (void)testCaseDidFinish:(BaseTestCase*)testCase
-{
-    JTestCaseDataItem* item = [self itemOfTestCase:testCase];
-    if (testCase.isPass)
-    {
-        item.state = ETestCaseDataItemState_Pass;
-    }
-    else
-    {
-        item.state = ETestCaseDataItemState_Fail;
-    }
-    [self reloadRowAtIndex:item.index];
-}
-
 
 
 @end

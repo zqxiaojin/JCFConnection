@@ -7,7 +7,7 @@
 //
 
 #import "JAppDelegate.h"
-#import "JMainViewController.h"
+#import "JMainNaviViewController.h"
 
 @implementation JAppDelegate
 
@@ -16,11 +16,12 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [[JMainViewController alloc] init] ;
-    
-    
+    JMainNaviViewController* mainVC = [JMainNaviViewController shareController];
+    self.window.rootViewController = mainVC;
+    [mainVC.view setFrame:CGRectMake(0, 20, 320, 460)];
     [self.window makeKeyAndVisible];
-    [self.window.rootViewController.view setFrame:CGRectMake(0, 20, 320, 460)];
+    
+    
     return YES;
 }
 
