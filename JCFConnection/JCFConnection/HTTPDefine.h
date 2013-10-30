@@ -39,6 +39,9 @@ namespace J
     ///HeaderValue, lowercase
     extern CFStringRef KHTTPHeaderValue_chunked;
     extern CFStringRef KHTTPHeaderValue_gzip;
+    
+    ///Header for backup
+    extern CFStringRef KHTTPHeader_ContentLength_Backup;
 }
 
 

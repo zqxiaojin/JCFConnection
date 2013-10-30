@@ -66,6 +66,8 @@ namespace J
         
         ChunkedStreamDecoder*   m_chunkedStreamDecoder;
         GzipStreamDecoder*      m_gzipStreamDecoder;
+        
+        uint                    m_receivedDataSize;
     };
 };
 

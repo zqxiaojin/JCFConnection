@@ -31,10 +31,12 @@ namespace J
         
         bool isChunked()const{return m_isChunked;}
         bool isGzip()const{return m_isGzip;}
-        bool contentLength(){return m_contentLength;}
         
-        bool hasContentLength()const {return m_hasContentLength;}
+        bool hasContentLength()const {return m_hasRawContentLength;}
         uint contentLength()const { return m_rawContentLength;}
+        
+        bool hasGzipContentLength()const {return m_hasGzipContentLength;}
+        uint gzipContentLength()const { return m_gzipContentLength;}
         
     protected:
         bool  isHeaderContainString(CFStringRef headerName, CFStringRef str);
@@ -47,9 +49,11 @@ namespace J
         HTTPResponse*       m_HTTPResponse;
         State               m_state;
         DataFinder*         m_dataFinder;
-        uint                m_contentLength;
-        bool                m_hasContentLength;
+        
+        bool                m_hasRawContentLength;
         uint                m_rawContentLength;///<data datalength without compress
+        
+        bool                m_hasGzipContentLength;
         uint                m_gzipContentLength;///<data after gzip compress datalength
     };
 }

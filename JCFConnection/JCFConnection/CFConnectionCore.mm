@@ -28,6 +28,7 @@ namespace J
     ,m_state(EWaitingResponse)
     ,m_chunkedStreamDecoder(NULL)
     ,m_gzipStreamDecoder(NULL)
+    ,m_receivedDataSize(0)
     {
         
     }
@@ -134,6 +135,10 @@ namespace J
             }
             if (m_responseParser->isGzip())
             {
+                if (m_responseParser->hasGzipContentLength())
+                {
+                    m_receivedDataSize += CFDataGetLength(resultData);
+                }
                 if (m_gzipStreamDecoder == NULL)
                 {
                     m_gzipStreamDecoder = new GzipStreamDecoder();
@@ -142,13 +147,19 @@ namespace J
                         break;
                     }
                 }
-            
-                resultData = m_gzipStreamDecoder->decode(resultData);
+                CFDataRef gzipData = resultData;
+                resultData = m_gzipStreamDecoder->decode(gzipData);
                 
                 if (m_gzipStreamDecoder->isError())
                 {
                     break;
                 }
+                
+
+            }
+            else if (m_responseParser->hasContentLength())
+            {
+                m_receivedDataSize += CFDataGetLength(resultData);
             }
             isError = false;
             
@@ -160,12 +171,22 @@ namespace J
             return;
         }
         [m_connection connection:this didReceiveData:(NSData*)resultData];
+        bool isFinish = false;
         if (m_chunkedStreamDecoder && m_chunkedStreamDecoder->isFinish())
         {
-            m_state = EFinish;
-            [m_connection connectionDidFinishLoading:this];
+            isFinish = true;
         }
         else if (m_gzipStreamDecoder && m_gzipStreamDecoder->isFinish())
+        {
+            assert(!m_responseParser->hasGzipContentLength()
+                   || m_receivedDataSize == m_responseParser->gzipContentLength());
+            isFinish = true;
+        }
+        else if (m_responseParser->hasContentLength() && m_receivedDataSize == m_responseParser->contentLength())
+        {
+            isFinish = true;
+        }
+        if (isFinish)
         {
             m_state = EFinish;
             [m_connection connectionDidFinishLoading:this];

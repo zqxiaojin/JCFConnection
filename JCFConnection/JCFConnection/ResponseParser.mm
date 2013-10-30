@@ -28,9 +28,9 @@ namespace J
     ,m_HTTPResponse(NULL)
     ,m_isChunked(false)
     ,m_isGzip(false)
-    ,m_contentLength(0)
-    ,m_hasContentLength(false)
+    ,m_hasRawContentLength(false)
     ,m_rawContentLength(0)
+    ,m_hasGzipContentLength(false)
     ,m_gzipContentLength(0)
     {
         CFDataRef bodyEOF = CFDataCreateWithBytesNoCopy(kCFAllocatorDefault, (const UInt8 *)KHTTPEndOfHeader, 4, kCFAllocatorNull);
@@ -79,9 +79,34 @@ namespace J
     }
     void ResponseParser::parseContentLength()
     {
+        CFStringRef value = (CFStringRef)CFDictionaryGetValue(m_HTTPResponse->HTTPHeaderDict()
+                                                              , KHTTPHeader_ContentLength);
+        if (value == NULL)
+        {
+            return;
+        }
+        if (m_isChunked)
+        {
+            CFDictionaryAddValue(m_HTTPResponse->HTTPHeaderDict(), KHTTPHeader_ContentLength_Backup, value);
+            CFDictionaryRemoveValue(m_HTTPResponse->HTTPHeaderDict(), KHTTPHeader_ContentLength);
+            return;
+        }
+        int contentLength = CFStringGetIntValue(value);
+        if (contentLength < 0)
+        {
+            assert(0);
+            return;
+        }
+        
         if (m_isGzip)
         {
-            
+            m_hasGzipContentLength = true;
+            m_gzipContentLength = contentLength;
+        }
+        else
+        {
+            m_hasRawContentLength = true;
+            m_rawContentLength = contentLength;
         }
     }
     NSHTTPURLResponse* ResponseParser::makeResponseWithURL(NSURL* url)

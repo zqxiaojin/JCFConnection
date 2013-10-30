@@ -19,6 +19,7 @@ namespace J
     CFStringRef KHTTPHeader_ContentDisposition  = CFSTR("Content-Disposition");
     CFStringRef KHTTPHeader_ContentEncoding     = CFSTR("Content-Encoding");
     CFStringRef KHTTPHeader_ContentLength       = CFSTR("Content-Length");
+    
     CFStringRef KHTTPHeader_Host                = CFSTR("Host");
     CFStringRef KHTTPHeader_Location            = CFSTR("Location");
     CFStringRef KHTTPHeader_SetCookie           = CFSTR("Set-Cookie");
@@ -28,4 +29,8 @@ namespace J
     
     CFStringRef KHTTPHeaderValue_chunked        = CFSTR("chunk");
     CFStringRef KHTTPHeaderValue_gzip           = CFSTR("gzip");
+    
+    
+    ///header for backup 
+    CFStringRef KHTTPHeader_ContentLength_Backup= CFSTR("X-Backup-Content-Length");
 }
