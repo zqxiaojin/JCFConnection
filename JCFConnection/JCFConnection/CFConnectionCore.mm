@@ -18,7 +18,7 @@ namespace J
 {
     CFConnectionCore::CFConnectionCore(NSURLRequest* aRequest
                       , JCFConnection* aConnection)
-    :m_connection(aConnection)
+    :m_connectionCallBack(aConnection)
     ,m_oriRequest([aRequest mutableCopy])
     ,m_curRequest([m_oriRequest retain])
     ,m_sendBuffer(NULL)
@@ -40,8 +40,25 @@ namespace J
         if (m_gzipStreamDecoder) {
             delete m_gzipStreamDecoder;
         }
+        
         m_handler->release();
         m_handler = NULL;
+    
+        CFRelease(m_oriRequest);
+        m_oriRequest = nil;
+        CFRelease(m_curRequest);
+        m_curRequest = nil;
+        
+        if (m_sendBuffer) {
+            CFRelease(m_sendBuffer);
+            m_sendBuffer = nil;
+        }
+        
+        if (m_responseParser) {
+            delete m_responseParser;
+            m_responseParser = NULL;
+        }
+        
     }
     
     
@@ -52,8 +69,9 @@ namespace J
     
     void CFConnectionCore::cancel()
     {
+        //FIXME:should protect itself
         m_handler->cancel();
-        m_connection = NULL;
+        m_connectionCallBack = NULL;
     }
 
     void CFConnectionCore::didReceiveSocketStreamData(CFSocketHandler* handler, CFDataRef data)
@@ -88,8 +106,8 @@ namespace J
                 NSURLResponse* response = m_responseParser->makeResponseWithURL([m_curRequest URL]);
                 if (response)
                 {
-                    [m_connection connection:this
-                          didReceiveResponse:response];
+                    [m_connectionCallBack connection:this
+                                  didReceiveResponse:response];
                     
                     m_state = EReceivingData;
                     
@@ -167,34 +185,56 @@ namespace J
 
         if (isError)
         {
-            [m_connection connection:this didFailWithError:(NSError*)NULL];
-            return;
+            [m_connectionCallBack connection:this didFailWithError:(NSError*)NULL];
         }
-        [m_connection connection:this didReceiveData:(NSData*)resultData];
-        bool isFinish = false;
-        if (m_chunkedStreamDecoder && m_chunkedStreamDecoder->isFinish())
+        else
         {
-            isFinish = true;
+            [m_connectionCallBack connection:this didReceiveData:(NSData*)resultData];
+            
+            bool isFinish = false;
+            if (m_chunkedStreamDecoder && m_chunkedStreamDecoder->isFinish())
+            {
+                isFinish = true;
+            }
+            else if (m_gzipStreamDecoder
+                     && (m_gzipStreamDecoder->isFinish()
+                         || (m_responseParser->hasGzipContentLength()
+                             && m_responseParser->gzipContentLength() == m_receivedDataSize
+                             )
+                         )
+                     )
+            {
+                assert(!m_responseParser->hasGzipContentLength()
+                       || m_receivedDataSize == m_responseParser->gzipContentLength());
+                isFinish = true;
+            }
+            else if (m_responseParser->hasContentLength() && m_receivedDataSize == m_responseParser->contentLength())
+            {
+                isFinish = true;
+            }
+            
+            if (isFinish)
+            {
+                m_state = EFinish;
+                [m_connectionCallBack connectionDidFinishLoading:this];
+            }
         }
-        else if (m_gzipStreamDecoder && m_gzipStreamDecoder->isFinish())
-        {
-            assert(!m_responseParser->hasGzipContentLength()
-                   || m_receivedDataSize == m_responseParser->gzipContentLength());
-            isFinish = true;
-        }
-        else if (m_responseParser->hasContentLength() && m_receivedDataSize == m_responseParser->contentLength())
-        {
-            isFinish = true;
-        }
-        if (isFinish)
-        {
-            m_state = EFinish;
-            [m_connection connectionDidFinishLoading:this];
-        }
+        
+
     }
     void CFConnectionCore::didFailSocketStream(CFSocketHandler* handler, CFErrorRef error)
     {
-        [m_connection connection:this didFailWithError:(NSError*)error];
+        [m_connectionCallBack connection:this didFailWithError:(NSError*)error];
+    }
+    void CFConnectionCore::didCloseSocketStream(J::CFSocketHandler *handler)
+    {
+        ///FIXME:
+        if (EFinish != m_state && EError != m_state)
+        {
+            m_state = EFinish;
+            [m_connectionCallBack connectionDidFinishLoading:this];
+        }
+        
     }
     
     bool CFConnectionCore::dataShouldSend(const Byte*& data, uint& dataLength)

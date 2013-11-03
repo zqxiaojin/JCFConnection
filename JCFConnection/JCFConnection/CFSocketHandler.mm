@@ -224,6 +224,7 @@ namespace J
                             return;
                     }
 #endif
+                    ///FIXME:may crash here,m_client has been release
                     m_connectingSubstate = Connected;
                     m_state = Open;
                     m_client->didOpenSocketStream(this);

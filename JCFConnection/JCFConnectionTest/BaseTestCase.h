@@ -14,6 +14,8 @@
 
 - (void)testCaseDidStart:(BaseTestCase*)testCase;
 
+- (void)testCaseDidSetp:(BaseTestCase*)testCase;
+
 - (void)testCaseDidFinish:(BaseTestCase*)testCase;
 
 @end
@@ -25,6 +27,7 @@
 
 @property (nonatomic,assign)id<TestCaseDelegate> delegate;
 @property (nonatomic,assign)BOOL isPass;
+@property (nonatomic,assign)uint step;
 
 - (void)start;
 

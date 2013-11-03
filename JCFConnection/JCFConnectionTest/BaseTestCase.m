@@ -41,7 +41,7 @@
     [(id)self.delegate performSelectorOnMainThread:@selector(testCaseDidStart:) withObject:self waitUntilDone:YES];
     [self.callDelegate setUp];
     
-    [self performSelector:@selector(startConnection)
+    [self performSelector:@selector(thread_firstCall)
                  onThread:[NSThread currentThread]
                withObject:Nil
             waitUntilDone:NO];

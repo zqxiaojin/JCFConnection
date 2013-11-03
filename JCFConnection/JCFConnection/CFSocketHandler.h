@@ -66,7 +66,7 @@ namespace J
         ConnectingSubstate      m_connectingSubstate;
 
 
-        CFSocketHandlerClient* m_client;
+        CFSocketHandlerClient*  m_client;
         
         CFReadStreamRef         m_readStream;
         CFWriteStreamRef        m_writeStream;

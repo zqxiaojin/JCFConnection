@@ -31,11 +31,12 @@ namespace J
         NSURLRequest* originalRequest(){return m_oriRequest;}
         
     public:
-        void setConnection(JCFConnection* connection){m_connection = connection;}
+        void setConnection(JCFConnection* connection){m_connectionCallBack = connection;}
         
     protected://notify
         virtual void didReceiveSocketStreamData(CFSocketHandler*, CFDataRef);
         virtual void didFailSocketStream(CFSocketHandler*, CFErrorRef);
+        virtual void didCloseSocketStream(CFSocketHandler*);
         
     protected://data source
         virtual bool dataShouldSend(const Byte*& data, uint& dataLength);
@@ -48,7 +49,7 @@ namespace J
         virtual void handleResponseData(CFDataRef data);
         virtual void handleBodyData(CFDataRef data);
     protected:
-        JCFConnection*          m_connection;
+        JCFConnection*          m_connectionCallBack;
         
         NSMutableURLRequest*    m_oriRequest;
         NSMutableURLRequest*    m_curRequest;
@@ -61,7 +62,7 @@ namespace J
         
         ResponseParser*         m_responseParser;
         
-        enum State {EWaitingResponse,EReceivingData,EFinish,EError};
+        enum State {EWaitingResponse,EReceivingData,EFinish,EError,ECancelByUse};
         State                   m_state;
         
         ChunkedStreamDecoder*   m_chunkedStreamDecoder;

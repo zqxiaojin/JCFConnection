@@ -1,15 +1,16 @@
 //
-//  ValidityViewController.m
+//  RandomViewController.m
 //  JCFConnection
 //
-//  Created by Jin on 10/30/13.
+//  Created by Jin on 10/31/13.
 //  Copyright (c) 2013 Jin. All rights reserved.
 //
 
-#import "ValidityViewController.h"
+#import "RandomViewController.h"
 #import "JTestCaseTableViewDataSource.h"
 #import "JTestCaseDataItem.h"
 #import "BaseTestCase.h"
+
 
 struct TestCaseStruct
 {
@@ -19,22 +20,17 @@ struct TestCaseStruct
 
 static TestCaseStruct KTestCase[]=
 {
-     {@"No Zip Validity"        ,@"NoZipValidityTestCase"}
-    ,{@"Gzip Validity"          ,@"GzipValidityTestCase"}
-    ,{@"Chunk Validity"         ,@"ChunkValidityTestCase"}
-    ,{@"Chunk & Gzip Validity"  ,@"ChunkAndGzipValidityTestCase"}
+    {@"No Zip Random"        ,@"NoZipRandomTestCase"}
+    ,{@"Gzip Random"          ,@"GzipRandomTestCase"}
+    ,{@"Chunk & Gzip Random"  ,@"ChunkAndGzipRandomTestCase"}
 };
 
 
-@interface ValidityViewController ()
-
-
+@interface RandomViewController ()
 
 @end
 
-@implementation ValidityViewController
-
-
+@implementation RandomViewController
 
 - (void)buildTestDataArray
 {

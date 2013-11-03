@@ -43,11 +43,21 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:KReuseKey];
         
         UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        spinner.frame = CGRectMake(0, 0, 24, 24);
+        spinner.frame = CGRectMake(0, 0, 32, 32);
         cell.accessoryView = spinner;
     }
     JTestCaseDataItem* item = [self.dataArray objectAtIndex:[indexPath row]];
-    cell.textLabel.text = item.title;
+    
+    if (item.step == 0)
+    {
+        cell.textLabel.text = item.title;
+    }
+    else
+    {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ - %d", item.title , item.step];
+    }
+    
+    
     UIActivityIndicatorView *spinner = (UIActivityIndicatorView*)cell.accessoryView;
     if (item.state == ETestCaseDataItemState_Running)
     {

@@ -26,4 +26,6 @@ enum JTestCaseDataItemState
 @property (nonatomic,assign)JTestCaseDataItemState state;
 @property (nonatomic,strong)BaseTestCase* testCase;
 @property (nonatomic,assign)Class testClass;
+@property (nonatomic,assign)uint step;
+
 @end

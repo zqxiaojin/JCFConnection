@@ -13,5 +13,6 @@
 @property (nonatomic,assign)int index;
 @property (nonatomic,strong)NSString* title;
 @property (nonatomic,assign)Class  itemClass;
+@property (nonatomic,strong)UIViewController* viewController;///<for cache
 
 @end

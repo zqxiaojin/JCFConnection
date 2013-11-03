@@ -17,7 +17,8 @@ struct TestCaseStruct
 
 static TestCaseStruct KTestCase[]=
 {
-    {@"Validity"          ,@"ValidityViewController"}
+     {@"Validity"       ,@"ValidityViewController"}
+    ,{@"Random"         ,@"RandomViewController"}
 };
 
 
@@ -45,6 +46,16 @@ static TestCaseStruct KTestCase[]=
 {
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+    
+    for (JTestGroupItem* item in self.dataArray)
+    {
+        item.viewController = nil;
+    }
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -77,7 +88,7 @@ static TestCaseStruct KTestCase[]=
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return [self.dataArray count];
 }
 
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
@@ -103,7 +114,16 @@ static TestCaseStruct KTestCase[]=
     
     int index = [indexPath row];
     JTestGroupItem* item = [self.dataArray objectAtIndex:index];
-    UIViewController* vc = [[item.itemClass alloc] init];
+    UIViewController* vc =  NULL;
+    if (item.viewController)
+    {
+        vc = item.viewController;
+    }
+    else
+    {
+        vc = [[item.itemClass alloc] init];
+        item.viewController = vc;
+    }
     [[JMainNaviViewController shareController] pushViewController:vc animated:YES];
 }
 
