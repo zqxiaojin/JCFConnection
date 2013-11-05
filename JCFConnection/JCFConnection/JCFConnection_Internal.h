@@ -9,7 +9,7 @@
 #import "JCFConnection.h"
 
 using namespace J;
-@interface JCFConnection ()<JCFConnectionDelegate>
+@interface JCFConnection ()<CFConnectionCoreDelegate>
 {
     CFConnectionCore*           m_core;
     id<JCFConnectionDelegate>   m_delegate;

@@ -10,7 +10,34 @@
 #define __JCFConnection__CFConnectionCore__
 #include "CFSocketHandlerClient.h"
 
-@class JCFConnection;
+
+namespace J {
+    class CFConnectionCore;
+}
+
+@protocol CFConnectionCoreDelegate <NSObject>
+
+- (void)connection:(J::CFConnectionCore *)connection
+  didFailWithError:(NSError *)error;
+
+///FIXME:should handle redirect
+- (NSURLRequest *)connection:(J::CFConnectionCore *)connection
+             willSendRequest:(NSURLRequest *)request
+            redirectResponse:(NSURLResponse *)response;
+
+- (void)connection:(J::CFConnectionCore *)connection
+didReceiveResponse:(NSURLResponse *)response;
+
+- (void)connection:(J::CFConnectionCore *)connection
+    didReceiveData:(NSData *)data;
+
+- (NSCachedURLResponse *)connection:(J::CFConnectionCore *)connection
+                  willCacheResponse:(NSCachedURLResponse *)cachedResponse;
+
+- (void)connectionDidFinishLoading:(J::CFConnectionCore *)connection;
+
+
+@end
 
 namespace J
 {
@@ -20,7 +47,8 @@ namespace J
     class CFConnectionCore : protected CFSocketHandlerClient
     {
     public:
-        CFConnectionCore(NSURLRequest* request, JCFConnection* aConnection);
+        CFConnectionCore(NSURLRequest* aRequest
+                         , id<CFConnectionCoreDelegate> aConnection);
         ~CFConnectionCore();
         
     public:
@@ -31,9 +59,9 @@ namespace J
         NSURLRequest* originalRequest(){return m_oriRequest;}
         
     public:
-        void setConnection(JCFConnection* connection){m_connectionCallBack = connection;}
+        void setConnection(id<CFConnectionCoreDelegate> connection);
         
-    protected://notify
+    protected://notify from CFSocketHandlerClient
         virtual void didReceiveSocketStreamData(CFSocketHandler*, CFDataRef);
         virtual void didFailSocketStream(CFSocketHandler*, CFErrorRef);
         virtual void didCloseSocketStream(CFSocketHandler*);
@@ -49,26 +77,26 @@ namespace J
         virtual void handleResponseData(CFDataRef data);
         virtual void handleBodyData(CFDataRef data);
     protected:
-        JCFConnection*          m_connectionCallBack;
+        id<CFConnectionCoreDelegate>        m_connectionCallBack;
         
-        NSMutableURLRequest*    m_oriRequest;
-        NSMutableURLRequest*    m_curRequest;
+        NSMutableURLRequest*                m_oriRequest;
+        NSMutableURLRequest*                m_curRequest;
         
-        CFMutableDataRef        m_sendBuffer;
-        uint                    m_sendBufferOffset;
+        CFMutableDataRef                    m_sendBuffer;
+        uint                                m_sendBufferOffset;
         
         
-        CFSocketHandler*        m_handler;
+        CFSocketHandler*                    m_handler;
         
-        ResponseParser*         m_responseParser;
+        ResponseParser*                     m_responseParser;
         
         enum State {EWaitingResponse,EReceivingData,EFinish,EError,ECancelByUse};
-        State                   m_state;
+        State                               m_state;
         
-        ChunkedStreamDecoder*   m_chunkedStreamDecoder;
-        GzipStreamDecoder*      m_gzipStreamDecoder;
+        ChunkedStreamDecoder*               m_chunkedStreamDecoder;
+        GzipStreamDecoder*                  m_gzipStreamDecoder;
         
-        uint                    m_receivedDataSize;
+        uint                                m_receivedDataSize;
     };
 };
 

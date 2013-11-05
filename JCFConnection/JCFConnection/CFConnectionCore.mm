@@ -17,9 +17,8 @@
 namespace J
 {
     CFConnectionCore::CFConnectionCore(NSURLRequest* aRequest
-                      , JCFConnection* aConnection)
-    :m_connectionCallBack(aConnection)
-    ,m_oriRequest([aRequest mutableCopy])
+                                       , id<CFConnectionCoreDelegate> aConnection)
+    :m_oriRequest([aRequest mutableCopy])
     ,m_curRequest([m_oriRequest retain])
     ,m_sendBuffer(NULL)
     ,m_sendBufferOffset(0)
@@ -30,7 +29,7 @@ namespace J
     ,m_gzipStreamDecoder(NULL)
     ,m_receivedDataSize(0)
     {
-        
+        setConnection(aConnection);
     }
     CFConnectionCore::~CFConnectionCore()
     {
@@ -58,7 +57,6 @@ namespace J
             delete m_responseParser;
             m_responseParser = NULL;
         }
-        
     }
     
     
@@ -72,6 +70,11 @@ namespace J
         //FIXME:should protect itself
         m_handler->cancel();
         m_connectionCallBack = NULL;
+    }
+    
+    void CFConnectionCore::setConnection(id<CFConnectionCoreDelegate> connection)
+    {
+        m_connectionCallBack = connection;
     }
 
     void CFConnectionCore::didReceiveSocketStreamData(CFSocketHandler* handler, CFDataRef data)
@@ -108,9 +111,7 @@ namespace J
                 {
                     [m_connectionCallBack connection:this
                                   didReceiveResponse:response];
-                    
                     m_state = EReceivingData;
-                    
                     if (restOffSet > 0)
                     {
                         int restLength = CFDataGetLength(data) - restOffSet;
@@ -144,9 +145,7 @@ namespace J
                         break;
                     }
                 }
-                
                 resultData = m_chunkedStreamDecoder->decode(resultData);
-                
                 if (m_chunkedStreamDecoder->isError()) {
                     break;
                 }
@@ -167,13 +166,10 @@ namespace J
                 }
                 CFDataRef gzipData = resultData;
                 resultData = m_gzipStreamDecoder->decode(gzipData);
-                
                 if (m_gzipStreamDecoder->isError())
                 {
                     break;
                 }
-                
-
             }
             else if (m_responseParser->hasContentLength())
             {
@@ -190,7 +186,6 @@ namespace J
         else
         {
             [m_connectionCallBack connection:this didReceiveData:(NSData*)resultData];
-            
             bool isFinish = false;
             if (m_chunkedStreamDecoder && m_chunkedStreamDecoder->isFinish())
             {
@@ -208,11 +203,11 @@ namespace J
                        || m_receivedDataSize == m_responseParser->gzipContentLength());
                 isFinish = true;
             }
-            else if (m_responseParser->hasContentLength() && m_receivedDataSize == m_responseParser->contentLength())
+            else if (m_responseParser->hasContentLength()
+                     && m_receivedDataSize == m_responseParser->contentLength())
             {
                 isFinish = true;
             }
-            
             if (isFinish)
             {
                 m_state = EFinish;
@@ -234,14 +229,15 @@ namespace J
             m_state = EFinish;
             [m_connectionCallBack connectionDidFinishLoading:this];
         }
-        
     }
     
     bool CFConnectionCore::dataShouldSend(const Byte*& data, uint& dataLength)
     {
         if (m_sendBuffer == NULL)
         {
+            ///FIXME: handle error
             m_sendBuffer = RequestUtil::serialization(m_curRequest);
+            assert(m_sendBuffer);
         }
         data = CFDataGetMutableBytePtr(m_sendBuffer) + m_sendBufferOffset;
         dataLength = CFDataGetLength(m_sendBuffer) - m_sendBufferOffset;
