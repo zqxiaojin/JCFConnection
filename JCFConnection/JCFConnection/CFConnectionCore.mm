@@ -39,14 +39,10 @@ namespace J
         if (m_gzipStreamDecoder) {
             delete m_gzipStreamDecoder;
         }
-        
-        m_handler->release();
-        m_handler = NULL;
+        m_handler->release();m_handler = NULL;
     
-        CFRelease(m_oriRequest);
-        m_oriRequest = nil;
-        CFRelease(m_curRequest);
-        m_curRequest = nil;
+        CFRelease(m_oriRequest);m_oriRequest = nil;
+        CFRelease(m_curRequest);m_curRequest = nil;
         
         if (m_sendBuffer) {
             CFRelease(m_sendBuffer);
@@ -58,7 +54,6 @@ namespace J
             m_responseParser = NULL;
         }
     }
-    
     
     void CFConnectionCore::start()
     {
@@ -74,6 +69,7 @@ namespace J
     
     void CFConnectionCore::setConnection(id<CFConnectionCoreDelegate> connection)
     {
+        //FIXME: use impl cache
         m_connectionCallBack = connection;
     }
 
@@ -140,8 +136,7 @@ namespace J
                 if (m_chunkedStreamDecoder == NULL)
                 {
                     m_chunkedStreamDecoder = new ChunkedStreamDecoder();
-                    if (!m_chunkedStreamDecoder->init())
-                    {
+                    if (!m_chunkedStreamDecoder->init()){
                         break;
                     }
                 }
@@ -159,15 +154,13 @@ namespace J
                 if (m_gzipStreamDecoder == NULL)
                 {
                     m_gzipStreamDecoder = new GzipStreamDecoder();
-                    if (!m_gzipStreamDecoder->init())
-                    {
+                    if (!m_gzipStreamDecoder->init()){
                         break;
                     }
                 }
                 CFDataRef gzipData = resultData;
                 resultData = m_gzipStreamDecoder->decode(gzipData);
-                if (m_gzipStreamDecoder->isError())
-                {
+                if (m_gzipStreamDecoder->isError()){
                     break;
                 }
             }
@@ -176,7 +169,6 @@ namespace J
                 m_receivedDataSize += CFDataGetLength(resultData);
             }
             isError = false;
-            
         } while (false);
 
         if (isError)

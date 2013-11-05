@@ -17,6 +17,7 @@
     {
         
         self.thread = [[NSThread alloc] initWithTarget:self selector:@selector(thread_run) object:nil];
+        
         [self.thread start];
     }
 }
@@ -38,6 +39,8 @@
 
 - (void)thread_run
 {
+    [self.thread setName:@"TestThread"];
+    
     [(id)self.delegate performSelectorOnMainThread:@selector(testCaseDidStart:) withObject:self waitUntilDone:YES];
     [self.callDelegate setUp];
     
