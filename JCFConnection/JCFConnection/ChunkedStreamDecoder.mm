@@ -172,11 +172,18 @@ namespace J
         uint notHexOffset = DataFinder::findNotHexData(chunkedData, chunkedDataLength);
         if (notHexOffset == NSNotFound)
         {
-            ///FIXME: if too larget ,must handle error
-            CFDataAppendBytes(m_orgDataBuffer, chunkedData, chunkedDataLength);
-            if (CFDataGetLength(m_orgDataBuffer) > 8)
+            if (chunkedDataLength > 1024*1024*100)//100MB, must be error
             {
+                assert(0);
                 m_state = EError;
+            }
+            else
+            {
+                CFDataAppendBytes(m_orgDataBuffer, chunkedData, chunkedDataLength);
+                if (CFDataGetLength(m_orgDataBuffer) > 8)
+                {
+                    m_state = EError;
+                }
             }
             return;
         }

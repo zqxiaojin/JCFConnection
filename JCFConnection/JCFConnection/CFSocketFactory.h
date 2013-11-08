@@ -22,6 +22,7 @@ namespace J
         
     public:
         CFSocketHandler* socketWithClient(CFSocketHandlerClient* client);
+        void recycleSocket(CFSocketHandler* socketHandle);
     };
 }
 

@@ -68,7 +68,6 @@ namespace J
             result = CFDataCreateWithBytesNoCopy(kCFAllocatorDefault, m_tempDataBuffer, m_tempDataBufferLength, kCFAllocatorMalloc);
             if (result == NULL)
             {
-                ///FIXME : handle error
                 free(m_tempDataBuffer);
             }
             m_tempDataBuffer = NULL;

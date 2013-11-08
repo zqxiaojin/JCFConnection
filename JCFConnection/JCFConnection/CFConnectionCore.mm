@@ -24,7 +24,7 @@ namespace J
     ,m_sendBufferOffset(0)
     ,m_handler(CFSocketFactory::global()->socketWithClient(this))
     ,m_responseParser(NULL)
-    ,m_state(EWaitingResponse)
+    ,m_state(EIdle)
     ,m_chunkedStreamDecoder(NULL)
     ,m_gzipStreamDecoder(NULL)
     ,m_receivedDataSize(0)
@@ -39,7 +39,7 @@ namespace J
         if (m_gzipStreamDecoder) {
             delete m_gzipStreamDecoder;
         }
-        m_handler->release();m_handler = NULL;
+        freeSocket();
     
         CFRelease(m_oriRequest);m_oriRequest = nil;
         CFRelease(m_curRequest);m_curRequest = nil;
@@ -57,13 +57,50 @@ namespace J
     
     void CFConnectionCore::start()
     {
-        m_handler->start();
+        if (EIdle != m_state)
+        {
+            return;
+        }
+        
+        if ([m_connectionCallBack respondsToSelector:@selector(connection:willSendRequest:redirectResponse:)])
+        {
+            NSURLRequest* result = [m_connectionCallBack connection:this willSendRequest:m_curRequest redirectResponse:nil];
+            if (ECancelByUse == m_state)
+            {
+                return;
+            }
+            if (result == NULL)
+            {
+                cancel();
+            }
+            else
+            {
+                if (result != m_curRequest)
+                {
+                    [m_curRequest release];
+                    if ([result isKindOfClass:[NSMutableURLRequest class]])
+                    {
+                        m_curRequest = [result mutableCopy];
+                    }
+                    else
+                    {
+                        m_curRequest = (NSMutableURLRequest*)[result retain];
+                    }
+                }
+                m_handler->start();
+            }
+        }
+        else
+        {
+            m_handler->start();
+        }
     }
     
     void CFConnectionCore::cancel()
     {
-        //FIXME:should protect itself
+        m_state = ECancelByUse;
         m_handler->cancel();
+        freeSocket();
         m_connectionCallBack = NULL;
     }
     
@@ -95,7 +132,7 @@ namespace J
         {
             m_responseParser = new ResponseParser();
         }
-        assert(m_responseParser->state() != ResponseParser::Done);
+        assert(m_responseParser && m_responseParser->state() != ResponseParser::Done);
         if (ResponseParser::WaitForData == m_responseParser->state())
         {
             int restOffSet = m_responseParser->appendDataAndParse(data);
@@ -105,6 +142,7 @@ namespace J
                 NSURLResponse* response = m_responseParser->makeResponseWithURL([m_curRequest URL]);
                 if (response)
                 {
+                    //FIXME:should handle redirect
                     [m_connectionCallBack connection:this
                                   didReceiveResponse:response];
                     m_state = EReceivingData;
@@ -160,7 +198,7 @@ namespace J
                 }
                 CFDataRef gzipData = resultData;
                 resultData = m_gzipStreamDecoder->decode(gzipData);
-                if (m_gzipStreamDecoder->isError()){
+                if (resultData == NULL || m_gzipStreamDecoder->isError()){
                     break;
                 }
             }
@@ -206,8 +244,14 @@ namespace J
                 [m_connectionCallBack connectionDidFinishLoading:this];
             }
         }
-        
-
+    }
+    void CFConnectionCore::freeSocket()
+    {
+        if (m_handler)
+        {
+            CFSocketFactory::global()->recycleSocket(m_handler);
+            m_handler = nil;
+        }
     }
     void CFConnectionCore::didFailSocketStream(CFSocketHandler* handler, CFErrorRef error)
     {
@@ -215,7 +259,6 @@ namespace J
     }
     void CFConnectionCore::didCloseSocketStream(J::CFSocketHandler *handler)
     {
-        ///FIXME:
         if (EFinish != m_state && EError != m_state)
         {
             m_state = EFinish;

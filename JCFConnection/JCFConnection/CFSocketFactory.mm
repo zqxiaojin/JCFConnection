@@ -21,4 +21,11 @@ namespace J
     {
         return new CFSocketHandler(client);
     }
+    
+    
+    void CFSocketFactory::recycleSocket(CFSocketHandler* socketHandle)
+    {
+        //FIXME: should resue the socket for keep alive
+        socketHandle->release();
+    }
 }

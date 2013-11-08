@@ -20,7 +20,6 @@ namespace J {
 - (void)connection:(J::CFConnectionCore *)connection
   didFailWithError:(NSError *)error;
 
-///FIXME:should handle redirect
 - (NSURLRequest *)connection:(J::CFConnectionCore *)connection
              willSendRequest:(NSURLRequest *)request
             redirectResponse:(NSURLResponse *)response;
@@ -74,8 +73,10 @@ namespace J
         virtual UInt32 port();
         
     protected:
-        virtual void handleResponseData(CFDataRef data);
-        virtual void handleBodyData(CFDataRef data);
+        void handleResponseData(CFDataRef data);
+        void handleBodyData(CFDataRef data);
+        
+        void freeSocket();
     protected:
         id<CFConnectionCoreDelegate>        m_connectionCallBack;
         
@@ -90,7 +91,7 @@ namespace J
         
         ResponseParser*                     m_responseParser;
         
-        enum State {EWaitingResponse,EReceivingData,EFinish,EError,ECancelByUse};
+        enum State {EIdle,EWaitingResponse,EReceivingData,EFinish,EError,ECancelByUse};
         State                               m_state;
         
         ChunkedStreamDecoder*               m_chunkedStreamDecoder;
