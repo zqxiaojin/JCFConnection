@@ -94,6 +94,7 @@ namespace J
         {
             m_handler->start();
         }
+        m_state = EWaitingResponse;
     }
     
     void CFConnectionCore::cancel()
@@ -259,7 +260,7 @@ namespace J
     }
     void CFConnectionCore::didCloseSocketStream(J::CFSocketHandler *handler)
     {
-        if (EFinish != m_state && EError != m_state)
+        if (EFinish != m_state && EError != m_state && ECancelByUse != m_state)
         {
             m_state = EFinish;
             [m_connectionCallBack connectionDidFinishLoading:this];

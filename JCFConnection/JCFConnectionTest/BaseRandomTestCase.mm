@@ -68,7 +68,7 @@ NSString *const KDefaultUserAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_
 - (void)cancelTimerFired
 {
     [self.connection cancel];
-    
+    [self nextConnection];
     //1~2 second
     double ranTime = 1 + 1.0f*((arc4random()%100)/100.0f);
     
