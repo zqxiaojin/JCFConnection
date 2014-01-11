@@ -15,7 +15,6 @@
 		3C232CC718201D6300523BD3 /* ChunkValidityTestCase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C232CC618201D6300523BD3 /* ChunkValidityTestCase.mm */; };
 		3C25546A18200EBB00FE5C7D /* BaseValidityTestCase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C25546918200EBB00FE5C7D /* BaseValidityTestCase.mm */; };
 		3C46ACCD1813BDCA00D108E7 /* HTTPDefine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C46ACCC1813BDCA00D108E7 /* HTTPDefine.mm */; };
-		3C4B0115181D1F7900F249FB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1F46A181C2C3B002EC08C /* libz.dylib */; };
 		3C5AFC441812BD8D00ACC9A1 /* Util.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C5AFC421812BD8D00ACC9A1 /* Util.mm */; };
 		3C65780C181EC0A300E26094 /* GzipValidityTestCase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C65780B181EC0A300E26094 /* GzipValidityTestCase.mm */; };
 		3C65780D181EC2F600E26094 /* libJCFConnection.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 948CB49B18098FEB006B7917 /* libJCFConnection.a */; };
@@ -42,7 +41,6 @@
 		3CEF7562181C312B003242FE /* GzipStreamDecoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF7560181C312B003242FE /* GzipStreamDecoder.mm */; };
 		3CF70FD11811819E00123FBB /* HTTPResponse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3CF70FCF1811819E00123FBB /* HTTPResponse.mm */; };
 		947215101809CEA000CE2C58 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9472150F1809CEA000CE2C58 /* CFNetwork.framework */; };
-		947215111809CEB100CE2C58 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9472150F1809CEA000CE2C58 /* CFNetwork.framework */; };
 		94721515180AB6BC00CE2C58 /* CFConnectionCore.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94721513180AB6BC00CE2C58 /* CFConnectionCore.mm */; };
 		9472151A180B1E9500CE2C58 /* CFSocketFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94721518180B1E9500CE2C58 /* CFSocketFactory.mm */; };
 		9472151D180B23F600CE2C58 /* ResponseParser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9472151B180B23F600CE2C58 /* ResponseParser.mm */; };
@@ -51,24 +49,8 @@
 		948CB49F18098FEB006B7917 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948CB49E18098FEB006B7917 /* Foundation.framework */; };
 		948CB4A418098FEB006B7917 /* JCFConnection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 948CB4A318098FEB006B7917 /* JCFConnection.h */; };
 		948CB4A618098FEB006B7917 /* JCFConnection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 948CB4A518098FEB006B7917 /* JCFConnection.mm */; };
-		948CB4AD18098FEB006B7917 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948CB4AC18098FEB006B7917 /* XCTest.framework */; };
-		948CB4AE18098FEB006B7917 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948CB49E18098FEB006B7917 /* Foundation.framework */; };
-		948CB4B018098FEB006B7917 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948CB4AF18098FEB006B7917 /* UIKit.framework */; };
-		948CB4B318098FEB006B7917 /* libJCFConnection.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 948CB49B18098FEB006B7917 /* libJCFConnection.a */; };
-		948CB4B918098FEB006B7917 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 948CB4B718098FEB006B7917 /* InfoPlist.strings */; };
-		948CB4BB18098FEB006B7917 /* JCFConnectionTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 948CB4BA18098FEB006B7917 /* JCFConnectionTests.mm */; };
 		948CB4D118099A15006B7917 /* CFSocketHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 948CB4CF18099A15006B7917 /* CFSocketHandler.mm */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		948CB4B118098FEB006B7917 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 948CB49318098FEB006B7917 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 948CB49A18098FEB006B7917;
-			remoteInfo = JCFConnection;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		948CB49918098FEB006B7917 /* CopyFiles */ = {
@@ -159,12 +141,8 @@
 		948CB4A218098FEB006B7917 /* JCFConnection-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JCFConnection-Prefix.pch"; sourceTree = "<group>"; };
 		948CB4A318098FEB006B7917 /* JCFConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCFConnection.h; sourceTree = "<group>"; };
 		948CB4A518098FEB006B7917 /* JCFConnection.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = JCFConnection.mm; sourceTree = "<group>"; };
-		948CB4AB18098FEB006B7917 /* JCFConnectionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JCFConnectionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		948CB4AC18098FEB006B7917 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		948CB4AF18098FEB006B7917 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		948CB4B618098FEB006B7917 /* JCFConnectionTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JCFConnectionTests-Info.plist"; sourceTree = "<group>"; };
-		948CB4B818098FEB006B7917 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		948CB4BA18098FEB006B7917 /* JCFConnectionTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = JCFConnectionTests.mm; sourceTree = "<group>"; };
 		948CB4CA180991DF006B7917 /* BasicConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = BasicConfig.xcconfig; path = Config/BasicConfig.xcconfig; sourceTree = SOURCE_ROOT; };
 		948CB4CB180991DF006B7917 /* BasicDebugConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = BasicDebugConfig.xcconfig; path = Config/BasicDebugConfig.xcconfig; sourceTree = SOURCE_ROOT; };
 		948CB4CC180991DF006B7917 /* BasicReleaseConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = BasicReleaseConfig.xcconfig; path = Config/BasicReleaseConfig.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -194,19 +172,6 @@
 				3CC1F46B181C2C3B002EC08C /* libz.dylib in Frameworks */,
 				947215101809CEA000CE2C58 /* CFNetwork.framework in Frameworks */,
 				948CB49F18098FEB006B7917 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		948CB4A818098FEB006B7917 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3C4B0115181D1F7900F249FB /* libz.dylib in Frameworks */,
-				948CB4B318098FEB006B7917 /* libJCFConnection.a in Frameworks */,
-				947215111809CEB100CE2C58 /* CFNetwork.framework in Frameworks */,
-				948CB4AD18098FEB006B7917 /* XCTest.framework in Frameworks */,
-				948CB4B018098FEB006B7917 /* UIKit.framework in Frameworks */,
-				948CB4AE18098FEB006B7917 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,7 +351,6 @@
 			isa = PBXGroup;
 			children = (
 				948CB4A018098FEB006B7917 /* JCFConnection */,
-				948CB4B418098FEB006B7917 /* JCFConnectionTests */,
 				3CB368BE181EB6820045507E /* JCFConnectionTest */,
 				948CB49D18098FEB006B7917 /* Frameworks */,
 				948CB49C18098FEB006B7917 /* Products */,
@@ -398,7 +362,6 @@
 			isa = PBXGroup;
 			children = (
 				948CB49B18098FEB006B7917 /* libJCFConnection.a */,
-				948CB4AB18098FEB006B7917 /* JCFConnectionTests.xctest */,
 				3CB368B9181EB6820045507E /* JCFConnectionTest.app */,
 			);
 			name = Products;
@@ -442,24 +405,6 @@
 			path = JCFConnection;
 			sourceTree = "<group>";
 		};
-		948CB4B418098FEB006B7917 /* JCFConnectionTests */ = {
-			isa = PBXGroup;
-			children = (
-				948CB4BA18098FEB006B7917 /* JCFConnectionTests.mm */,
-				948CB4B518098FEB006B7917 /* Supporting Files */,
-			);
-			path = JCFConnectionTests;
-			sourceTree = "<group>";
-		};
-		948CB4B518098FEB006B7917 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				948CB4B618098FEB006B7917 /* JCFConnectionTests-Info.plist */,
-				948CB4B718098FEB006B7917 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -497,24 +442,6 @@
 			productReference = 948CB49B18098FEB006B7917 /* libJCFConnection.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		948CB4AA18098FEB006B7917 /* JCFConnectionTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 948CB4C118098FEB006B7917 /* Build configuration list for PBXNativeTarget "JCFConnectionTests" */;
-			buildPhases = (
-				948CB4A718098FEB006B7917 /* Sources */,
-				948CB4A818098FEB006B7917 /* Frameworks */,
-				948CB4A918098FEB006B7917 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				948CB4B218098FEB006B7917 /* PBXTargetDependency */,
-			);
-			name = JCFConnectionTests;
-			productName = JCFConnectionTests;
-			productReference = 948CB4AB18098FEB006B7917 /* JCFConnectionTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -542,7 +469,6 @@
 			projectRoot = "";
 			targets = (
 				948CB49A18098FEB006B7917 /* JCFConnection */,
-				948CB4AA18098FEB006B7917 /* JCFConnectionTests */,
 				3CB368B8181EB6820045507E /* JCFConnectionTest */,
 			);
 		};
@@ -555,14 +481,6 @@
 			files = (
 				3CB368C3181EB6820045507E /* InfoPlist.strings in Resources */,
 				3CB368CB181EB6820045507E /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		948CB4A918098FEB006B7917 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				948CB4B918098FEB006B7917 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,37 +533,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		948CB4A718098FEB006B7917 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				948CB4BB18098FEB006B7917 /* JCFConnectionTests.mm in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		948CB4B218098FEB006B7917 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 948CB49A18098FEB006B7917 /* JCFConnection */;
-			targetProxy = 948CB4B118098FEB006B7917 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3CB368C1181EB6820045507E /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				3CB368C2181EB6820045507E /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		948CB4B718098FEB006B7917 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				948CB4B818098FEB006B7917 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -777,54 +671,6 @@
 			};
 			name = Release;
 		};
-		948CB4C218098FEB006B7917 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JCFConnectionTest.app/JCFConnectionTest";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JCFConnection/JCFConnection-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-				);
-				INFOPLIST_FILE = "JCFConnectionTests/JCFConnectionTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		948CB4C318098FEB006B7917 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JCFConnectionTest.app/JCFConnectionTest";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JCFConnection/JCFConnection-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-				);
-				INFOPLIST_FILE = "JCFConnectionTests/JCFConnectionTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -851,15 +697,6 @@
 			buildConfigurations = (
 				948CB4BF18098FEB006B7917 /* Debug */,
 				948CB4C018098FEB006B7917 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		948CB4C118098FEB006B7917 /* Build configuration list for PBXNativeTarget "JCFConnectionTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				948CB4C218098FEB006B7917 /* Debug */,
-				948CB4C318098FEB006B7917 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

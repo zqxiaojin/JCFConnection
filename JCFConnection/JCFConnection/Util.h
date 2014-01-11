@@ -24,6 +24,8 @@ namespace J
         static CFStringRef standardizeHeaderName(CFStringRef headerName);
         
         static BOOL isEqualString(CFStringRef a, CFStringRef b);
+        
+        static const char* getUTF8String(CFStringRef cfstr);
     };
 }
 

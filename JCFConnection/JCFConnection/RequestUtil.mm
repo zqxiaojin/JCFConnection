@@ -38,7 +38,7 @@ namespace J
         CFStringRef headValue = CFStringCreateWithFormat(kCFAllocatorDefault,NULL,CFSTR("%@: %@\r\n"),key,value);
         if (headValue)
         {
-            const char* headValueUTF8 = CFStringGetCStringPtr(headValue, kCFStringEncodingUTF8);
+            const char* headValueUTF8 = Util::getUTF8String(headValue);
             assert(headValueUTF8);
             if (headValueUTF8) {
                 CFDataAppendBytes(mData, (const Byte*)headValueUTF8, strlen(headValueUTF8));
@@ -66,7 +66,7 @@ namespace J
             }
             
             CFStringRef path = CFURLCopyPath(url);
-            const char* pathUTF8 = CFStringGetCStringPtr(path, kCFStringEncodingUTF8);
+            const char* pathUTF8 = Util::getUTF8String(path);
   
             CFDataAppendBytes(mData, (const Byte*)methodC, strlen(methodC));
             CFDataAppendBytes(mData, (const Byte*)pathUTF8, strlen(pathUTF8));
@@ -74,7 +74,7 @@ namespace J
             CFStringRef resourceSpecifier = CFURLCopyResourceSpecifier(url);
             if (resourceSpecifier)
             {
-                const char* resourceSpecifierUTF8 = CFStringGetCStringPtr(resourceSpecifier, kCFStringEncodingUTF8);
+                const char* resourceSpecifierUTF8 = Util::getUTF8String(resourceSpecifier);
                 CFDataAppendBytes(mData, (const Byte*)resourceSpecifierUTF8, strlen(resourceSpecifierUTF8));
                 CFRelease(resourceSpecifier);
             }
@@ -168,7 +168,7 @@ namespace J
     {
         //FIXME: handle error
         CFStringRef headValue = CFStringCreateWithFormat(kCFAllocatorDefault,NULL,CFSTR("%@: %@\r\n"),header,value);
-        const char* headValueUTF8 = CFStringGetCStringPtr(headValue, kCFStringEncodingUTF8);
+        const char* headValueUTF8 = Util::getUTF8String(headValue);
         CFDataAppendBytes(data, (const Byte*)headValueUTF8, strlen(headValueUTF8));
         CFRelease(headValue);
         return  true;

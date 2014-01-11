@@ -33,6 +33,8 @@ namespace J
     }
     CFConnectionCore::~CFConnectionCore()
     {
+//        NSLog(@"CFConnectionCore 0x%08X dealloc", (unsigned)this);
+        cancel();
         if (m_chunkedStreamDecoder) {
             delete m_chunkedStreamDecoder;
         }
@@ -99,10 +101,15 @@ namespace J
     
     void CFConnectionCore::cancel()
     {
-        m_state = ECancelByUse;
-        m_handler->cancel();
-        freeSocket();
-        m_connectionCallBack = NULL;
+//        NSLog(@"CFConnectionCore 0x%08X cancel", (unsigned)this);
+        if (m_state != ECancelByUse)
+        {
+            m_state = ECancelByUse;
+            m_handler->cancel();
+            freeSocket();
+            m_connectionCallBack = NULL;
+        }
+
     }
     
     void CFConnectionCore::setConnection(id<CFConnectionCoreDelegate> connection)
