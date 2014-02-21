@@ -83,6 +83,16 @@ namespace J
         return result ? result : headerName;
     }
     
+    const char* Util::getUTF8String(CFStringRef cfstr)
+    {
+        const char* utf8Value = CFStringGetCStringPtr(cfstr, kCFStringEncodingUTF8);
+        if (utf8Value == NULL)
+        {
+            utf8Value = [(NSString*)cfstr UTF8String];
+        }
+        return utf8Value;
+    }
+    
     BOOL Util::isEqualString(CFStringRef a, CFStringRef b)
     {
         return CFStringCompare(a, b, NULL) == kCFCompareEqualTo;

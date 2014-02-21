@@ -11,7 +11,7 @@
 #import "JCFConnection_Internal.h"
 #include "Util.h"
 
-#define PROTECTSELF()   {Util:CFAutorelease(CFRetain(self));}
+#define PROTECTSELF()   {J::Util::CFAutoRelease(CFRetain(self));}
 
 @implementation JCFConnection
 

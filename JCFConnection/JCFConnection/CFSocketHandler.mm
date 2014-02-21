@@ -10,7 +10,7 @@
 #include "RequestUtil.h"
 #include "CFSocketHandlerClient.h"
 
-extern "C" const CFStringRef _kCFStreamSocketSetNoDelay;
+//extern "C" const CFStringRef _kCFStreamSocketSetNoDelay;
 
 namespace J
 {
@@ -28,6 +28,7 @@ namespace J
     
     CFSocketHandler::~CFSocketHandler()
     {
+//        NSLog(@"CFSocketHandler 0x%08X dealloc", (unsigned)this);
         close();
     }
     
@@ -39,6 +40,7 @@ namespace J
     
     void CFSocketHandler::cancel()
     {
+//        NSLog(@"CFSocketHandler 0x%08X cancel", (unsigned)this);
         retain();
         close();
         m_state = Closed;
@@ -52,18 +54,21 @@ namespace J
         UInt32 port = m_client->port();
         CFStreamCreatePairWithSocketToHost(kCFAllocatorDefault, host, port, &m_readStream, &m_writeStream);
         
-        CFWriteStreamSetProperty(m_writeStream, _kCFStreamSocketSetNoDelay, kCFBooleanTrue);
+//        CFWriteStreamSetProperty(m_writeStream, _kCFStreamSocketSetNoDelay, kCFBooleanTrue);
+//        CFWriteStreamSetProperty(m_writeStream, _kCFStreamSocketSetNoDelay, kCFBooleanTrue);
     }
 
     void CFSocketHandler::scheduleStreams()
     {
         assert(m_readStream);
         assert(m_writeStream);
-        
+
         CFStreamClientContext clientContext = { 0, this, retainConnectionCore, releaseConnectionCore, copyCFStreamDescription };
         // FIXME: Pass specific events we're interested in instead of -1.
         CFReadStreamSetClient(m_readStream, static_cast<CFOptionFlags>(-1), readStreamCallback, &clientContext);
         CFWriteStreamSetClient(m_writeStream, static_cast<CFOptionFlags>(-1), writeStreamCallback, &clientContext);
+        
+        [(NSInputStream*)m_readStream setProperty:NSStreamSocketSecurityLevelTLSv1 forKey:NSStreamSocketSecurityLevelKey];
 
         CFRunLoopRef runloop = CFRunLoopGetCurrent();
         CFReadStreamScheduleWithRunLoop(m_readStream, runloop, kCFRunLoopCommonModes);
@@ -154,9 +159,9 @@ namespace J
                 assert(m_state == Open);
                 assert(m_connectingSubstate == Connected);
                 
-
-                UInt8* localBuffer = (UInt8*)malloc(2048);
-                int length = CFReadStreamRead(m_readStream, localBuffer, 2048);
+                static const int KMaxBuffer = 2048;
+                UInt8* localBuffer = (UInt8*)malloc(KMaxBuffer);
+                int length = CFReadStreamRead(m_readStream, localBuffer, KMaxBuffer);
                 if (length > 0)
                 {
                     CFDataRef data = CFDataCreateWithBytesNoCopy(kCFAllocatorDefault, (const UInt8 *)localBuffer, length, kCFAllocatorMalloc);
@@ -291,5 +296,6 @@ namespace J
         CFRelease(m_writeStream);m_writeStream = NULL;
 
         m_client->didCloseSocketStream(this);
+        m_client = NULL;
     }
 };

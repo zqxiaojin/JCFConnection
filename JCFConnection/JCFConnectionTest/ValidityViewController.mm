@@ -23,6 +23,7 @@ static TestCaseStruct KTestCase[]=
     ,{@"Gzip Validity"          ,@"GzipValidityTestCase"}
     ,{@"Chunk Validity"         ,@"ChunkValidityTestCase"}
     ,{@"Chunk & Gzip Validity"  ,@"ChunkAndGzipValidityTestCase"}
+    ,{@"HTTPS Validity"  ,@"HTTPSValidityTestCase"}
 };
 
 
