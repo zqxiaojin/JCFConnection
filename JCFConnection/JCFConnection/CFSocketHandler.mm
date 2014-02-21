@@ -55,7 +55,6 @@ namespace J
         CFStreamCreatePairWithSocketToHost(kCFAllocatorDefault, host, port, &m_readStream, &m_writeStream);
         
 //        CFWriteStreamSetProperty(m_writeStream, _kCFStreamSocketSetNoDelay, kCFBooleanTrue);
-//        CFWriteStreamSetProperty(m_writeStream, _kCFStreamSocketSetNoDelay, kCFBooleanTrue);
     }
 
     void CFSocketHandler::scheduleStreams()
