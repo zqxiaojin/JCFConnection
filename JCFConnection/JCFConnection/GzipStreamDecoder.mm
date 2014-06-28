@@ -66,6 +66,7 @@ namespace J
         if (m_tempDataBuffer)
         {
             result = CFDataCreateWithBytesNoCopy(kCFAllocatorDefault, m_tempDataBuffer, m_tempDataBufferLength, kCFAllocatorMalloc);
+            Util::CFAutoRelease(result);
             if (result == NULL)
             {
                 free(m_tempDataBuffer);

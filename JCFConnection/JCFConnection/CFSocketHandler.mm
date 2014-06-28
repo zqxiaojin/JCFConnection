@@ -293,8 +293,11 @@ namespace J
         
         CFRelease(m_readStream);m_readStream = NULL;
         CFRelease(m_writeStream);m_writeStream = NULL;
-
-        m_client->didCloseSocketStream(this);
-        m_client = NULL;
+        if (m_client)
+        {
+            m_client->didCloseSocketStream(this);
+            m_client = NULL;
+        }
+        
     }
 };
