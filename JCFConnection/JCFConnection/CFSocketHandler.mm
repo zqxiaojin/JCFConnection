@@ -278,7 +278,7 @@ namespace J
     {
         if (!m_readStream)
         {
-            if (m_connectingSubstate == New )
+            if (m_connectingSubstate == New && m_client)
             {
                 m_client->didCloseSocketStream(this);
             }
